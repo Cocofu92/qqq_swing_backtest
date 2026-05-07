@@ -1,0 +1,58 @@
+# QQQ Multi-Timeframe Trend-Pullback Backtest -- config
+# Single source of truth for all knobs.
+#
+# `strategy.daily_filter_mode` selects between the two iterations:
+#   strict  -> close > 50 EMA AND 50 EMA > 200 EMA; zones = 21 EMA, 50 EMA, donchian_low
+#   loose   -> close > 200 EMA;                       zones = 21 EMA, 50 EMA, 100 EMA, 200 EMA, donchian_low
+# The backtest entrypoint iterates over both modes back-to-back and writes
+# outputs/<mode>/ + outputs/comparison.{png,md}.
+
+data:
+  symbol: QQQ
+  baseline_symbol: SPY        # buy-and-hold baseline for comparison
+  start_date: 2022-01-01
+  end_date: today              # special string parsed at runtime
+  timeframe: 1hour             # FMP timeframe
+  cache_max_age_hours: 24
+
+period:
+  train_end: 2024-12-31
+  holdout_start: 2025-01-01
+
+strategy:
+  daily_filter_mode: strict   # default for single-mode runs; the entrypoint loops over both
+  daily:
+    fast_ema: 50
+    slow_ema: 200
+    short_ema: 21              # 1st zone
+    medium_ema: 100            # only used as a zone in loose mode
+    donchian_low: 20           # 20-day rolling low zone
+    daily_atr_period: 14       # ATR for ATR-scaled zone proximity
+    zone_proximity_atr_mult: 0.5   # zone touch: low within +- 0.5 * daily ATR of zone
+    zone_lookback_bars: 6      # 1H bars to check for zone touch
+  hourly:
+    rsi_period: 14
+    rsi_threshold: 35          # cross-back-above level
+    atr_period: 14
+    atr_multiplier_stop: 1.0
+    trail_ema: 21              # 1H 21 EMA trail
+    take_partial_at_R: 2.0     # +2R partial exit
+    partial_exit_pct: 50
+
+costs:
+  spread: 0.03
+  commission: 0.0
+  slippage_ticks: 1
+  tick_size: 0.01
+
+execution:
+  one_position_at_a_time: true
+  no_pyramiding: true
+  initial_capital: 10000       # USD; doesn't affect % returns but sets log scale
+  risk_pct: 0.01               # 1% of capital per trade
+
+# When running via the entrypoint, both of these modes are executed.
+# When running with --mode <name>, only that mode is executed.
+modes:
+  - strict
+  - loose

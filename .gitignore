@@ -1,0 +1,29 @@
+# Data cache (keep dir via .gitkeep)
+data/*
+!data/.gitkeep
+
+# Outputs (keep dir via .gitkeep)
+outputs/*
+!outputs/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
