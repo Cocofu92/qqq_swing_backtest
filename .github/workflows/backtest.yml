@@ -1,0 +1,52 @@
+name: Run QQQ backtest
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Optional tag for this run"
+        required: false
+        default: ""
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e .
+      - name: Tests
+        run: pytest tests/ -v
+      - name: Backtest (strict)
+        env:
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: python -m src.backtest --mode strict
+      - name: Backtest (loose)
+        env:
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: python -m src.backtest --mode loose
+      - name: Comparison artefacts
+        env:
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        # Re-run with no --mode to write outputs/comparison.{png,md}.
+        # The per-mode outputs are already on disk; this loop just regenerates
+        # the comparison overlay against the freshly computed equity curves.
+        run: python -m src.backtest
+      - name: Commit results
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "github-actions"
+          git add outputs/
+          if git diff --cached --quiet; then
+            echo "No new outputs"
+          else
+            ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            git commit -m "backtest: ${ts} ${{ github.event.inputs.tag }}"
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              sleep $((i * 5))
+            done
+          fi
