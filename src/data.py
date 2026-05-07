@@ -21,8 +21,8 @@ import requests
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 CACHE_PATH = DATA_DIR / "qqq_1h.parquet"
-FMP_BASE_INTRADAY = "https://financialmodelingprep.com/api/v3/historical-chart/1hour"
-FMP_BASE_DAILY = "https://financialmodelingprep.com/api/v3/historical-price-full"
+FMP_BASE_INTRADAY = "https://financialmodelingprep.com/stable/historical-chart/1hour"
+FMP_BASE_DAILY = "https://financialmodelingprep.com/stable/historical-chart/1day"
 
 
 def _fmp_key() -> str:
@@ -82,7 +82,7 @@ def _save_cache(df: pd.DataFrame) -> None:
 
 
 def _fetch_intraday_chunk(symbol: str, start: str, end: str) -> pd.DataFrame:
-    url = f"{FMP_BASE_INTRADAY}/{symbol}?from={start}&to={end}&apikey={_fmp_key()}"
+    url = f"{FMP_BASE_INTRADAY}?symbol={symbol}&from={start}&to={end}&apikey={_fmp_key()}"
     resp = requests.get(url, timeout=60)
     resp.raise_for_status()
     payload = resp.json()
@@ -140,7 +140,7 @@ def fetch_daily_close(symbol: str, start: str | pd.Timestamp, end: str | pd.Time
     """Return tz-aware UTC daily close series for the buy-and-hold baseline."""
     start_s = pd.Timestamp(start).strftime("%Y-%m-%d")
     end_s = pd.Timestamp(end).strftime("%Y-%m-%d")
-    url = f"{FMP_BASE_DAILY}/{symbol}?from={start_s}&to={end_s}&apikey={_fmp_key()}"
+    url = f"{FMP_BASE_DAILY}?symbol={symbol}&from={start_s}&to={end_s}&apikey={_fmp_key()}"
     resp = requests.get(url, timeout=60)
     resp.raise_for_status()
     payload = resp.json()
