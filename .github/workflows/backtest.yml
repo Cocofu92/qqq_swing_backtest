@@ -29,6 +29,7 @@ jobs:
           # Capture exit status of python (not tee)
           test ${PIPESTATUS[0]} -eq 0
       - name: Commit results
+        if: always()
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "github-actions"
