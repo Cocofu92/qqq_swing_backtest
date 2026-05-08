@@ -24,7 +24,7 @@ import pandas as pd
 import yaml
 from backtesting import Backtest
 
-from .data import fetch_daily_close, fetch_qqq_intraday, parse_end_date
+from .data import fetch_daily_close, fetch_intraday, fetch_qqq_intraday, parse_end_date
 from .indicators import (
     compute_daily_bias,
     compute_hourly_signals,
@@ -42,12 +42,12 @@ def load_config() -> Dict[str, Any]:
         return yaml.safe_load(f)
 
 
-def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour") -> pd.DataFrame:
-    """Fetch QQQ at `timeframe` and attach all daily indicators (mode-agnostic)."""
+def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour", symbol: str = "QQQ") -> pd.DataFrame:
+    """Fetch `symbol` at `timeframe` and attach all daily indicators (mode-agnostic)."""
     start = cfg["data"]["start_date"]
     end_raw = cfg["data"]["end_date"]
     end = parse_end_date(end_raw) if end_raw == "today" else pd.Timestamp(end_raw, tz="UTC")
-    df_1h = fetch_qqq_intraday(timeframe, start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
+    df_1h = fetch_intraday(symbol, timeframe, start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
 
     daily = compute_daily_bias(
         df_1h,
@@ -270,65 +270,96 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
 
 
 def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
-    """Sweep summary: full markdown table of all variants + equity-curve overlay
-    showing top-3 by holdout PF + QQQ buy-and-hold + QQQ-above-200d-EMA baselines."""
+    """Cross-symbol summary: per-symbol equity-curve PNG + a cross-symbol stats table
+    showing every (symbol, tf, variant) combination sorted by holdout PF.
+
+    Benchmarks: each symbol's own buy-and-hold + above-200d-EMA filtered version."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
 
     initial = cfg["execution"]["initial_capital"]
 
-    rows_by_pf: List[tuple] = []
+    # Group sweep results by symbol
+    by_symbol: Dict[str, List[tuple]] = {}
     for label, payload in sweep.items():
+        symbol = payload.get("symbol", "?")
         h_stats = payload["holdout"].get("stats")
         pf = float(h_stats.get("Profit Factor", 0)) if h_stats is not None and "Profit Factor" in h_stats else 0.0
         if pd.isna(pf):
             pf = 0.0
-        rows_by_pf.append((pf, label, payload))
-    rows_by_pf.sort(key=lambda x: x[0], reverse=True)
-    top3 = rows_by_pf[:3]
+        by_symbol.setdefault(symbol, []).append((pf, label, payload))
+    for sym in by_symbol:
+        by_symbol[sym].sort(key=lambda x: x[0], reverse=True)
 
-    # ---- Plot top 3 stitched curves ----
+    # ---- Per-symbol equity curve plots ----
+    cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
+    for sym, rows in by_symbol.items():
+        (OUTPUTS / sym).mkdir(parents=True, exist_ok=True)
+        fig, ax = plt.subplots(figsize=(12, 5.5))
+        span_min: Optional[pd.Timestamp] = None
+        span_max: Optional[pd.Timestamp] = None
+        colours = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#17becf"]
+        for j, (pf, label, payload) in enumerate(rows):
+            eq = _stitch_equity(payload["train"]["equity_curve"], payload["holdout"]["equity_curve"], initial)
+            if eq.empty:
+                continue
+            short_label = label.replace(f"{sym}/", "")
+            ax.plot(eq.index, eq.values, label=f"{short_label} (PF={pf:.2f})", lw=1.4, color=colours[j % len(colours)])
+            span_min = eq.index.min() if span_min is None else min(span_min, eq.index.min())
+            span_max = eq.index.max() if span_max is None else max(span_max, eq.index.max())
+
+        # Per-symbol benchmark: own buy-and-hold + own-above-200d-EMA
+        if span_min is not None and span_max is not None:
+            try:
+                bh_daily = fetch_daily_close(sym, span_min, span_max)
+                if not bh_daily.empty:
+                    bh_curve = (bh_daily / bh_daily.iloc[0]) * initial
+                    ax.plot(bh_curve.index, bh_curve.values, label=f"{sym} buy & hold",
+                            color="grey", lw=1.0, ls="--")
+                    ema200 = bh_daily.ewm(span=200, adjust=False).mean()
+                    long_mask = (bh_daily > ema200).shift(1).fillna(False)
+                    daily_ret = bh_daily.pct_change().fillna(0.0)
+                    regime_ret = daily_ret.where(long_mask, 0.0)
+                    regime_curve = (1.0 + regime_ret).cumprod() * initial
+                    ax.plot(regime_curve.index, regime_curve.values, label=f"{sym} > 200d EMA",
+                            color="black", lw=1.0, ls=":")
+            except Exception as e:
+                print(f"[plot] {sym} benchmark fetch failed: {e}")
+
+        if span_min is not None and span_min <= cutoff <= span_max:
+            ax.axvline(cutoff, ls=":", color="black", lw=0.7, alpha=0.6)
+        ax.set_title(f"{sym} — strategy vs benchmarks")
+        ax.set_ylabel("Equity ($)")
+        ax.set_yscale("log")
+        ax.grid(True, alpha=0.3)
+        ax.legend(loc="best", fontsize=8)
+        fig.tight_layout()
+        fig.savefig(OUTPUTS / sym / "comparison.png", dpi=120)
+        plt.close(fig)
+
+    # ---- Cross-symbol summary plot: best (highest holdout PF) variant per symbol ----
     fig, ax = plt.subplots(figsize=(13, 6))
-    span_min: Optional[pd.Timestamp] = None
-    span_max: Optional[pd.Timestamp] = None
-    colours = ["#1f77b4", "#ff7f0e", "#2ca02c"]
-    for j, (pf, label, payload) in enumerate(top3):
+    span_min = None
+    span_max = None
+    colours = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#17becf"]
+    for j, (sym, rows) in enumerate(by_symbol.items()):
+        if not rows:
+            continue
+        pf, label, payload = rows[0]
         eq = _stitch_equity(payload["train"]["equity_curve"], payload["holdout"]["equity_curve"], initial)
         if eq.empty:
             continue
-        ax.plot(eq.index, eq.values, label=f"{label} (PF={pf:.2f})", lw=1.6, color=colours[j])
+        ax.plot(eq.index, eq.values, label=f"{sym} ({label.replace(f'{sym}/', '')}, PF={pf:.2f})",
+                lw=1.5, color=colours[j % len(colours)])
         span_min = eq.index.min() if span_min is None else min(span_min, eq.index.min())
         span_max = eq.index.max() if span_max is None else max(span_max, eq.index.max())
 
-    # Benchmarks: QQQ buy-and-hold + QQQ-above-200d-EMA-filtered
-    if span_min is not None and span_max is not None:
-        try:
-            qqq_daily = fetch_daily_close("QQQ", span_min, span_max)
-            if not qqq_daily.empty:
-                # Plain buy & hold
-                bh_curve = (qqq_daily / qqq_daily.iloc[0]) * initial
-                ax.plot(bh_curve.index, bh_curve.values, label="QQQ buy & hold",
-                        color="grey", lw=1.0, ls="--")
-
-                # QQQ-above-200d-EMA filtered: long when close > 200d EMA, cash otherwise
-                ema_200 = qqq_daily.ewm(span=200, adjust=False).mean()
-                long_mask = (qqq_daily > ema_200).shift(1).fillna(False)
-                daily_ret = qqq_daily.pct_change().fillna(0.0)
-                strat_ret = daily_ret.where(long_mask, 0.0)
-                regime_curve = (1.0 + strat_ret).cumprod() * initial
-                ax.plot(regime_curve.index, regime_curve.values, label="QQQ > 200d EMA",
-                        color="black", lw=1.0, ls=":")
-        except Exception as e:
-            print(f"[plot] benchmark fetch failed: {e}")
-
-    cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
     if span_min is not None and span_min <= cutoff <= span_max:
         ax.axvline(cutoff, ls=":", color="black", lw=0.7, alpha=0.6)
         ax.annotate("Holdout start", xy=(cutoff, ax.get_ylim()[1]),
                     xytext=(5, -10), textcoords="offset points", fontsize=8)
-
-    ax.set_title("Top 3 sweep variants vs. QQQ buy-and-hold & QQQ-above-200dEMA")
+    ax.set_title("Best variant per symbol — equity overlay")
     ax.set_ylabel("Equity ($)")
     ax.set_yscale("log")
     ax.grid(True, alpha=0.3)
@@ -337,9 +368,15 @@ def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]
     fig.savefig(OUTPUTS / "comparison.png", dpi=120)
     plt.close(fig)
 
+    # Flatten back to rows_by_pf for the markdown table
+    rows_by_pf: List[tuple] = []
+    for sym, rows in by_symbol.items():
+        rows_by_pf.extend(rows)
+    rows_by_pf.sort(key=lambda x: x[0], reverse=True)
+
     # ---- Markdown table ----
-    rows = ["# Sweep -- Trail × RSI variants", ""]
-    headers = ["Variant", "Trail", "RSI", "Trades (T+H)",
+    rows = ["# Multi-symbol sweep -- v6 (atr_2.0/2.5 × 1h+4h × RSI40 across 6 symbols)", ""]
+    headers = ["Symbol/TF/Variant", "Trail", "RSI", "Trades (T+H)",
                "Holdout Return [%]", "Holdout PF", "Holdout WR [%]", "Holdout MaxDD [%]",
                "Train Return [%]", "Train PF", "Train Trades"]
     rows.append("| " + " | ".join(headers) + " |")
@@ -351,8 +388,8 @@ def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]
         t_trades = int(t_stats.get("# Trades", 0)) if t_stats is not None else 0
         cells = [
             label,
-            payload["trail"],
-            f'{payload["rsi"]}',
+            payload.get("trail", "?"),
+            f'{payload.get("rsi", "?")}',
             f"{t_trades}+{h_trades}",
             _stat(h_stats, "Return [%]"),
             f"{pf:.2f}" if pf else "n/a",
@@ -364,24 +401,36 @@ def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]
         ]
         rows.append("| " + " | ".join(cells) + " |")
 
+    # Per-symbol benchmarks footer
     rows.append("")
-    if span_min is not None and span_max is not None:
+    rows.append("## Buy-and-hold & regime-filtered benchmarks (per symbol)")
+    rows.append("")
+    rows.append("| Symbol | B&H Total [%] | B&H CAGR [%] | Above-200d-EMA Total [%] | Above-200d-EMA CAGR [%] |")
+    rows.append("|---|---|---|---|---|")
+    for sym in sorted(by_symbol.keys()):
+        # Determine span for this symbol
+        sym_eq = _stitch_equity(by_symbol[sym][0][2]["train"]["equity_curve"],
+                                by_symbol[sym][0][2]["holdout"]["equity_curve"], initial) if by_symbol[sym] else pd.Series(dtype=float)
+        if sym_eq.empty:
+            continue
+        s_min, s_max = sym_eq.index.min(), sym_eq.index.max()
         try:
-            qqq_daily = fetch_daily_close("QQQ", span_min, span_max)
-            if not qqq_daily.empty:
-                bh_total = (qqq_daily.iloc[-1] / qqq_daily.iloc[0] - 1) * 100
-                yrs = max((span_max - span_min).days / 365.25, 1e-6)
-                bh_cagr = ((qqq_daily.iloc[-1] / qqq_daily.iloc[0]) ** (1 / yrs) - 1) * 100
-                ema_200 = qqq_daily.ewm(span=200, adjust=False).mean()
-                long_mask = (qqq_daily > ema_200).shift(1).fillna(False)
-                daily_ret = qqq_daily.pct_change().fillna(0.0)
-                regime_ret = daily_ret.where(long_mask, 0.0)
-                regime_total = ((1.0 + regime_ret).prod() - 1) * 100
-                regime_cagr = ((1.0 + regime_ret).prod() ** (1 / yrs) - 1) * 100
-                rows.append(f"_QQQ buy & hold (full span): total **{bh_total:.2f}%**, CAGR **{bh_cagr:.2f}%**_")
-                rows.append(f"_QQQ > 200d EMA filtered: total **{regime_total:.2f}%**, CAGR **{regime_cagr:.2f}%**_")
+            bh_daily = fetch_daily_close(sym, s_min, s_max)
+            if bh_daily.empty:
+                rows.append(f"| {sym} | n/a | n/a | n/a | n/a |")
+                continue
+            bh_total = (bh_daily.iloc[-1] / bh_daily.iloc[0] - 1) * 100
+            yrs = max((s_max - s_min).days / 365.25, 1e-6)
+            bh_cagr = ((bh_daily.iloc[-1] / bh_daily.iloc[0]) ** (1 / yrs) - 1) * 100
+            ema200 = bh_daily.ewm(span=200, adjust=False).mean()
+            long_mask = (bh_daily > ema200).shift(1).fillna(False)
+            daily_ret = bh_daily.pct_change().fillna(0.0)
+            regime_ret = daily_ret.where(long_mask, 0.0)
+            regime_total = ((1.0 + regime_ret).prod() - 1) * 100
+            regime_cagr = ((1.0 + regime_ret).prod() ** (1 / yrs) - 1) * 100
+            rows.append(f"| {sym} | {bh_total:.2f} | {bh_cagr:.2f} | {regime_total:.2f} | {regime_cagr:.2f} |")
         except Exception as e:
-            rows.append(f"_(benchmark fetch failed: {e})_")
+            rows.append(f"| {sym} | error: {e} |  |  |  |")
     rows.append("")
     rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
     (OUTPUTS / "comparison.md").write_text("\n".join(rows) + "\n")
@@ -581,68 +630,76 @@ def main(
     modes = modes_override or cfg.get("modes", ["loose"])  # default loose-only
     use_4h_regime = bool(cfg.get("strategy", {}).get("regime_filter_4h", False))
 
-    sweep_results: Dict[str, Dict[str, Any]] = {}  # key = "{tf}/{trail}_{rsi}"
+    symbols = cfg.get("symbols", ["QQQ"])
+    sweep_results: Dict[str, Dict[str, Any]] = {}  # key = "{symbol}/{tf}/{trail}_{rsi}"
 
-    for tf in timeframes:
-        print(f"\n##### Timeframe: {tf} #####")
-        df_base = prepare_base_data(cfg, timeframe=tf)
-        if df_base.empty:
-            print(f"No data for {tf}; skipping.")
-            continue
-        # Optional 4h regime overlay
-        regime_4h_mask = None
-        if use_4h_regime and tf != "4hour":
-            regime_4h_mask = _build_4h_regime_mask(cfg, df_base)
-            print(f"[regime] 4h trend filter active: {int(regime_4h_mask.sum())} / {len(regime_4h_mask)} bars qualify")
+    for symbol in symbols:
+        print(f"\n========== Symbol: {symbol} ==========")
 
-        for mode in modes:
-            df = select_mode(df_base, mode, cfg)
-            if regime_4h_mask is not None:
-                # Force-disable bias on bars where 4h trend is not bullish
-                df["daily_bullish_y"] = df["daily_bullish_y"] & regime_4h_mask.reindex(df.index, fill_value=False)
-            if not len(df):
+        for tf in timeframes:
+            print(f"\n##### {symbol} / {tf} #####")
+            try:
+                df_base = prepare_base_data(cfg, timeframe=tf, symbol=symbol)
+            except Exception as e:
+                print(f"[bt] {symbol}/{tf}: data fetch failed: {e}; skipping.")
                 continue
+            if df_base.empty:
+                print(f"No data for {symbol}/{tf}; skipping.")
+                continue
+            # Optional 4h regime overlay
+            regime_4h_mask = None
+            if use_4h_regime and tf != "4hour":
+                regime_4h_mask = _build_4h_regime_mask(cfg, df_base)
+                print(f"[regime] 4h trend filter active: {int(regime_4h_mask.sum())} / {len(regime_4h_mask)} bars qualify")
 
-            # Diagnostic on the base mode (not yet tied to specific trail/rsi)
-            bias = df["daily_bullish_y"].fillna(False).astype(bool)
-            zone = df["zone_touched"].fillna(False).astype(bool)
-            print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
+            for mode in modes:
+                df = select_mode(df_base, mode, cfg)
+                if regime_4h_mask is not None:
+                    # Force-disable bias on bars where 4h trend is not bullish
+                    df["daily_bullish_y"] = df["daily_bullish_y"] & regime_4h_mask.reindex(df.index, fill_value=False)
+                if not len(df):
+                    continue
 
-            for trail in trail_types:
-                # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
-                if trail.startswith("atr_"):
-                    base_trail = "atr"
-                    try:
-                        atr_mult = float(trail.split("_", 1)[1])
-                    except (ValueError, IndexError):
+                # Diagnostic on the base mode (not yet tied to specific trail/rsi)
+                bias = df["daily_bullish_y"].fillna(False).astype(bool)
+                zone = df["zone_touched"].fillna(False).astype(bool)
+                print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
+
+                for trail in trail_types:
+                    # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
+                    if trail.startswith("atr_"):
+                        base_trail = "atr"
+                        try:
+                            atr_mult = float(trail.split("_", 1)[1])
+                        except (ValueError, IndexError):
+                            atr_mult = None
+                    else:
+                        base_trail = trail
                         atr_mult = None
-                else:
-                    base_trail = trail
-                    atr_mult = None
 
-                for rsi_t in rsi_thresholds:
-                    label = f"{trail}_rsi{rsi_t}"
-                    print(f"  -> {tf}/{label}", flush=True)
-                    df_v = df.copy()
-                    if "rsi" in df_v.columns:
-                        prev_rsi = df_v["rsi"].shift(1)
-                        df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
+                    for rsi_t in rsi_thresholds:
+                        label = f"{trail}_rsi{rsi_t}"
+                        print(f"  -> {tf}/{label}", flush=True)
+                        df_v = df.copy()
+                        if "rsi" in df_v.columns:
+                            prev_rsi = df_v["rsi"].shift(1)
+                            df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
 
-                    train_df = df_v.loc[df_v.index < train_end]
-                    holdout_df = df_v.loc[df_v.index >= holdout_start]
-                    train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
-                    holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
+                        train_df = df_v.loc[df_v.index < train_end]
+                        holdout_df = df_v.loc[df_v.index >= holdout_start]
+                        train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
+                        holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
 
-                    outdir = OUTPUTS / tf / f"{label}"
-                    outdir.mkdir(parents=True, exist_ok=True)
-                    write_stats_md(f"{tf}/{label}", train, holdout, outdir)
-                    write_trade_log(train, holdout, outdir)
-                    write_equity_curve(f"{tf}/{label}", train, holdout, outdir)
-                    sweep_results[f"{tf}/{label}"] = {
-                        "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
-                        "atr_mult": atr_mult,
-                        "train": train, "holdout": holdout,
-                    }
+                        outdir = OUTPUTS / symbol / tf / f"{label}"
+                        outdir.mkdir(parents=True, exist_ok=True)
+                        write_stats_md(f"{symbol}/{tf}/{label}", train, holdout, outdir)
+                        write_trade_log(train, holdout, outdir)
+                        write_equity_curve(f"{symbol}/{tf}/{label}", train, holdout, outdir)
+                        sweep_results[f"{tf}/{label}"] = {
+                            "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
+                            "atr_mult": atr_mult,
+                            "train": train, "holdout": holdout,
+                        }
 
     if sweep_results:
         write_sweep_comparison(sweep_results, cfg)
@@ -670,9 +727,10 @@ def _build_4h_regime_mask(cfg: Dict[str, Any], df_base: pd.DataFrame) -> pd.Seri
 
 
 def _cli() -> None:
-    parser = argparse.ArgumentParser(description="QQQ trend-pullback backtest sweep")
+    parser = argparse.ArgumentParser(description="Multi-symbol trend-pullback backtest sweep")
+    parser.add_argument("--symbol", default=None, help="If set, run only this symbol (e.g. QQQ).")
     parser.add_argument("--timeframe", choices=["15min", "1hour", "4hour"], default=None)
-    parser.add_argument("--trail", choices=["ema21", "ema50", "atr"], default=None)
+    parser.add_argument("--trail", default=None)
     parser.add_argument("--rsi", type=float, default=None)
     args = parser.parse_args()
     main(

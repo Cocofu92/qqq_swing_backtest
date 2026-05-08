@@ -1,3 +1,11 @@
+symbols:
+  - QQQ
+  - SPY
+  - IBIT       # iShares Bitcoin Trust (Jan 2024 inception — train data limited)
+  - GLD        # SPDR Gold Shares
+  - EWU        # iShares MSCI United Kingdom (FTSE proxy)
+  - EWJ        # iShares MSCI Japan (Nikkei proxy)
+
 # Sweep configuration -- v4: trail × rsi grid on 1h QQQ loose
 modes:
   - loose
@@ -9,11 +17,9 @@ timeframes:
 
 # Trail-stop variants to sweep
 trail_types:
-  - atr_1.0
-  - atr_1.5
-  - atr_2.0
-  - atr_2.5
-  - atr_3.0
+  - atr_2.0       # winner at 1h
+  - atr_2.5       # winner at 4h
+
 
 
 # RSI cross-up thresholds to sweep

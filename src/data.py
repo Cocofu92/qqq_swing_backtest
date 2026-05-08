@@ -22,16 +22,21 @@ import requests
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 # Map our timeframe slug -> FMP path segment + parquet filename.
 # Adam confirmed FMP's "stable" hierarchy 2026-05-08; intraday endpoints truncate to ~3mo per request.
+# Maps timeframe slug -> FMP path segment. Cache file is {symbol}_{tf}.parquet
 INTRADAY_TF = {
-    "15min": ("15min", DATA_DIR / "qqq_15min.parquet"),
-    "1hour": ("1hour", DATA_DIR / "qqq_1hour.parquet"),
-    "4hour": ("4hour", DATA_DIR / "qqq_4hour.parquet"),
+    "15min": "15min",
+    "1hour": "1hour",
+    "4hour": "4hour",
 }
+
+
+def _cache_path_for(symbol: str, timeframe: str) -> Path:
+    return DATA_DIR / f"{symbol.upper()}_{timeframe}.parquet"
 FMP_INTRADAY_BASE = "https://financialmodelingprep.com/stable/historical-chart"
 FMP_BASE_DAILY = "https://financialmodelingprep.com/stable/historical-price-eod/full"
 
 # Backwards-compatible default cache (legacy 1h-only callers).
-CACHE_PATH = INTRADAY_TF["1hour"][1]
+CACHE_PATH = _cache_path_for("QQQ", "1hour")  # legacy default
 
 
 def _fmp_key() -> str:
@@ -94,7 +99,7 @@ def _save_cache(df: pd.DataFrame, path: Path = CACHE_PATH) -> None:
 def _fetch_intraday_chunk(symbol: str, timeframe: str, start: str, end: str) -> pd.DataFrame:
     if timeframe not in INTRADAY_TF:
         raise ValueError(f"Unknown timeframe {timeframe!r}; expected one of {list(INTRADAY_TF)}")
-    fmp_seg, _ = INTRADAY_TF[timeframe]
+    fmp_seg = INTRADAY_TF[timeframe]
     url = f"{FMP_INTRADAY_BASE}/{fmp_seg}?symbol={symbol}&from={start}&to={end}&apikey={_fmp_key()}"
     resp = requests.get(url, timeout=60)
     resp.raise_for_status()
@@ -104,16 +109,17 @@ def _fetch_intraday_chunk(symbol: str, timeframe: str, start: str, end: str) -> 
     return _normalise_intraday(pd.DataFrame(payload))
 
 
-def fetch_qqq_intraday(
+def fetch_intraday(
+    symbol: str,
     timeframe: str,
     start: str | pd.Timestamp,
     end: str | pd.Timestamp,
     cache_max_age_hours: float = 24.0,
 ) -> pd.DataFrame:
-    """Return tz-aware UTC intraday QQQ bars at `timeframe` (15min, 1hour, 4hour)."""
+    """Return tz-aware UTC intraday bars for `symbol` at `timeframe` (15min, 1hour, 4hour)."""
     if timeframe not in INTRADAY_TF:
         raise ValueError(f"Unknown timeframe {timeframe!r}; expected one of {list(INTRADAY_TF)}")
-    _, cache_path = INTRADAY_TF[timeframe]
+    cache_path = _cache_path_for(symbol, timeframe)
 
     start_ts = pd.Timestamp(start)
     if start_ts.tzinfo is None:
@@ -129,7 +135,7 @@ def fetch_qqq_intraday(
         and _cache_covers(cached, start_ts, end_ts)
     ):
         sliced = cached.loc[(cached.index >= start_ts) & (cached.index <= end_ts)]
-        print(f"[data:{timeframe}] loaded {len(sliced)} bars from cache")
+        print(f"[data:{symbol}:{timeframe}] loaded {len(sliced)} bars from cache")
         return sliced
 
     # 4h has fewer bars per call; can chunk wider. Intraday capped by FMP at ~3mo.
@@ -139,11 +145,11 @@ def fetch_qqq_intraday(
     chunks: list[pd.DataFrame] = []
     while cursor < end_ts:
         chunk_end = min(cursor + chunk_days, end_ts)
-        df = _fetch_intraday_chunk("QQQ", timeframe, cursor.strftime("%Y-%m-%d"), chunk_end.strftime("%Y-%m-%d"))
+        df = _fetch_intraday_chunk(symbol, timeframe, cursor.strftime("%Y-%m-%d"), chunk_end.strftime("%Y-%m-%d"))
         if not df.empty:
-            print(f"[data:{timeframe}] chunk {cursor.date()}->{chunk_end.date()}: {len(df)} bars, {df.index[0]} to {df.index[-1]}")
+            print(f"[data:{symbol}:{timeframe}] chunk {cursor.date()}->{chunk_end.date()}: {len(df)} bars, {df.index[0]} to {df.index[-1]}")
         else:
-            print(f"[data:{timeframe}] chunk {cursor.date()}->{chunk_end.date()}: 0 bars (empty)")
+            print(f"[data:{symbol}:{timeframe}] chunk {cursor.date()}->{chunk_end.date()}: 0 bars (empty)")
         chunks.append(df)
         if chunk_end >= end_ts:
             break
@@ -154,16 +160,21 @@ def fetch_qqq_intraday(
 
     full = pd.concat(chunks).sort_index()
     full = full[~full.index.duplicated(keep="last")]
-    print(f"[data:{timeframe}] total after dedupe: {len(full)} bars, {full.index[0] if len(full) else 'N/A'} to {full.index[-1] if len(full) else 'N/A'}")
+    print(f"[data:{symbol}:{timeframe}] total after dedupe: {len(full)} bars, {full.index[0] if len(full) else 'N/A'} to {full.index[-1] if len(full) else 'N/A'}")
     _save_cache(full, cache_path)
     sliced = full.loc[(full.index >= start_ts) & (full.index <= end_ts)]
-    print(f"[data:{timeframe}] returning {len(sliced)} bars in requested window, cached to {cache_path}")
+    print(f"[data:{symbol}:{timeframe}] returning {len(sliced)} bars in requested window, cached to {cache_path}")
     return sliced
 
 
 # Backwards-compat alias for any legacy 1h-only call site.
+def fetch_qqq_intraday(timeframe, *args, **kwargs):
+    """Legacy QQQ-only alias; new code should use fetch_intraday(symbol, timeframe, ...)."""
+    return fetch_intraday("QQQ", timeframe, *args, **kwargs)
+
+
 def fetch_qqq_1h(*args, **kwargs):
-    return fetch_qqq_intraday("1hour", *args, **kwargs)
+    return fetch_intraday("QQQ", "1hour", *args, **kwargs)
 
 
 def fetch_daily_close(symbol: str, start: str | pd.Timestamp, end: str | pd.Timestamp) -> pd.Series:
