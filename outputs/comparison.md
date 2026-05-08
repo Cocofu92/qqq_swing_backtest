@@ -13,4 +13,4 @@
 
 | SPY buy & hold (full span) | total 93.56% | CAGR 20.20% |  |  |
 
-_Generated: 2026-05-08T03:25:59.847820Z_
+_Generated: 2026-05-08T03:33:52.828709Z_
