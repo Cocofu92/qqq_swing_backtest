@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 508, in <module>
+    _cli()
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 501, in _cli
+    main(
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 457, in main
+    df_base = prepare_base_data(cfg, timeframe=tf)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 50, in prepare_base_data
+    df_1h = fetch_qqq_intraday(timeframe, start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/data.py", line 124, in fetch_qqq_intraday
+    cached = _load_cache(cache_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: _load_cache() takes 0 positional arguments but 1 was given
+
+##### Timeframe: 15min #####
