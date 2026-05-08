@@ -363,7 +363,13 @@ def main(modes_override: Optional[List[str]] = None) -> None:
         print(f"[bt] mode={mode}  holdout: {len(holdout_df)} bars  ({holdout_df.index[0] if len(holdout_df) else 'EMPTY'} -> {holdout_df.index[-1] if len(holdout_df) else ''})")
         # Diagnostic: how many bars passed daily bias filter, how many had zone touch
         if len(df):
-            print(f"[bt] mode={mode}  total bars: {len(df)}, daily_bullish_y true: {df.get('daily_bullish_y', pd.Series([])).sum()}, zone_touched true: {df.get('zone_touched', pd.Series([])).sum()}")
+            bias = df.get('daily_bullish_y', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+            zone = df.get('zone_touched', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+            engulf = df.get('engulfing', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+            rsi_cross = df.get('rsi_cross_up', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+            trigger = engulf | rsi_cross
+            all3 = bias & zone & trigger
+            print(f"[bt] mode={mode} total={len(df)} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())} trigger_only={int(trigger.sum())} ALL3_signals={int(all3.sum())}")
 
         train = run_slice(train_df, cfg)
         holdout = run_slice(holdout_df, cfg)
