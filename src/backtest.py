@@ -24,7 +24,7 @@ import pandas as pd
 import yaml
 from backtesting import Backtest
 
-from .data import fetch_daily_close, fetch_qqq_1h, parse_end_date
+from .data import fetch_daily_close, fetch_qqq_intraday, parse_end_date
 from .indicators import (
     compute_daily_bias,
     compute_hourly_signals,
@@ -42,12 +42,12 @@ def load_config() -> Dict[str, Any]:
         return yaml.safe_load(f)
 
 
-def prepare_base_data(cfg: Dict[str, Any]) -> pd.DataFrame:
-    """Fetch QQQ 1H and attach all daily indicators (mode-agnostic)."""
+def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour") -> pd.DataFrame:
+    """Fetch QQQ at `timeframe` and attach all daily indicators (mode-agnostic)."""
     start = cfg["data"]["start_date"]
     end_raw = cfg["data"]["end_date"]
     end = parse_end_date(end_raw) if end_raw == "today" else pd.Timestamp(end_raw, tz="UTC")
-    df_1h = fetch_qqq_1h(start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
+    df_1h = fetch_qqq_intraday(timeframe, start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
 
     daily = compute_daily_bias(
         df_1h,
@@ -438,50 +438,56 @@ def write_comparison(mode_results: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
 
 # ---------------------------------------------------------------------------
 
-def main(modes_override: Optional[List[str]] = None) -> None:
+def main(
+    modes_override: Optional[List[str]] = None,
+    timeframes_override: Optional[List[str]] = None,
+) -> None:
     cfg = load_config()
     OUTPUTS.mkdir(parents=True, exist_ok=True)
-
-    df_base = prepare_base_data(cfg)
-    if df_base.empty:
-        print("No data; nothing to backtest.")
-        return
 
     train_end = pd.Timestamp(cfg["period"]["train_end"], tz="UTC") + pd.Timedelta(days=1)
     holdout_start = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
     modes = modes_override or cfg.get("modes", ["strict", "loose"])
+    timeframes = timeframes_override or cfg.get("timeframes", ["1hour"])
 
-    mode_results: Dict[str, Dict[str, Any]] = {}
-    for mode in modes:
-        print(f"\n=== Running mode: {mode} ===")
-        df = select_mode(df_base, mode, cfg)
-        train_df = df.loc[df.index < train_end]
-        holdout_df = df.loc[df.index >= holdout_start]
-        print(f"[bt] mode={mode}  train: {len(train_df)} bars  ({train_df.index[0] if len(train_df) else 'EMPTY'} -> {train_df.index[-1] if len(train_df) else ''})")
-        print(f"[bt] mode={mode}  holdout: {len(holdout_df)} bars  ({holdout_df.index[0] if len(holdout_df) else 'EMPTY'} -> {holdout_df.index[-1] if len(holdout_df) else ''})")
-        # Diagnostic: how many bars passed daily bias filter, how many had zone touch
-        if len(df):
-            bias = df.get('daily_bullish_y', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-            zone = df.get('zone_touched', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-            engulf = df.get('engulfing', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-            rsi_cross = df.get('rsi_cross_up', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-            trigger = engulf | rsi_cross
-            all3 = bias & zone & trigger
-            print(f"[bt] mode={mode} total={len(df)} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())} trigger_only={int(trigger.sum())} ALL3_signals={int(all3.sum())}")
+    # tf_results[tf][mode] = {"train": {...}, "holdout": {...}}
+    tf_results: Dict[str, Dict[str, Dict[str, Any]]] = {}
+    for tf in timeframes:
+        print(f"\n##### Timeframe: {tf} #####")
+        df_base = prepare_base_data(cfg, timeframe=tf)
+        if df_base.empty:
+            print(f"No data for {tf}; skipping.")
+            continue
+        tf_results[tf] = {}
+        for mode in modes:
+            print(f"\n=== {tf} / {mode} ===")
+            df = select_mode(df_base, mode, cfg)
+            train_df = df.loc[df.index < train_end]
+            holdout_df = df.loc[df.index >= holdout_start]
+            print(f"[bt:{tf}] mode={mode}  train: {len(train_df)} bars  ({train_df.index[0] if len(train_df) else 'EMPTY'} -> {train_df.index[-1] if len(train_df) else ''})")
+            print(f"[bt:{tf}] mode={mode}  holdout: {len(holdout_df)} bars  ({holdout_df.index[0] if len(holdout_df) else 'EMPTY'} -> {holdout_df.index[-1] if len(holdout_df) else ''})")
+            if len(df):
+                bias = df.get('daily_bullish_y', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+                zone = df.get('zone_touched', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+                engulf = df.get('engulfing', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+                rsi_cross = df.get('rsi_cross_up', pd.Series([], dtype=bool)).fillna(False).astype(bool)
+                trigger = engulf | rsi_cross
+                all3 = bias & zone & trigger
+                print(f"[bt:{tf}] mode={mode} total={len(df)} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())} trigger_only={int(trigger.sum())} ALL3_signals={int(all3.sum())}")
 
-        train = run_slice(train_df, cfg)
-        holdout = run_slice(holdout_df, cfg)
+            train = run_slice(train_df, cfg)
+            holdout = run_slice(holdout_df, cfg)
 
-        outdir = OUTPUTS / mode
-        outdir.mkdir(parents=True, exist_ok=True)
-        write_stats_md(mode, train, holdout, outdir)
-        write_trade_log(train, holdout, outdir)
-        write_equity_curve(mode, train, holdout, outdir)
-        write_last_6mo_chart(mode, df, train, holdout, outdir)
-        mode_results[mode] = {"train": train, "holdout": holdout}
+            outdir = OUTPUTS / tf / mode
+            outdir.mkdir(parents=True, exist_ok=True)
+            write_stats_md(f"{tf}/{mode}", train, holdout, outdir)
+            write_trade_log(train, holdout, outdir)
+            write_equity_curve(f"{tf}/{mode}", train, holdout, outdir)
+            write_last_6mo_chart(f"{tf}/{mode}", df, train, holdout, outdir)
+            tf_results[tf][mode] = {"train": train, "holdout": holdout}
 
-    if len(mode_results) >= 1:
-        write_comparison(mode_results, cfg)
+    if tf_results:
+        write_comparison_multi(tf_results, cfg)
     print("\nDone. See outputs/.")
 
 
