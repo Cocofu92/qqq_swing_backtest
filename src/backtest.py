@@ -264,6 +264,104 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
     return closes / closes.iloc[0] * initial
 
 
+
+def write_comparison_multi(
+    tf_results: Dict[str, Dict[str, Dict[str, Any]]],
+    cfg: Dict[str, Any],
+) -> None:
+    """Render combined equity-curve PNG and stats markdown across all
+    (timeframe, mode) combinations vs. SPY buy-and-hold."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    initial = cfg["execution"]["initial_capital"]
+    baseline_symbol = cfg["data"].get("baseline_symbol", "SPY")
+
+    # Colour scheme: timeframe = hue, mode = strict (dashed) / loose (solid)
+    tf_colour = {
+        "15min": "#9b59b6",   # purple
+        "1hour": "#2980b9",   # blue
+        "4hour": "#27ae60",   # green
+    }
+
+    fig, ax = plt.subplots(figsize=(13, 6))
+    span_min: Optional[pd.Timestamp] = None
+    span_max: Optional[pd.Timestamp] = None
+
+    for tf, mode_dict in tf_results.items():
+        for mode, payload in mode_dict.items():
+            eq = _stitch_equity(payload["train"]["equity_curve"], payload["holdout"]["equity_curve"], initial)
+            if eq.empty:
+                continue
+            ls = "--" if mode == "strict" else "-"
+            ax.plot(
+                eq.index, eq.values,
+                label=f"{tf} / {mode}",
+                lw=1.4 if mode == "loose" else 1.0,
+                ls=ls,
+                color=tf_colour.get(tf, "#7f8c8d"),
+            )
+            span_min = eq.index.min() if span_min is None else min(span_min, eq.index.min())
+            span_max = eq.index.max() if span_max is None else max(span_max, eq.index.max())
+
+    if span_min is not None and span_max is not None:
+        idx = pd.DatetimeIndex([span_min, span_max])
+        baseline = _baseline_curve(baseline_symbol, idx, initial)
+        if not baseline.empty:
+            ax.plot(baseline.index, baseline.values, label=f"{baseline_symbol} buy & hold",
+                    color="grey", lw=1.0, ls=":")
+        cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
+        if span_min <= cutoff <= span_max:
+            ax.axvline(cutoff, ls=":", color="black", lw=0.7, alpha=0.6)
+            ax.annotate("Holdout start", xy=(cutoff, ax.get_ylim()[1]),
+                        xytext=(5, -10), textcoords="offset points", fontsize=8, color="black")
+
+    ax.set_title("Timeframe × Mode comparison vs. SPY buy & hold")
+    ax.set_ylabel("Equity ($)")
+    ax.set_yscale("log")
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="best", fontsize=8, ncol=2)
+    fig.tight_layout()
+    fig.savefig(OUTPUTS / "comparison.png", dpi=120)
+    plt.close(fig)
+
+    # Markdown table — rows = (timeframe, mode), columns = train + holdout per metric
+    rows = ["# Timeframe × Mode -- Comparison", ""]
+    headers = ["TF/Mode"]
+    for label, _ in STAT_KEYS:
+        headers.extend([f"{label} (Train)", f"{label} (Holdout)"])
+    rows.append("| " + " | ".join(headers) + " |")
+    rows.append("|" + "|".join(["---"] * len(headers)) + "|")
+
+    for tf, mode_dict in tf_results.items():
+        for mode, payload in mode_dict.items():
+            cells = [f"{tf}/{mode}"]
+            for label, key in STAT_KEYS:
+                cells.append(_stat(payload.get("train", {}).get("stats"), key))
+                cells.append(_stat(payload.get("holdout", {}).get("stats"), key))
+            rows.append("| " + " | ".join(cells) + " |")
+
+    rows.append("")
+    if span_min is not None and span_max is not None:
+        try:
+            bh = fetch_daily_close(baseline_symbol, span_min, span_max)
+            if not bh.empty:
+                total_return = (bh.iloc[-1] / bh.iloc[0] - 1) * 100
+                years = max((span_max - span_min).days / 365.25, 1e-6)
+                cagr = ((bh.iloc[-1] / bh.iloc[0]) ** (1 / years) - 1) * 100
+                rows.append(
+                    f"_{baseline_symbol} buy & hold over full span: total **{total_return:.2f}%**, "
+                    f"CAGR **{cagr:.2f}%**_"
+                )
+        except Exception as e:
+            rows.append(f"_(failed to fetch {baseline_symbol} baseline: {e})_")
+
+    rows.append("")
+    rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+    (OUTPUTS / "comparison.md").write_text("\n".join(rows) + "\n")
+
+
 def write_comparison(mode_results: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
     import matplotlib
     matplotlib.use("Agg")
@@ -388,11 +486,16 @@ def main(modes_override: Optional[List[str]] = None) -> None:
 
 
 def _cli() -> None:
-    p = argparse.ArgumentParser(description="QQQ trend-pullback backtest")
-    p.add_argument("--mode", choices=["strict", "loose"], default=None,
-                   help="If set, run only this mode. Otherwise run all modes from config.")
-    args = p.parse_args()
-    main(modes_override=[args.mode] if args.mode else None)
+    parser = argparse.ArgumentParser(description="QQQ trend-pullback backtest")
+    parser.add_argument("--mode", choices=["strict", "loose"], default=None,
+                        help="If set, run only this mode. Otherwise run all modes from config.")
+    parser.add_argument("--timeframe", choices=["15min", "1hour", "4hour"], default=None,
+                        help="If set, run only this timeframe. Otherwise run all timeframes from config.")
+    args = parser.parse_args()
+    main(
+        modes_override=[args.mode] if args.mode else None,
+        timeframes_override=[args.timeframe] if args.timeframe else None,
+    )
 
 
 if __name__ == "__main__":

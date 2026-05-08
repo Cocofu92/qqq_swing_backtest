@@ -85,3 +85,14 @@ outputs/
   comparison.png    # strict vs. loose vs. SPY buy & hold
   comparison.md     # side-by-side stats
 ```
+
+
+## v3 — multi-timeframe sweep
+
+Now sweeps **3 timeframes × 2 modes = 6 backtests per workflow run**:
+- 15min / 1hour / 4hour intraday execution
+- strict (close>50EMA AND 50EMA>200EMA, daily 21/50/donchian zones)
+- loose (close>200EMA, daily 21/50/100/200 + 1H 21/50/200 + donchian zones)
+
+Outputs are written to `outputs/{15min,1hour,4hour}/{strict,loose}/` plus a unified `outputs/comparison.{md,png}` overlaying all 6 against SPY buy & hold.
+
