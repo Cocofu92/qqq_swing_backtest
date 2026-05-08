@@ -191,7 +191,10 @@ ZONE_COLUMNS = {
 
 # Zones consulted in each mode. Order = priority for `zone_name` reporting.
 MODE_ZONES = {
-    "strict": ("ema21", "ema50", "donchian_low"),
+    # strict trend filter (close>50EMA AND 50EMA>200EMA) but full intraday + tighter daily zone set
+    "strict": ("ema21", "ema50", "donchian_low",
+               "h_ema21", "h_ema50", "h_ema200"),
+    # loose trend filter (close>200EMA) with wider daily + same intraday zones
     "loose":  ("ema21", "ema50", "ema100", "ema200", "donchian_low",
                "h_ema21", "h_ema50", "h_ema200"),
 }
