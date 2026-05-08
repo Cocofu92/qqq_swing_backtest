@@ -30,63 +30,54 @@
 [data:1hour] total after dedupe: 7593 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
 [data:1hour] returning 7588 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/qqq_1hour.parquet
 [bt:1hour] mode=strict bias_true=4121 zone_true=6443 bias_and_zone=3219
-  -> 1hour/ema21_rsi25
+  -> 1hour/atr_1.0_rsi40
+  -> 1hour/atr_1.5_rsi40
+  -> 1hour/atr_2.0_rsi40
+  -> 1hour/atr_2.5_rsi40
+  -> 1hour/atr_3.0_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema21_rsi30
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema21_rsi35
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema21_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi25
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi30
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi35
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/atr_rsi25
-  -> 1hour/atr_rsi30
-  -> 1hour/atr_rsi35
-  -> 1hour/atr_rsi40
 [bt:1hour] mode=loose bias_true=5259 zone_true=6498 bias_and_zone=4306
-  -> 1hour/ema21_rsi25
+  -> 1hour/atr_1.0_rsi40
+  -> 1hour/atr_1.5_rsi40
+  -> 1hour/atr_2.0_rsi40
+  -> 1hour/atr_2.5_rsi40
+  -> 1hour/atr_3.0_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema21_rsi30
+
+##### Timeframe: 4hour #####
+[data:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
+[data:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
+[data:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
+[data:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
+[data:4hour] chunk 2023-12-22->2024-06-19: 241 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
+[data:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
+[data:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
+[data:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
+[data:4hour] chunk 2025-12-12->2026-05-08: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:4hour] total after dedupe: 2170 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:4hour] returning 2168 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/qqq_4hour.parquet
+[bt:4hour] mode=strict bias_true=1179 zone_true=1751 bias_and_zone=848
+  -> 4hour/atr_1.0_rsi40
+  -> 4hour/atr_1.5_rsi40
+  -> 4hour/atr_2.0_rsi40
+  -> 4hour/atr_2.5_rsi40
+  -> 4hour/atr_3.0_rsi40
+[bt:4hour] mode=loose bias_true=1501 zone_true=1764 bias_and_zone=1146
+  -> 4hour/atr_1.0_rsi40
+  -> 4hour/atr_1.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema21_rsi35
+  -> 4hour/atr_2.0_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema21_rsi40
+  -> 4hour/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema50_rsi25
+  -> 4hour/atr_3.0_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> 1hour/ema50_rsi30
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi35
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/ema50_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:101: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> 1hour/atr_rsi25
-  -> 1hour/atr_rsi30
-  -> 1hour/atr_rsi35
-  -> 1hour/atr_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:386: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
 
