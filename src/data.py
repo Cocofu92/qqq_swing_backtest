@@ -22,7 +22,7 @@ import requests
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 CACHE_PATH = DATA_DIR / "qqq_1h.parquet"
 FMP_BASE_INTRADAY = "https://financialmodelingprep.com/stable/historical-chart/1hour"
-FMP_BASE_DAILY = "https://financialmodelingprep.com/stable/historical-chart/1day"
+FMP_BASE_DAILY = "https://financialmodelingprep.com/stable/historical-price-eod/full"
 
 
 def _fmp_key() -> str:
@@ -116,9 +116,9 @@ def fetch_qqq_1h(
 
     chunks: list[pd.DataFrame] = []
     cursor = start_ts
-    five_years = pd.Timedelta(days=365 * 5 - 5)
+    one_year = pd.Timedelta(days=365)
     while cursor < end_ts:
-        chunk_end = min(cursor + five_years, end_ts)
+        chunk_end = min(cursor + one_year, end_ts)
         df = _fetch_intraday_chunk("QQQ", cursor.strftime("%Y-%m-%d"), chunk_end.strftime("%Y-%m-%d"))
         chunks.append(df)
         if chunk_end >= end_ts:
@@ -144,10 +144,15 @@ def fetch_daily_close(symbol: str, start: str | pd.Timestamp, end: str | pd.Time
     resp = requests.get(url, timeout=60)
     resp.raise_for_status()
     payload = resp.json()
-    historical = payload.get("historical") if isinstance(payload, dict) else None
-    if not historical:
+    # New /stable/ EOD endpoint returns a direct array of bar dicts.
+    # Old v3 wrapped them in {"historical": [...]}; support both for safety.
+    if isinstance(payload, dict):
+        rows = payload.get("historical")
+    else:
+        rows = payload
+    if not rows:
         return pd.Series(dtype="float64")
-    df = pd.DataFrame(historical)
+    df = pd.DataFrame(rows)
     df["date"] = pd.to_datetime(df["date"]).dt.tz_localize("UTC")
     df = df.set_index("date").sort_index()
     return df["close"].astype("float64")
