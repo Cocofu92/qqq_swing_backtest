@@ -1,24 +1,28 @@
+# Sweep configuration -- v4: trail × rsi grid on 1h QQQ loose
 modes:
-  - strict
   - loose
 
 timeframes:
-  - 15min
   - 1hour
-  - 4hour
 
-# QQQ Multi-Timeframe Trend-Pullback Backtest -- config
-# Single source of truth for all knobs.
-#
-# `strategy.daily_filter_mode` selects between the two iterations:
-#   strict  -> close > 50 EMA AND 50 EMA > 200 EMA; zones = 21 EMA, 50 EMA, donchian_low
-#   loose   -> close > 200 EMA;                       zones = 21 EMA, 50 EMA, 100 EMA, 200 EMA, donchian_low
-# The backtest entrypoint iterates over both modes back-to-back and writes
-# outputs/<mode>/ + outputs/comparison.{png,md}.
+# Trail-stop variants to sweep
+trail_types:
+  - ema21
+  - ema50
+  - atr
+
+# RSI cross-up thresholds to sweep
+rsi_thresholds:
+  - 25
+  - 30
+  - 35
+  - 40
+
+
+# QQQ Trend-Pullback Backtest v4 -- trail × rsi sweep on 1h loose
 
 data:
   symbol: QQQ
-  baseline_symbol: SPY        # buy-and-hold baseline for comparison
   start_date: 2022-01-01
   end_date: today              # special string parsed at runtime
   timeframe: 1hour             # FMP timeframe
@@ -29,6 +33,7 @@ period:
   holdout_start: 2025-01-01
 
 strategy:
+  regime_filter_4h: false   # gate 1h entries on 4h close > 4h 200 EMA
   daily_filter_mode: strict   # default for single-mode runs; the entrypoint loops over both
   daily:
     fast_ema: 50
@@ -40,6 +45,7 @@ strategy:
     zone_proximity_atr_mult: 0.5   # zone touch: low within +- 0.5 * daily ATR of zone
     zone_lookback_bars: 6      # 1H bars to check for zone touch
   hourly:
+    trail_atr_mult: 2.0       # used when trail_type == 'atr'
     rsi_period: 14
     rsi_threshold: 35          # cross-back-above level
     atr_period: 14

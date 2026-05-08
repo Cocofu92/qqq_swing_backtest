@@ -86,7 +86,7 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     return df
 
 
-def run_slice(df: pd.DataFrame, cfg: Dict[str, Any]) -> Dict[str, Any]:
+def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0) -> Dict[str, Any]:
     if df.empty:
         return {"stats": None, "equity_curve": pd.Series(dtype=float), "trade_log": []}
 
@@ -107,6 +107,9 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any]) -> Dict[str, Any]:
         tick_size=cfg["costs"]["tick_size"],
         risk_pct=cfg["execution"]["risk_pct"],
         zone_lookback_bars=cfg["strategy"]["daily"]["zone_lookback_bars"],
+        trail_type=trail_type,
+        trail_atr_mult=cfg["strategy"]["hourly"].get("trail_atr_mult", 2.0),
+        rsi_threshold=rsi_threshold,
     )
     strat = stats._strategy
     return {
@@ -263,6 +266,125 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
         return pd.Series(dtype="float64")
     return closes / closes.iloc[0] * initial
 
+
+
+
+def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
+    """Sweep summary: full markdown table of all variants + equity-curve overlay
+    showing top-3 by holdout PF + QQQ buy-and-hold + QQQ-above-200d-EMA baselines."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    initial = cfg["execution"]["initial_capital"]
+
+    rows_by_pf: List[tuple] = []
+    for label, payload in sweep.items():
+        h_stats = payload["holdout"].get("stats")
+        pf = float(h_stats.get("Profit Factor", 0)) if h_stats is not None and "Profit Factor" in h_stats else 0.0
+        if pd.isna(pf):
+            pf = 0.0
+        rows_by_pf.append((pf, label, payload))
+    rows_by_pf.sort(key=lambda x: x[0], reverse=True)
+    top3 = rows_by_pf[:3]
+
+    # ---- Plot top 3 stitched curves ----
+    fig, ax = plt.subplots(figsize=(13, 6))
+    span_min: Optional[pd.Timestamp] = None
+    span_max: Optional[pd.Timestamp] = None
+    colours = ["#1f77b4", "#ff7f0e", "#2ca02c"]
+    for j, (pf, label, payload) in enumerate(top3):
+        eq = _stitch_equity(payload["train"]["equity_curve"], payload["holdout"]["equity_curve"], initial)
+        if eq.empty:
+            continue
+        ax.plot(eq.index, eq.values, label=f"{label} (PF={pf:.2f})", lw=1.6, color=colours[j])
+        span_min = eq.index.min() if span_min is None else min(span_min, eq.index.min())
+        span_max = eq.index.max() if span_max is None else max(span_max, eq.index.max())
+
+    # Benchmarks: QQQ buy-and-hold + QQQ-above-200d-EMA-filtered
+    if span_min is not None and span_max is not None:
+        try:
+            qqq_daily = fetch_daily_close("QQQ", span_min, span_max)
+            if not qqq_daily.empty:
+                # Plain buy & hold
+                bh_curve = (qqq_daily / qqq_daily.iloc[0]) * initial
+                ax.plot(bh_curve.index, bh_curve.values, label="QQQ buy & hold",
+                        color="grey", lw=1.0, ls="--")
+
+                # QQQ-above-200d-EMA filtered: long when close > 200d EMA, cash otherwise
+                ema_200 = qqq_daily.ewm(span=200, adjust=False).mean()
+                long_mask = (qqq_daily > ema_200).shift(1).fillna(False)
+                daily_ret = qqq_daily.pct_change().fillna(0.0)
+                strat_ret = daily_ret.where(long_mask, 0.0)
+                regime_curve = (1.0 + strat_ret).cumprod() * initial
+                ax.plot(regime_curve.index, regime_curve.values, label="QQQ > 200d EMA",
+                        color="black", lw=1.0, ls=":")
+        except Exception as e:
+            print(f"[plot] benchmark fetch failed: {e}")
+
+    cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
+    if span_min is not None and span_min <= cutoff <= span_max:
+        ax.axvline(cutoff, ls=":", color="black", lw=0.7, alpha=0.6)
+        ax.annotate("Holdout start", xy=(cutoff, ax.get_ylim()[1]),
+                    xytext=(5, -10), textcoords="offset points", fontsize=8)
+
+    ax.set_title("Top 3 sweep variants vs. QQQ buy-and-hold & QQQ-above-200dEMA")
+    ax.set_ylabel("Equity ($)")
+    ax.set_yscale("log")
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="best", fontsize=8)
+    fig.tight_layout()
+    fig.savefig(OUTPUTS / "comparison.png", dpi=120)
+    plt.close(fig)
+
+    # ---- Markdown table ----
+    rows = ["# Sweep -- Trail × RSI variants", ""]
+    headers = ["Variant", "Trail", "RSI", "Trades (T+H)",
+               "Holdout Return [%]", "Holdout PF", "Holdout WR [%]", "Holdout MaxDD [%]",
+               "Train Return [%]", "Train PF", "Train Trades"]
+    rows.append("| " + " | ".join(headers) + " |")
+    rows.append("|" + "|".join(["---"] * len(headers)) + "|")
+    for pf, label, payload in rows_by_pf:
+        h_stats = payload["holdout"].get("stats")
+        t_stats = payload["train"].get("stats")
+        h_trades = int(h_stats.get("# Trades", 0)) if h_stats is not None else 0
+        t_trades = int(t_stats.get("# Trades", 0)) if t_stats is not None else 0
+        cells = [
+            label,
+            payload["trail"],
+            f'{payload["rsi"]}',
+            f"{t_trades}+{h_trades}",
+            _stat(h_stats, "Return [%]"),
+            f"{pf:.2f}" if pf else "n/a",
+            _stat(h_stats, "Win Rate [%]"),
+            _stat(h_stats, "Max. Drawdown [%]"),
+            _stat(t_stats, "Return [%]"),
+            _stat(t_stats, "Profit Factor"),
+            f"{t_trades}",
+        ]
+        rows.append("| " + " | ".join(cells) + " |")
+
+    rows.append("")
+    if span_min is not None and span_max is not None:
+        try:
+            qqq_daily = fetch_daily_close("QQQ", span_min, span_max)
+            if not qqq_daily.empty:
+                bh_total = (qqq_daily.iloc[-1] / qqq_daily.iloc[0] - 1) * 100
+                yrs = max((span_max - span_min).days / 365.25, 1e-6)
+                bh_cagr = ((qqq_daily.iloc[-1] / qqq_daily.iloc[0]) ** (1 / yrs) - 1) * 100
+                ema_200 = qqq_daily.ewm(span=200, adjust=False).mean()
+                long_mask = (qqq_daily > ema_200).shift(1).fillna(False)
+                daily_ret = qqq_daily.pct_change().fillna(0.0)
+                regime_ret = daily_ret.where(long_mask, 0.0)
+                regime_total = ((1.0 + regime_ret).prod() - 1) * 100
+                regime_cagr = ((1.0 + regime_ret).prod() ** (1 / yrs) - 1) * 100
+                rows.append(f"_QQQ buy & hold (full span): total **{bh_total:.2f}%**, CAGR **{bh_cagr:.2f}%**_")
+                rows.append(f"_QQQ > 200d EMA filtered: total **{regime_total:.2f}%**, CAGR **{regime_cagr:.2f}%**_")
+        except Exception as e:
+            rows.append(f"_(benchmark fetch failed: {e})_")
+    rows.append("")
+    rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+    (OUTPUTS / "comparison.md").write_text("\n".join(rows) + "\n")
 
 
 def write_comparison_multi(
@@ -441,66 +563,112 @@ def write_comparison(mode_results: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
 def main(
     modes_override: Optional[List[str]] = None,
     timeframes_override: Optional[List[str]] = None,
+    trail_types_override: Optional[List[str]] = None,
+    rsi_thresholds_override: Optional[List[float]] = None,
 ) -> None:
+    """Sweep over (timeframe, trail_type, rsi_threshold). Mode is loose-only.
+
+    Output structure: outputs/{tf}/{trail}_{rsi}/...
+    """
     cfg = load_config()
     OUTPUTS.mkdir(parents=True, exist_ok=True)
 
     train_end = pd.Timestamp(cfg["period"]["train_end"], tz="UTC") + pd.Timedelta(days=1)
     holdout_start = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
-    modes = modes_override or cfg.get("modes", ["strict", "loose"])
     timeframes = timeframes_override or cfg.get("timeframes", ["1hour"])
+    trail_types = trail_types_override or cfg.get("trail_types", ["ema21", "ema50", "atr"])
+    rsi_thresholds = rsi_thresholds_override or cfg.get("rsi_thresholds", [25, 30, 35, 40])
+    modes = modes_override or cfg.get("modes", ["loose"])  # default loose-only
+    use_4h_regime = bool(cfg.get("strategy", {}).get("regime_filter_4h", False))
 
-    # tf_results[tf][mode] = {"train": {...}, "holdout": {...}}
-    tf_results: Dict[str, Dict[str, Dict[str, Any]]] = {}
+    sweep_results: Dict[str, Dict[str, Any]] = {}  # key = "{tf}/{trail}_{rsi}"
+
     for tf in timeframes:
         print(f"\n##### Timeframe: {tf} #####")
         df_base = prepare_base_data(cfg, timeframe=tf)
         if df_base.empty:
             print(f"No data for {tf}; skipping.")
             continue
-        tf_results[tf] = {}
+        # Optional 4h regime overlay
+        regime_4h_mask = None
+        if use_4h_regime and tf != "4hour":
+            regime_4h_mask = _build_4h_regime_mask(cfg, df_base)
+            print(f"[regime] 4h trend filter active: {int(regime_4h_mask.sum())} / {len(regime_4h_mask)} bars qualify")
+
         for mode in modes:
-            print(f"\n=== {tf} / {mode} ===")
             df = select_mode(df_base, mode, cfg)
-            train_df = df.loc[df.index < train_end]
-            holdout_df = df.loc[df.index >= holdout_start]
-            print(f"[bt:{tf}] mode={mode}  train: {len(train_df)} bars  ({train_df.index[0] if len(train_df) else 'EMPTY'} -> {train_df.index[-1] if len(train_df) else ''})")
-            print(f"[bt:{tf}] mode={mode}  holdout: {len(holdout_df)} bars  ({holdout_df.index[0] if len(holdout_df) else 'EMPTY'} -> {holdout_df.index[-1] if len(holdout_df) else ''})")
-            if len(df):
-                bias = df.get('daily_bullish_y', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-                zone = df.get('zone_touched', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-                engulf = df.get('engulfing', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-                rsi_cross = df.get('rsi_cross_up', pd.Series([], dtype=bool)).fillna(False).astype(bool)
-                trigger = engulf | rsi_cross
-                all3 = bias & zone & trigger
-                print(f"[bt:{tf}] mode={mode} total={len(df)} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())} trigger_only={int(trigger.sum())} ALL3_signals={int(all3.sum())}")
+            if regime_4h_mask is not None:
+                # Force-disable bias on bars where 4h trend is not bullish
+                df["daily_bullish_y"] = df["daily_bullish_y"] & regime_4h_mask.reindex(df.index, fill_value=False)
+            if not len(df):
+                continue
 
-            train = run_slice(train_df, cfg)
-            holdout = run_slice(holdout_df, cfg)
+            # Diagnostic on the base mode (not yet tied to specific trail/rsi)
+            bias = df["daily_bullish_y"].fillna(False).astype(bool)
+            zone = df["zone_touched"].fillna(False).astype(bool)
+            print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
 
-            outdir = OUTPUTS / tf / mode
-            outdir.mkdir(parents=True, exist_ok=True)
-            write_stats_md(f"{tf}/{mode}", train, holdout, outdir)
-            write_trade_log(train, holdout, outdir)
-            write_equity_curve(f"{tf}/{mode}", train, holdout, outdir)
-            write_last_6mo_chart(f"{tf}/{mode}", df, train, holdout, outdir)
-            tf_results[tf][mode] = {"train": train, "holdout": holdout}
+            for trail in trail_types:
+                for rsi_t in rsi_thresholds:
+                    label = f"{trail}_rsi{rsi_t}"
+                    print(f"  -> {tf}/{label}", flush=True)
+                    # The pre-computed `rsi_cross_up` column was built using the *config-default*
+                    # threshold (35). For the sweep, we must rebuild it per run with the variant rsi_t.
+                    df_v = df.copy()
+                    if "rsi" in df_v.columns:
+                        prev_rsi = df_v["rsi"].shift(1)
+                        df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
 
-    if tf_results:
-        write_comparison_multi(tf_results, cfg)
+                    train_df = df_v.loc[df_v.index < train_end]
+                    holdout_df = df_v.loc[df_v.index >= holdout_start]
+                    train = run_slice(train_df, cfg, trail_type=trail, rsi_threshold=rsi_t)
+                    holdout = run_slice(holdout_df, cfg, trail_type=trail, rsi_threshold=rsi_t)
+
+                    outdir = OUTPUTS / tf / f"{label}"
+                    outdir.mkdir(parents=True, exist_ok=True)
+                    write_stats_md(f"{tf}/{label}", train, holdout, outdir)
+                    write_trade_log(train, holdout, outdir)
+                    write_equity_curve(f"{tf}/{label}", train, holdout, outdir)
+                    sweep_results[f"{tf}/{label}"] = {
+                        "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
+                        "train": train, "holdout": holdout,
+                    }
+
+    if sweep_results:
+        write_sweep_comparison(sweep_results, cfg)
     print("\nDone. See outputs/.")
 
 
+def _build_4h_regime_mask(cfg: Dict[str, Any], df_base: pd.DataFrame) -> pd.Series:
+    """Fetch 4h QQQ, compute 4h close > 200 EMA, forward-fill onto df_base index."""
+    from .data import fetch_qqq_intraday
+    start = cfg["data"]["start_date"]
+    end_raw = cfg["data"]["end_date"]
+    end = parse_end_date(end_raw) if end_raw == "today" else pd.Timestamp(end_raw, tz="UTC")
+    df_4h = fetch_qqq_intraday("4hour", start, end, cache_max_age_hours=cfg["data"]["cache_max_age_hours"])
+    if df_4h.empty:
+        return pd.Series(True, index=df_base.index)  # no filter if data missing
+    # Compute 200 EMA on 4h closes
+    ema_4h_200 = df_4h["close"].ewm(span=200, adjust=False).mean()
+    bullish_4h = (df_4h["close"] > ema_4h_200).rename("regime_4h_bull")
+    # Use the most-recent CLOSED 4h bar as the regime signal (no lookahead).
+    # Shift by one 4h bar so each timestamp uses the *prior* 4h close vs prior EMA.
+    bullish_4h = bullish_4h.shift(1).fillna(False)
+    # Reindex onto df_base with backward-fill of last known 4h regime
+    aligned = bullish_4h.reindex(df_base.index, method="ffill").fillna(False)
+    return aligned
+
+
 def _cli() -> None:
-    parser = argparse.ArgumentParser(description="QQQ trend-pullback backtest")
-    parser.add_argument("--mode", choices=["strict", "loose"], default=None,
-                        help="If set, run only this mode. Otherwise run all modes from config.")
-    parser.add_argument("--timeframe", choices=["15min", "1hour", "4hour"], default=None,
-                        help="If set, run only this timeframe. Otherwise run all timeframes from config.")
+    parser = argparse.ArgumentParser(description="QQQ trend-pullback backtest sweep")
+    parser.add_argument("--timeframe", choices=["15min", "1hour", "4hour"], default=None)
+    parser.add_argument("--trail", choices=["ema21", "ema50", "atr"], default=None)
+    parser.add_argument("--rsi", type=float, default=None)
     args = parser.parse_args()
     main(
-        modes_override=[args.mode] if args.mode else None,
         timeframes_override=[args.timeframe] if args.timeframe else None,
+        trail_types_override=[args.trail] if args.trail else None,
+        rsi_thresholds_override=[args.rsi] if args.rsi is not None else None,
     )
 
 

@@ -34,6 +34,10 @@ class TrendPullback(Strategy):
     tick_size = 0.01
     risk_pct = 0.01
     zone_lookback_bars = 6
+    trail_type = "ema21"        # "ema21" | "ema50" | "atr"
+    trail_atr_mult = 2.0        # used when trail_type == "atr"
+    rsi_threshold = 35          # propagated from config; not used inside the strategy itself
+                                #  — signals are already pre-computed using this value
 
     def init(self):
         df = self.data.df
@@ -42,13 +46,17 @@ class TrendPullback(Strategy):
         bias = df["daily_bullish_y"].values.astype(bool) if "daily_bullish_y" in df.columns else np.zeros(len(df), dtype=bool)
         zone = df["zone_touched"].values.astype(bool) if "zone_touched" in df.columns else np.zeros(len(df), dtype=bool)
         atr = df["atr"].values if "atr" in df.columns else np.full(len(df), np.nan)
-        ema_trail = df["ema_trail"].values if "ema_trail" in df.columns else np.full(len(df), np.nan)
+        # Trail series (one of these is consulted depending on self.trail_type)
+        ema21_arr = df["hourly_ema21"].values if "hourly_ema21" in df.columns else np.full(len(df), np.nan)
+        ema50_arr = df["hourly_ema50"].values if "hourly_ema50" in df.columns else np.full(len(df), np.nan)
         zone_name = df["zone_name"].values if "zone_name" in df.columns else np.full(len(df), None)
 
         self._signal = bias & zone & (engulf | rsi_cross)
         self._atr = atr
-        self._ema_trail = ema_trail
+        self._ema21 = ema21_arr
+        self._ema50 = ema50_arr
         self._zone_name = zone_name
+        self._high_water = -np.inf  # for ATR trail — ratchets up with price
 
         self._pending_entry = False
         self._pending_zone = None
@@ -95,6 +103,7 @@ class TrendPullback(Strategy):
         self._stop_price = None
         self._zone_at_entry = None
         self._entry_date = None
+        self._high_water = -np.inf  # reset ratchet for next ATR-trail trade
 
     def next(self):
         i = len(self.data) - 1
@@ -163,8 +172,23 @@ class TrendPullback(Strategy):
                     )
                 )
 
-            ema = self._ema_trail[i]
-            if not np.isnan(ema) and price < ema:
+            # ----- trailing exit dispatch (configurable per run) -----
+            if self.trail_type == "ema21":
+                trail_level = self._ema21[i]
+            elif self.trail_type == "ema50":
+                trail_level = self._ema50[i]
+            elif self.trail_type == "atr":
+                # Chandelier-style: ratchet high-water and trail by atr_mult * ATR
+                self._high_water = max(self._high_water, bar_high)
+                cur_atr = self._atr[i]
+                if np.isnan(cur_atr) or cur_atr <= 0:
+                    trail_level = np.nan
+                else:
+                    trail_level = self._high_water - self.trail_atr_mult * cur_atr
+            else:
+                trail_level = np.nan
+
+            if not np.isnan(trail_level) and price < trail_level:
                 exit_px = self._slip_sell(price)
                 self.position.close()
                 self._record("trail_exit", exit_px)
