@@ -114,7 +114,14 @@ class TrendPullback(Strategy):
             risk_per_share = entry_fill - stop
             target = entry_fill + self.take_partial_at_R * risk_per_share
             risk_dollars = self.equity * self.risk_pct
-            size_shares = max(int(risk_dollars // risk_per_share), 1)
+            risk_based = int(risk_dollars // risk_per_share)
+            max_affordable = int((self.equity * 0.95) // entry_fill)  # leave 5% cash buffer
+            size_shares = max(1, min(risk_based, max_affordable))
+            if size_shares < 1:
+                # Can't afford even 1 share -- skip
+                self._pending_entry = False
+                self._pending_zone = None
+                return
             self.buy(size=size_shares)
             self._entry_price = entry_fill
             self._initial_stop = stop
