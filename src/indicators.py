@@ -150,7 +150,11 @@ def compute_hourly_signals(
     out = df.copy()
     out["rsi"] = _rsi(out["close"], rsi_period)
     out["atr"] = _atr(out["high"], out["low"], out["close"], atr_period)
-    out["ema_trail"] = _ema(out["close"], trail_ema)
+    # 1H trend EMAs (used as zone reversal levels in loose mode)
+    out["hourly_ema21"] = _ema(out["close"], 21)
+    out["hourly_ema50"] = _ema(out["close"], 50)
+    out["hourly_ema200"] = _ema(out["close"], 200)
+    out["ema_trail"] = out["hourly_ema21"] if trail_ema == 21 else _ema(out["close"], trail_ema)
 
     prev_open = out["open"].shift(1)
     prev_close = out["close"].shift(1)
@@ -179,13 +183,17 @@ ZONE_COLUMNS = {
     "ema50": "daily_ema50_y",
     "ema100": "daily_ema100_y",
     "ema200": "daily_ema200_y",
+    "h_ema21": "hourly_ema21",
+    "h_ema50": "hourly_ema50",
+    "h_ema200": "hourly_ema200",
     "donchian_low": "daily_donchian_low_y",
 }
 
 # Zones consulted in each mode. Order = priority for `zone_name` reporting.
 MODE_ZONES = {
     "strict": ("ema21", "ema50", "donchian_low"),
-    "loose":  ("ema21", "ema50", "ema100", "ema200", "donchian_low"),
+    "loose":  ("ema21", "ema50", "ema100", "ema200", "donchian_low",
+               "h_ema21", "h_ema50", "h_ema200"),
 }
 
 
@@ -210,6 +218,7 @@ def compute_zone_touch(
     if "daily_atr_y" not in out.columns:
         raise ValueError("daily_atr_y column missing -- run forward_fill_daily_to_1h first")
     daily_atr = out["daily_atr_y"]
+    hourly_atr = out["atr"] if "atr" in out.columns else daily_atr
 
     touch_flags = pd.DataFrame(index=out.index)
     for name in MODE_ZONES[mode]:
@@ -218,7 +227,10 @@ def compute_zone_touch(
             touch_flags[name] = False
             continue
         zone_val = out[col]
-        band = zone_proximity_atr_mult * daily_atr
+        # 1H zones are tight intraday levels -- scale band by 1H ATR.
+        # Daily zones are larger swings -- scale by daily ATR.
+        atr_for_zone = hourly_atr if name.startswith("h_") else daily_atr
+        band = zone_proximity_atr_mult * atr_for_zone
         upper = zone_val + band
         lower = zone_val - band
         bar_touched = (out["low"] <= upper) & (out["high"] >= lower)

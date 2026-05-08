@@ -1,4 +1,4 @@
-# qqq_swing_backtest
+# qqq_swing_backtest (v2: + 1H 21/50/200 EMA zones)
 
 Multi-timeframe trend-pullback backtest on QQQ. Iteration 1: correctness +
 configurability over completeness.
