@@ -1,19 +1,16 @@
-# Sweep -- Trail × RSI variants
+# Multi-symbol sweep -- v6 (atr_2.0/2.5 × 1h+4h × RSI40 across 6 symbols)
 
-| Variant | Trail | RSI | Trades (T+H) | Holdout Return [%] | Holdout PF | Holdout WR [%] | Holdout MaxDD [%] | Train Return [%] | Train PF | Train Trades |
+| Symbol/TF/Variant | Trail | RSI | Trades (T+H) | Holdout Return [%] | Holdout PF | Holdout WR [%] | Holdout MaxDD [%] | Train Return [%] | Train PF | Train Trades |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 4hour/atr_2.5_rsi40 | atr_2.5 | 40 | 48+34 | 12.505 | 2.66 | 67.647 | -5.290 | 15.921 | 3.510 | 48 |
-| 4hour/atr_3.0_rsi40 | atr_3.0 | 40 | 46+32 | 11.682 | 2.59 | 65.625 | -5.330 | 18.492 | 3.741 | 46 |
-| 1hour/atr_2.0_rsi40 | atr_2.0 | 40 | 216+136 | 13.066 | 2.48 | 50.735 | -7.937 | 46.758 | 3.877 | 216 |
-| 4hour/atr_1.0_rsi40 | atr_1.0 | 40 | 51+34 | 4.196 | 2.41 | 55.882 | -5.158 | 15.659 | 3.926 | 51 |
-| 1hour/atr_1.5_rsi40 | atr_1.5 | 40 | 227+147 | 10.401 | 2.41 | 51.020 | -7.338 | 34.938 | 3.353 | 227 |
-| 1hour/atr_2.5_rsi40 | atr_2.5 | 40 | 204+136 | 12.463 | 2.41 | 51.471 | -7.836 | 42.267 | 3.725 | 204 |
-| 1hour/atr_3.0_rsi40 | atr_3.0 | 40 | 193+116 | 10.946 | 2.31 | 46.552 | -7.850 | 40.522 | 3.625 | 193 |
-| 1hour/atr_1.0_rsi40 | atr_1.0 | 40 | 236+150 | 8.199 | 2.28 | 52.000 | -7.346 | 29.486 | 3.068 | 236 |
-| 4hour/atr_2.0_rsi40 | atr_2.0 | 40 | 48+36 | 9.624 | 2.21 | 63.889 | -5.112 | 14.710 | 3.475 | 48 |
-| 4hour/atr_1.5_rsi40 | atr_1.5 | 40 | 50+36 | 9.358 | 2.12 | 61.111 | -5.251 | 12.382 | 3.270 | 50 |
+| 4hour/atr_2.5_rsi40 | atr_2.5 | 40 | 57+33 | 11.054 | 3.64 | 63.636 | -5.943 | 5.086 | 1.974 | 57 |
+| 4hour/atr_2.0_rsi40 | atr_2.0 | 40 | 58+36 | 11.065 | 3.25 | 61.111 | -6.162 | 2.738 | 1.817 | 58 |
+| 1hour/atr_2.0_rsi40 | atr_2.0 | 40 | 198+134 | 1.149 | 1.94 | 53.731 | -13.310 | -6.277 | 1.589 | 198 |
+| 1hour/atr_2.5_rsi40 | atr_2.5 | 40 | 192+132 | 0.014 | 1.89 | 54.545 | -13.495 | -5.738 | 1.570 | 192 |
 
-_QQQ buy & hold (full span): total **73.01%**, CAGR **13.46%**_
-_QQQ > 200d EMA filtered: total **100.09%**, CAGR **17.33%**_
+## Buy-and-hold & regime-filtered benchmarks (per symbol)
 
-_Generated: 2026-05-08T17:55:23.765345+00:00_
+| Symbol | B&H Total [%] | B&H CAGR [%] | Above-200d-EMA Total [%] | Above-200d-EMA CAGR [%] |
+|---|---|---|---|---|
+| ? | n/a | n/a | n/a | n/a |
+
+_Generated: 2026-05-08T20:11:01.423069+00:00_
