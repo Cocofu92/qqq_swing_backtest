@@ -23,7 +23,11 @@ jobs:
       - name: Backtest sweep (3 timeframes × 2 modes)
         env:
           FMP_KEY: ${{ secrets.FMP_KEY }}
-        run: python -m src.backtest
+        run: |
+          mkdir -p outputs
+          python -m src.backtest 2>&1 | tee outputs/run.log
+          # Capture exit status of python (not tee)
+          test ${PIPESTATUS[0]} -eq 0
       - name: Commit results
         run: |
           git config user.email "github-actions@github.com"
