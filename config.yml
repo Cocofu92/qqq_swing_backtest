@@ -4,19 +4,22 @@ modes:
 
 timeframes:
   - 1hour
+  - 4hour
+
 
 # Trail-stop variants to sweep
 trail_types:
-  - ema21
-  - ema50
-  - atr
+  - atr_1.0
+  - atr_1.5
+  - atr_2.0
+  - atr_2.5
+  - atr_3.0
+
 
 # RSI cross-up thresholds to sweep
 rsi_thresholds:
-  - 25
-  - 30
-  - 35
   - 40
+
 
 
 # QQQ Trend-Pullback Backtest v4 -- trail × rsi sweep on 1h loose
@@ -45,7 +48,6 @@ strategy:
     zone_proximity_atr_mult: 0.5   # zone touch: low within +- 0.5 * daily ATR of zone
     zone_lookback_bars: 6      # 1H bars to check for zone touch
   hourly:
-    trail_atr_mult: 2.0       # used when trail_type == 'atr'
     rsi_period: 14
     rsi_threshold: 35          # cross-back-above level
     atr_period: 14

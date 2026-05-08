@@ -86,7 +86,7 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     return df
 
 
-def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0) -> Dict[str, Any]:
+def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None) -> Dict[str, Any]:
     if df.empty:
         return {"stats": None, "equity_curve": pd.Series(dtype=float), "trade_log": []}
 
@@ -108,7 +108,7 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", 
         risk_pct=cfg["execution"]["risk_pct"],
         zone_lookback_bars=cfg["strategy"]["daily"]["zone_lookback_bars"],
         trail_type=trail_type,
-        trail_atr_mult=cfg["strategy"]["hourly"].get("trail_atr_mult", 2.0),
+        trail_atr_mult=atr_mult if atr_mult is not None else cfg["strategy"]["hourly"].get("trail_atr_mult", 2.0),
         rsi_threshold=rsi_threshold,
     )
     strat = stats._strategy
@@ -609,11 +609,20 @@ def main(
             print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
 
             for trail in trail_types:
+                # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
+                if trail.startswith("atr_"):
+                    base_trail = "atr"
+                    try:
+                        atr_mult = float(trail.split("_", 1)[1])
+                    except (ValueError, IndexError):
+                        atr_mult = None
+                else:
+                    base_trail = trail
+                    atr_mult = None
+
                 for rsi_t in rsi_thresholds:
                     label = f"{trail}_rsi{rsi_t}"
                     print(f"  -> {tf}/{label}", flush=True)
-                    # The pre-computed `rsi_cross_up` column was built using the *config-default*
-                    # threshold (35). For the sweep, we must rebuild it per run with the variant rsi_t.
                     df_v = df.copy()
                     if "rsi" in df_v.columns:
                         prev_rsi = df_v["rsi"].shift(1)
@@ -621,8 +630,8 @@ def main(
 
                     train_df = df_v.loc[df_v.index < train_end]
                     holdout_df = df_v.loc[df_v.index >= holdout_start]
-                    train = run_slice(train_df, cfg, trail_type=trail, rsi_threshold=rsi_t)
-                    holdout = run_slice(holdout_df, cfg, trail_type=trail, rsi_threshold=rsi_t)
+                    train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
+                    holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
 
                     outdir = OUTPUTS / tf / f"{label}"
                     outdir.mkdir(parents=True, exist_ok=True)
@@ -631,6 +640,7 @@ def main(
                     write_equity_curve(f"{tf}/{label}", train, holdout, outdir)
                     sweep_results[f"{tf}/{label}"] = {
                         "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
+                        "atr_mult": atr_mult,
                         "train": train, "holdout": holdout,
                     }
 
