@@ -26,14 +26,14 @@
 [data:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
 [data:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
 [data:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
-[data:15min] chunk 2026-04-10->2026-05-08: 531 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 16:00:00+00:00
-[data:15min] total after dedupe: 21380 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 16:00:00+00:00
+[data:15min] chunk 2026-04-10->2026-05-08: 532 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 16:15:00+00:00
+[data:15min] total after dedupe: 21381 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 16:15:00+00:00
 [data:15min] returning 21369 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/qqq_15min.parquet
 
 === 15min / strict ===
 [bt:15min] mode=strict  train: 14451 bars  (2022-01-18 14:30:00+00:00 -> 2024-12-16 20:45:00+00:00)
 [bt:15min] mode=strict  holdout: 6918 bars  (2025-01-02 14:30:00+00:00 -> 2026-05-07 19:45:00+00:00)
-[bt:15min] mode=strict total=21369 bias_true=12055 zone_true=8415 bias_and_zone=3159 trigger_only=1949 ALL3_signals=311
+[bt:15min] mode=strict total=21369 bias_true=12055 zone_true=18134 bias_and_zone=9803 trigger_only=1949 ALL3_signals=840
 
 === 15min / loose ===
 [bt:15min] mode=loose  train: 14451 bars  (2022-01-18 14:30:00+00:00 -> 2024-12-16 20:45:00+00:00)
@@ -74,7 +74,7 @@
 === 1hour / strict ===
 [bt:1hour] mode=strict  train: 5238 bars  (2022-01-03 14:30:00+00:00 -> 2024-12-31 20:30:00+00:00)
 [bt:1hour] mode=strict  holdout: 2350 bars  (2025-01-02 14:30:00+00:00 -> 2026-05-07 19:30:00+00:00)
-[bt:1hour] mode=strict total=7588 bias_true=4121 zone_true=4045 bias_and_zone=1592 trigger_only=601 ALL3_signals=129
+[bt:1hour] mode=strict total=7588 bias_true=4121 zone_true=6443 bias_and_zone=3219 trigger_only=601 ALL3_signals=245
 
 === 1hour / loose ===
 [bt:1hour] mode=loose  train: 5238 bars  (2022-01-03 14:30:00+00:00 -> 2024-12-31 20:30:00+00:00)
@@ -101,7 +101,7 @@
 === 4hour / strict ===
 [bt:4hour] mode=strict  train: 1497 bars  (2022-01-03 14:30:00+00:00 -> 2024-12-31 18:30:00+00:00)
 [bt:4hour] mode=strict  holdout: 671 bars  (2025-01-02 14:30:00+00:00 -> 2026-05-07 17:30:00+00:00)
-[bt:4hour] mode=strict total=2168 bias_true=1179 zone_true=1471 bias_and_zone=631 trigger_only=134 ALL3_signals=29
+[bt:4hour] mode=strict total=2168 bias_true=1179 zone_true=1751 bias_and_zone=848 trigger_only=134 ALL3_signals=38
 
 === 4hour / loose ===
 [bt:4hour] mode=loose  train: 1497 bars  (2022-01-03 14:30:00+00:00 -> 2024-12-31 18:30:00+00:00)
