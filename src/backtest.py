@@ -359,7 +359,11 @@ def main(modes_override: Optional[List[str]] = None) -> None:
         df = select_mode(df_base, mode, cfg)
         train_df = df.loc[df.index < train_end]
         holdout_df = df.loc[df.index >= holdout_start]
-        print(f"Train: {len(train_df)} bars | Holdout: {len(holdout_df)} bars")
+        print(f"[bt] mode={mode}  train: {len(train_df)} bars  ({train_df.index[0] if len(train_df) else 'EMPTY'} -> {train_df.index[-1] if len(train_df) else ''})")
+        print(f"[bt] mode={mode}  holdout: {len(holdout_df)} bars  ({holdout_df.index[0] if len(holdout_df) else 'EMPTY'} -> {holdout_df.index[-1] if len(holdout_df) else ''})")
+        # Diagnostic: how many bars passed daily bias filter, how many had zone touch
+        if len(df):
+            print(f"[bt] mode={mode}  total bars: {len(df)}, daily_bullish_y true: {df.get('daily_bullish_y', pd.Series([])).sum()}, zone_touched true: {df.get('zone_touched', pd.Series([])).sum()}")
 
         train = run_slice(train_df, cfg)
         holdout = run_slice(holdout_df, cfg)

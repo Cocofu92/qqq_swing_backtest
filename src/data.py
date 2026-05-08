@@ -120,6 +120,10 @@ def fetch_qqq_1h(
     while cursor < end_ts:
         chunk_end = min(cursor + one_year, end_ts)
         df = _fetch_intraday_chunk("QQQ", cursor.strftime("%Y-%m-%d"), chunk_end.strftime("%Y-%m-%d"))
+        if not df.empty:
+            print(f"[data] chunk {cursor.date()}->{chunk_end.date()}: {len(df)} bars, {df.index[0]} to {df.index[-1]}")
+        else:
+            print(f"[data] chunk {cursor.date()}->{chunk_end.date()}: 0 bars (empty)")
         chunks.append(df)
         if chunk_end >= end_ts:
             break
@@ -130,6 +134,7 @@ def fetch_qqq_1h(
 
     full = pd.concat(chunks).sort_index()
     full = full[~full.index.duplicated(keep="last")]
+    print(f"[data] total after dedupe: {len(full)} bars, {full.index[0] if len(full) else 'N/A'} to {full.index[-1] if len(full) else 'N/A'}")
     _save_cache(full)
     sliced = full.loc[(full.index >= start_ts) & (full.index <= end_ts)]
     print(f"Fetched {len(sliced)} bars from FMP, cached to {CACHE_PATH}")
