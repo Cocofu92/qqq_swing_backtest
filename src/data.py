@@ -76,11 +76,12 @@ def _cache_covers(df: pd.DataFrame, start: pd.Timestamp, end: pd.Timestamp) -> b
     return df.index.min() <= start and df.index.max() >= end - pd.Timedelta(days=2)
 
 
-def _load_cache() -> Optional[pd.DataFrame]:
-    if not CACHE_PATH.exists():
+def _load_cache(path: "Path | str" = CACHE_PATH) -> Optional[pd.DataFrame]:
+    p = Path(path) if not isinstance(path, Path) else path
+    if not p.exists():
         return None
     try:
-        return pd.read_parquet(CACHE_PATH)
+        return pd.read_parquet(p)
     except Exception:
         return None
 
