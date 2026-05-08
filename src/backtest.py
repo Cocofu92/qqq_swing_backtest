@@ -695,8 +695,8 @@ def main(
                         write_stats_md(f"{symbol}/{tf}/{label}", train, holdout, outdir)
                         write_trade_log(train, holdout, outdir)
                         write_equity_curve(f"{symbol}/{tf}/{label}", train, holdout, outdir)
-                        sweep_results[f"{tf}/{label}"] = {
-                            "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
+                        sweep_results[f"{symbol}/{tf}/{label}"] = {
+                            "symbol": symbol, "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
                             "atr_mult": atr_mult,
                             "train": train, "holdout": holdout,
                         }

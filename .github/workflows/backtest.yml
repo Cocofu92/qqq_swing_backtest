@@ -20,6 +20,12 @@ jobs:
         run: pip install -e .
       - name: Tests
         run: pytest tests/ -v
+      - name: Clean stale legacy outputs
+        run: |
+          # Remove dirs from earlier (pre-multi-symbol) runs so the comparison reflects only this run
+          for d in 15min 1hour 4hour strict loose; do
+            rm -rf "outputs/$d" 2>/dev/null || true
+          done
       - name: Backtest sweep (3 timeframes × 2 modes)
         env:
           FMP_KEY: ${{ secrets.FMP_KEY }}
