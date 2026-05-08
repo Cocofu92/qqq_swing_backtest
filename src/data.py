@@ -116,9 +116,9 @@ def fetch_qqq_1h(
 
     chunks: list[pd.DataFrame] = []
     cursor = start_ts
-    one_year = pd.Timedelta(days=365)
+    chunk_days = pd.Timedelta(days=60)  # FMP /stable/ 1hour returns max ~3 months/request
     while cursor < end_ts:
-        chunk_end = min(cursor + one_year, end_ts)
+        chunk_end = min(cursor + chunk_days, end_ts)
         df = _fetch_intraday_chunk("QQQ", cursor.strftime("%Y-%m-%d"), chunk_end.strftime("%Y-%m-%d"))
         if not df.empty:
             print(f"[data] chunk {cursor.date()}->{chunk_end.date()}: {len(df)} bars, {df.index[0]} to {df.index[-1]}")
