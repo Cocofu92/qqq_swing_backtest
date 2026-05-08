@@ -2,15 +2,15 @@
 
 | Metric | Strict (Train) | Strict (Holdout) | Loose (Train) | Loose (Holdout) |
 |---|---|---|---|---|
-| Total Return [%] | n/a | 0.000 | n/a | 0.000 |
-| CAGR [%] | n/a | 0.000 | n/a | 0.000 |
-| Win Rate [%] | n/a | nan | n/a | nan |
-| Profit Factor | n/a | nan | n/a | nan |
-| Max Drawdown [%] | n/a | -0.000 | n/a | -0.000 |
-| Sharpe Ratio | n/a | nan | n/a | nan |
-| Total Trades | n/a | 0 | n/a | 0 |
-| Avg Trade Duration | n/a | nan | n/a | nan |
+| Total Return [%] | 0.000 | 0.129 | 0.000 | 0.129 |
+| CAGR [%] | 0.000 | 0.263 | 0.000 | 0.263 |
+| Win Rate [%] | nan | 50.000 | nan | 50.000 |
+| Profit Factor | nan | 1.431 | nan | 1.431 |
+| Max Drawdown [%] | -0.000 | -0.634 | -0.000 | -0.634 |
+| Sharpe Ratio | nan | 0.183 | nan | 0.183 |
+| Total Trades | 0 | 2 | 0 | 2 |
+| Avg Trade Duration | nan | 1 days 10:00:00 | nan | 1 days 10:00:00 |
 
-| SPY buy & hold | n/a (fetch failed: 404 Client Error: Not Found for url: https://financialmodelingprep.com/stable/historical-chart/1day?symbol=SPY&from=2026-02-09&to=2026-05-06&apikey=fsUwZ3RqDc7Wa2pjUyMhlLnOet1HVwUl) |  |  |  |
+| SPY buy & hold (full span) | total 93.56% | CAGR 20.20% |  |  |
 
-_Generated: 2026-05-07T20:48:27.605980Z_
+_Generated: 2026-05-08T03:25:59.847820Z_
