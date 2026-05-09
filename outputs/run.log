@@ -17,10 +17,14 @@
   -> [1x] EWJ/4hour/atr_2.5_rsi40
   -> [2x] EWJ/4hour/atr_2.5_rsi40
   -> [3x] EWJ/4hour/atr_2.5_rsi40
+  -> [4x] EWJ/4hour/atr_2.5_rsi40
+  -> [5x] EWJ/4hour/atr_2.5_rsi40
 [bt:4hour] mode=loose bias_true=1485 zone_true=1810 bias_and_zone=1181
   -> [1x] EWJ/4hour/atr_2.5_rsi40
   -> [2x] EWJ/4hour/atr_2.5_rsi40
   -> [3x] EWJ/4hour/atr_2.5_rsi40
+  -> [4x] EWJ/4hour/atr_2.5_rsi40
+  -> [5x] EWJ/4hour/atr_2.5_rsi40
 
 ========== Symbol: EWU ==========
 
@@ -40,10 +44,14 @@
   -> [1x] EWU/4hour/atr_2.5_rsi40
   -> [2x] EWU/4hour/atr_2.5_rsi40
   -> [3x] EWU/4hour/atr_2.5_rsi40
+  -> [4x] EWU/4hour/atr_2.5_rsi40
+  -> [5x] EWU/4hour/atr_2.5_rsi40
 [bt:4hour] mode=loose bias_true=1494 zone_true=1757 bias_and_zone=1119
   -> [1x] EWU/4hour/atr_2.5_rsi40
   -> [2x] EWU/4hour/atr_2.5_rsi40
   -> [3x] EWU/4hour/atr_2.5_rsi40
+  -> [4x] EWU/4hour/atr_2.5_rsi40
+  -> [5x] EWU/4hour/atr_2.5_rsi40
 
 ========== Symbol: IBIT ==========
 
@@ -63,10 +71,14 @@
   -> [1x] IBIT/4hour/atr_2.5_rsi40
   -> [2x] IBIT/4hour/atr_2.5_rsi40
   -> [3x] IBIT/4hour/atr_2.5_rsi40
+  -> [4x] IBIT/4hour/atr_2.5_rsi40
+  -> [5x] IBIT/4hour/atr_2.5_rsi40
 [bt:4hour] mode=loose bias_true=638 zone_true=1071 bias_and_zone=536
   -> [1x] IBIT/4hour/atr_2.5_rsi40
   -> [2x] IBIT/4hour/atr_2.5_rsi40
   -> [3x] IBIT/4hour/atr_2.5_rsi40
+  -> [4x] IBIT/4hour/atr_2.5_rsi40
+  -> [5x] IBIT/4hour/atr_2.5_rsi40
 
 ========== Symbol: QQQ ==========
 
@@ -86,6 +98,8 @@
   -> [1x] QQQ/4hour/atr_2.5_rsi40
   -> [2x] QQQ/4hour/atr_2.5_rsi40
   -> [3x] QQQ/4hour/atr_2.5_rsi40
+  -> [4x] QQQ/4hour/atr_2.5_rsi40
+  -> [5x] QQQ/4hour/atr_2.5_rsi40
 [bt:4hour] mode=loose bias_true=1503 zone_true=1764 bias_and_zone=1146
   -> [1x] QQQ/4hour/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
@@ -96,10 +110,16 @@
   -> [3x] QQQ/4hour/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
+  -> [4x] QQQ/4hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/4hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:597: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:429: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-[basket] wrote basket_summary.md + basket_curves.png (3 margin levels)
+[basket] wrote basket_summary.md + basket_curves.png (5 margin levels)
 
 Done. See outputs/.
