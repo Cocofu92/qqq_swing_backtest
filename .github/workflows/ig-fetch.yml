@@ -1,0 +1,88 @@
+name: IG bar fetch
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "search | pull"
+        required: true
+        default: "search"
+      tag:
+        description: "Optional tag for the commit message"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ig-fetch
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e .
+      - name: Validate IG secrets present
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          IG_ACCOUNT_TYPE: ${{ secrets.IG_ACCOUNT_TYPE }}
+        run: |
+          if [ -z "$IG_API_KEY" ] || [ -z "$IG_USERNAME" ] || [ -z "$IG_PASSWORD" ] || [ -z "$IG_ACCOUNT_TYPE" ]; then
+            echo "::error::IG secrets missing. Set IG_API_KEY, IG_USERNAME, IG_PASSWORD, IG_ACCOUNT_TYPE in repo Secrets."
+            exit 1
+          fi
+          echo "All IG secrets present."
+
+      - name: Run search
+        if: ${{ github.event.inputs.mode == 'search' }}
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          IG_ACCOUNT_TYPE: ${{ secrets.IG_ACCOUNT_TYPE }}
+        run: |
+          mkdir -p data/ig
+          python -m src.ig_fetch --search 2>&1 | tee data/ig/search_results.txt
+          echo "## IG search results ($(date -u +%Y-%m-%dT%H:%MZ))" > data/ig/search_results.md
+          echo '```' >> data/ig/search_results.md
+          cat data/ig/search_results.txt >> data/ig/search_results.md
+          echo '```' >> data/ig/search_results.md
+
+      - name: Run pull
+        if: ${{ github.event.inputs.mode == 'pull' }}
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          IG_ACCOUNT_TYPE: ${{ secrets.IG_ACCOUNT_TYPE }}
+        run: |
+          if [ ! -f data/ig/epics.yml ]; then
+            echo "::error::data/ig/epics.yml not found. Run --search first, then commit chosen epics."
+            exit 1
+          fi
+          python -m src.ig_fetch --pull
+
+      - name: Commit search/pull artefacts
+        run: |
+          git config user.email "github-actions@github.com"
+          git config user.name "github-actions"
+          git add -A data/ig/
+          if git diff --cached --quiet; then
+            echo "No new IG artefacts"
+          else
+            ts=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+            git commit -m "ig-fetch ${{ github.event.inputs.mode }}: ${ts} ${{ github.event.inputs.tag }}"
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push && break
+              sleep $((i * 5))
+            done
+          fi
