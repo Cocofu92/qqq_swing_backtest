@@ -1,1 +1,2 @@
 entry_date,entry_price,stop,target,exit_date,exit_price,R_multiple,exit_reason,zone_triggered,period
+2025-05-02 16:15:00+00:00,490.405,487.81195599312616,495.5910880137476,2025-05-02 19:00:00+00:00,488.935,-0.566901292883267,trail_exit,ema50,holdout

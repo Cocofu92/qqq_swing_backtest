@@ -1,1 +1,2 @@
 entry_date,entry_price,stop,target,exit_date,exit_price,R_multiple,exit_reason,zone_triggered,period
+2025-03-25 15:30:00+00:00,71.425,71.15181466821967,71.97137066356065,2025-03-26 13:30:00+00:00,71.13681466821967,-1.0549077796463187,stop_hit,h_ema21,holdout
