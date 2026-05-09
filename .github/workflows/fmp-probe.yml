@@ -19,7 +19,7 @@ jobs:
           python - <<'PY'
           import os, requests, urllib.parse
           KEY = os.environ['FMP_KEY']
-          BASE = '<https://financialmodelingprep.com/stable/historical-chart>'
+          BASE = 'https://financialmodelingprep.com/stable/historical-chart'
 
           # Symbol -> list of candidate FMP tickers
           CANDIDATES = {
