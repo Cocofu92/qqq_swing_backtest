@@ -15,14 +15,91 @@
 [data:EWJ:4hour] returning 2171 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_4hour.parquet
 [bt:4hour] mode=strict bias_true=1117 zone_true=1780 bias_and_zone=836
   -> [1x] EWJ/4hour/atr_2.5_rsi40
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 910, in <module>
-    _cli()
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 902, in _cli
-    main(
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 853, in main
-    train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-TypeError: run_slice() got an unexpected keyword argument 'margin'
+  -> [2x] EWJ/4hour/atr_2.5_rsi40
+  -> [3x] EWJ/4hour/atr_2.5_rsi40
+[bt:4hour] mode=loose bias_true=1485 zone_true=1810 bias_and_zone=1181
+  -> [1x] EWJ/4hour/atr_2.5_rsi40
+  -> [2x] EWJ/4hour/atr_2.5_rsi40
+  -> [3x] EWJ/4hour/atr_2.5_rsi40
+
+========== Symbol: EWU ==========
+
+##### EWU / 4hour #####
+[data:EWU:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
+[data:EWU:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
+[data:EWU:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
+[data:EWU:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
+[data:EWU:4hour] chunk 2023-12-22->2024-06-19: 242 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
+[data:EWU:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
+[data:EWU:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
+[data:EWU:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
+[data:EWU:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:EWU:4hour] total after dedupe: 2171 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:EWU:4hour] returning 2171 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_4hour.parquet
+[bt:4hour] mode=strict bias_true=1115 zone_true=1730 bias_and_zone=771
+  -> [1x] EWU/4hour/atr_2.5_rsi40
+  -> [2x] EWU/4hour/atr_2.5_rsi40
+  -> [3x] EWU/4hour/atr_2.5_rsi40
+[bt:4hour] mode=loose bias_true=1494 zone_true=1757 bias_and_zone=1119
+  -> [1x] EWU/4hour/atr_2.5_rsi40
+  -> [2x] EWU/4hour/atr_2.5_rsi40
+  -> [3x] EWU/4hour/atr_2.5_rsi40
+
+========== Symbol: IBIT ==========
+
+##### IBIT / 4hour #####
+[data:IBIT:4hour] chunk 2022-01-01->2022-06-30: 0 bars (empty)
+[data:IBIT:4hour] chunk 2022-06-30->2022-12-27: 77 bars, 2022-09-09 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
+[data:IBIT:4hour] chunk 2022-12-27->2023-06-25: 43 bars, 2022-12-29 14:30:00+00:00 to 2023-04-13 17:30:00+00:00
+[data:IBIT:4hour] chunk 2023-06-25->2023-12-22: 0 bars (empty)
+[data:IBIT:4hour] chunk 2023-12-22->2024-06-19: 220 bars, 2024-01-11 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
+[data:IBIT:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
+[data:IBIT:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
+[data:IBIT:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
+[data:IBIT:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:IBIT:4hour] total after dedupe: 1278 bars, 2022-09-09 13:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:IBIT:4hour] returning 1278 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/IBIT_4hour.parquet
+[bt:4hour] mode=strict bias_true=437 zone_true=1070 bias_and_zone=335
+  -> [1x] IBIT/4hour/atr_2.5_rsi40
+  -> [2x] IBIT/4hour/atr_2.5_rsi40
+  -> [3x] IBIT/4hour/atr_2.5_rsi40
+[bt:4hour] mode=loose bias_true=638 zone_true=1071 bias_and_zone=536
+  -> [1x] IBIT/4hour/atr_2.5_rsi40
+  -> [2x] IBIT/4hour/atr_2.5_rsi40
+  -> [3x] IBIT/4hour/atr_2.5_rsi40
+
+========== Symbol: QQQ ==========
+
+##### QQQ / 4hour #####
+[data:QQQ:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
+[data:QQQ:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
+[data:QQQ:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
+[data:QQQ:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
+[data:QQQ:4hour] chunk 2023-12-22->2024-06-19: 241 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
+[data:QQQ:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
+[data:QQQ:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
+[data:QQQ:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
+[data:QQQ:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:QQQ:4hour] total after dedupe: 2170 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
+[data:QQQ:4hour] returning 2170 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_4hour.parquet
+[bt:4hour] mode=strict bias_true=1181 zone_true=1751 bias_and_zone=848
+  -> [1x] QQQ/4hour/atr_2.5_rsi40
+  -> [2x] QQQ/4hour/atr_2.5_rsi40
+  -> [3x] QQQ/4hour/atr_2.5_rsi40
+[bt:4hour] mode=loose bias_true=1503 zone_true=1764 bias_and_zone=1146
+  -> [1x] QQQ/4hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [2x] QQQ/4hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [3x] QQQ/4hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:597: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:429: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+[basket] wrote basket_summary.md + basket_curves.png (3 margin levels)
+
+Done. See outputs/.
