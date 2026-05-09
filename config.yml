@@ -67,6 +67,7 @@ period:
 
 breakout:
   donchian_periods: [10, 21, 55]
+  trail_atr_mults: [1.5, 2.0, 2.5, 3.0]
   consolidation_methods: ["consolidation_atr", "consolidation_bb"]
   atr_contraction_ratio: 0.75
   atr_short: 14

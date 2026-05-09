@@ -892,17 +892,18 @@ def main(
                 if "breakout" in cfg.get("strategies", ["pullback"]):
                     for period in cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]):
                         for cons in cfg.get("breakout", {}).get("consolidation_methods", ["consolidation_atr", "consolidation_bb"]):
-                            cons_short = "atr" if cons == "consolidation_atr" else "bb"
-                            strategy_variants.append({
-                                "type": "breakout",
-                                "donchian_period": period,
-                                "consolidation_method": cons,
-                                "trail": "atr_2.5",  # use default trail for breakout exit
-                                "rsi": 0,  # ignored
-                                "scaleout": "tiered_thirds",
-                                "label": f"breakout_d{period}_{cons_short}",
-                                "signal_col": f"breakout_signal_{period}_{cons}",
-                            })
+                            for atr_m in cfg.get("breakout", {}).get("trail_atr_mults", [2.5]):
+                                cons_short = "atr" if cons == "consolidation_atr" else "bb"
+                                strategy_variants.append({
+                                    "type": "breakout",
+                                    "donchian_period": period,
+                                    "consolidation_method": cons,
+                                    "trail": f"atr_{atr_m}",
+                                    "rsi": 0,  # ignored
+                                    "scaleout": "tiered_thirds",
+                                    "label": f"breakout_d{period}_{cons_short}_atr{atr_m}",
+                                    "signal_col": f"breakout_signal_{period}_{cons}",
+                                })
 
                 for margin in margins:
                     margin_label = f"{int(round(1/max(margin,0.001))):d}x" if margin < 1.0 else "1x"
@@ -929,7 +930,10 @@ def main(
                             stype = "pullback"
                         else:  # breakout
                             base_trail = "atr"
-                            atr_mult = 2.5
+                            try:
+                                atr_mult = float(variant["trail"].split("_", 1)[1])
+                            except (ValueError, IndexError):
+                                atr_mult = 2.5
                             signal_col = variant["signal_col"]
                             stype = "breakout"
                             rsi_t = 0
