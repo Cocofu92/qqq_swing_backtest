@@ -45,7 +45,9 @@ rsi_thresholds:
 
 # Leverage sweep (margin = required cash %; 1.0=cash, 0.5=2x, 0.33=3x)
 margins:
-  - 1.0      # 1x baseline for v9 strategy comparison
+  - 1.0       # 1x baseline
+  - 0.3333    # 3x leverage
+  - 0.2       # 5x leverage  -- target for live deployment
 
 
 

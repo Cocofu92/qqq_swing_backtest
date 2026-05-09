@@ -351,9 +351,12 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
 def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
     """For each named portfolio in cfg['portfolios'], pick the requested variant
     per (symbol, timeframe), stitch their equity curves, and equal-weight combine
-    into a single portfolio curve. Writes:
-      outputs/portfolio_<name>/summary.md
-      outputs/portfolio_<name>/curve.png
+    into a single portfolio curve. Repeats per leverage level present in the sweep.
+
+    Writes:
+      outputs/portfolio_<name>/summary.md         -- leverage scan table
+      outputs/portfolio_<name>/summary_<lev>.md   -- per-leverage breakdown
+      outputs/portfolio_<name>/curve_<lev>.png    -- per-leverage equity curve
     """
     import matplotlib
     matplotlib.use("Agg")
@@ -366,7 +369,14 @@ def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
 
     initial = cfg["execution"]["initial_capital"]
     cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
-    margin_label = "1x"  # portfolios are intentionally compared at 1x for now
+
+    # Discover all leverage levels in the sweep, ordered from highest to lowest
+    margin_labels = sorted(
+        {p.get("margin_label", "1x") for p in sweep.values()},
+        key=lambda lbl: -float(lbl.rstrip("x"))
+    )
+    if not margin_labels:
+        margin_labels = ["1x"]
 
     for pname, pdef in portfolios.items():
         members = pdef.get("members", [])
@@ -378,132 +388,147 @@ def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
         outdir = OUTPUTS / f"portfolio_{pname}"
         outdir.mkdir(parents=True, exist_ok=True)
 
-        member_rows: List[Dict[str, Any]] = []
-        eqs_normed: List[pd.Series] = []
-        member_full_curves: List[pd.Series] = []
-        member_labels: List[str] = []
+        leverage_rows = []  # for the master summary table
 
-        for m in members:
-            sym = m["symbol"]; tf = m["tf"]; label = m["label"]
-            key = f"{margin_label}/{sym}/{tf}/{label}"
-            if key not in sweep:
-                print(f"[portfolio:{pname}] member missing from sweep: {key}")
+        for margin_label in margin_labels:
+            member_rows = []
+            eqs_normed = []
+            member_full_curves = []
+            member_labels = []
+
+            for m in members:
+                sym = m["symbol"]; tf = m["tf"]; label = m["label"]
+                key = f"{margin_label}/{sym}/{tf}/{label}"
+                if key not in sweep:
+                    print(f"[portfolio:{pname}/{margin_label}] member missing: {key}")
+                    member_rows.append({"symbol": sym, "tf": tf, "label": label, "missing": True})
+                    continue
+                payload = sweep[key]
+                eq = _stitch_equity(
+                    payload["train"]["equity_curve"],
+                    payload["holdout"]["equity_curve"],
+                    initial,
+                )
+                if eq.empty:
+                    member_rows.append({"symbol": sym, "tf": tf, "label": label, "missing": True})
+                    continue
+
+                train_eq = payload["train"].get("equity_curve")
+                holdout_eq = payload["holdout"].get("equity_curve")
+                train_ret = ((train_eq.iloc[-1] / train_eq.iloc[0]) - 1) * 100 if train_eq is not None and not train_eq.empty else 0.0
+                hold_ret = ((holdout_eq.iloc[-1] / holdout_eq.iloc[0]) - 1) * 100 if holdout_eq is not None and not holdout_eq.empty else 0.0
+                running = eq.cummax()
+                mdd = ((eq / running) - 1).min() * 100
+
                 member_rows.append({
-                    "symbol": sym, "tf": tf, "label": label,
-                    "missing": True,
+                    "symbol": sym, "tf": tf, "label": label, "missing": False,
+                    "train_ret": train_ret, "hold_ret": hold_ret, "mdd": mdd,
+                    "n_trades": len(payload["train"].get("trade_log") or []) + len(payload["holdout"].get("trade_log") or []),
                 })
-                continue
-            payload = sweep[key]
-            eq = _stitch_equity(
-                payload["train"]["equity_curve"],
-                payload["holdout"]["equity_curve"],
-                initial,
-            )
-            if eq.empty:
-                member_rows.append({
-                    "symbol": sym, "tf": tf, "label": label,
-                    "missing": True,
-                })
+                eqs_normed.append(eq / eq.iloc[0])
+                member_full_curves.append(eq)
+                member_labels.append(f"{sym} {tf} {label}")
+
+            if not eqs_normed:
+                print(f"[portfolio:{pname}/{margin_label}] no valid members; skipping")
                 continue
 
-            # Per-member metrics (already exist in payload.train/holdout stats but
-            # recompute from the stitched curve for consistency)
-            train_eq = payload["train"].get("equity_curve")
-            holdout_eq = payload["holdout"].get("equity_curve")
-            train_ret = ((train_eq.iloc[-1] / train_eq.iloc[0]) - 1) * 100 if train_eq is not None and not train_eq.empty else 0.0
-            hold_ret = ((holdout_eq.iloc[-1] / holdout_eq.iloc[0]) - 1) * 100 if holdout_eq is not None and not holdout_eq.empty else 0.0
-            running = eq.cummax()
-            mdd = ((eq / running) - 1).min() * 100
+            common = eqs_normed[0].index
+            for e in eqs_normed[1:]:
+                common = common.intersection(e.index)
+            eqs_aligned = [e.reindex(common) for e in eqs_normed]
+            portfolio_normed = sum(eqs_aligned) / len(eqs_aligned)
+            portfolio_curve = portfolio_normed * initial
 
-            member_rows.append({
-                "symbol": sym, "tf": tf, "label": label,
-                "missing": False,
-                "train_ret": train_ret, "hold_ret": hold_ret, "mdd": mdd,
-                "n_trades": len(payload["train"].get("trade_log") or []) + len(payload["holdout"].get("trade_log") or []),
+            total_ret = (portfolio_curve.iloc[-1] / portfolio_curve.iloc[0] - 1) * 100
+            years = max((portfolio_curve.index[-1] - portfolio_curve.index[0]).days / 365.25, 1e-6)
+            cagr = ((portfolio_curve.iloc[-1] / portfolio_curve.iloc[0]) ** (1 / years) - 1) * 100
+            running_max = portfolio_curve.cummax()
+            ddseries = (portfolio_curve / running_max - 1) * 100
+            max_dd = ddseries.min()
+
+            holdout_curve = portfolio_curve.loc[portfolio_curve.index >= cutoff]
+            if not holdout_curve.empty:
+                h_ret = (holdout_curve.iloc[-1] / holdout_curve.iloc[0] - 1) * 100
+                h_running = holdout_curve.cummax()
+                h_dd_series = (holdout_curve / h_running - 1) * 100
+                h_max_dd = h_dd_series.min()
+            else:
+                h_ret = 0.0
+                h_max_dd = 0.0
+
+            leverage_rows.append({
+                "leverage": margin_label,
+                "total_ret": total_ret, "cagr": cagr, "max_dd": max_dd,
+                "hold_ret": h_ret, "hold_max_dd": h_max_dd,
+                "calmar": (total_ret / abs(max_dd)) if max_dd != 0 else float("nan"),
             })
-            eqs_normed.append(eq / eq.iloc[0])
-            member_full_curves.append(eq)
-            member_labels.append(f"{sym} {tf} {label}")
 
-        if not eqs_normed:
-            print(f"[portfolio:{pname}] no valid members; skipping")
-            continue
+            # Per-leverage curve
+            fig, ax = plt.subplots(figsize=(12, 6))
+            for lbl, ec in zip(member_labels, member_full_curves):
+                ax.plot(ec.index, ec.values * (initial / ec.iloc[0]), lw=0.9, alpha=0.45, label=lbl)
+            ax.plot(portfolio_curve.index, portfolio_curve.values, lw=2.2, color="black",
+                    label=f"Portfolio {margin_label} (n={len(eqs_aligned)})")
+            ax.axvline(cutoff, color="grey", linestyle="--", alpha=0.6)
+            ax.set_title(f"Portfolio: {pname} @ {margin_label}  --  {description}")
+            ax.set_ylabel("Equity ($)")
+            ax.grid(True, alpha=0.3)
+            ax.legend(loc="upper left", fontsize=8)
+            fig.tight_layout()
+            fig.savefig(outdir / f"curve_{margin_label}.png", dpi=120)
+            plt.close(fig)
 
-        # Align on common index
-        common = eqs_normed[0].index
-        for e in eqs_normed[1:]:
-            common = common.intersection(e.index)
-        eqs_aligned = [e.reindex(common) for e in eqs_normed]
-        portfolio_normed = sum(eqs_aligned) / len(eqs_aligned)
-        portfolio_curve = portfolio_normed * initial
+            # Per-leverage detailed summary
+            sub = [
+                f"# Portfolio: {pname} @ {margin_label}",
+                "",
+                f"_{description}_",
+                "",
+                "## Portfolio metrics",
+                "",
+                "| Metric | Train+Holdout | Holdout-only |",
+                "|---|---|---|",
+                f"| Total return [%] | {total_ret:.2f} | {h_ret:.2f} |",
+                f"| CAGR [%] | {cagr:.2f} | -- |",
+                f"| Max drawdown [%] | {max_dd:.2f} | {h_max_dd:.2f} |",
+                "",
+                "## Members",
+                "",
+                "| Symbol | TF | Variant | Train Return [%] | Holdout Return [%] | Member MaxDD [%] | Trades | Status |",
+                "|---|---|---|---|---|---|---|---|",
+            ]
+            for r in member_rows:
+                if r.get("missing"):
+                    sub.append(f"| {r['symbol']} | {r['tf']} | `{r['label']}` | -- | -- | -- | -- | **MISSING** |")
+                else:
+                    sub.append(
+                        f"| {r['symbol']} | {r['tf']} | `{r['label']}` | "
+                        f"{r['train_ret']:.2f} | {r['hold_ret']:.2f} | {r['mdd']:.2f} | "
+                        f"{r['n_trades']} | ok |"
+                    )
+            (outdir / f"summary_{margin_label}.md").write_text("\n".join(sub))
+            print(f"[portfolio:{pname}/{margin_label}] wrote summary + curve")
 
-        # Portfolio metrics
-        total_ret = (portfolio_curve.iloc[-1] / portfolio_curve.iloc[0] - 1) * 100
-        years = max((portfolio_curve.index[-1] - portfolio_curve.index[0]).days / 365.25, 1e-6)
-        cagr = ((portfolio_curve.iloc[-1] / portfolio_curve.iloc[0]) ** (1 / years) - 1) * 100
-        running_max = portfolio_curve.cummax()
-        ddseries = (portfolio_curve / running_max - 1) * 100
-        max_dd = ddseries.min()
-
-        holdout_curve = portfolio_curve.loc[portfolio_curve.index >= cutoff]
-        if not holdout_curve.empty:
-            h_ret = (holdout_curve.iloc[-1] / holdout_curve.iloc[0] - 1) * 100
-            h_running = holdout_curve.cummax()
-            h_dd_series = (holdout_curve / h_running - 1) * 100
-            h_max_dd = h_dd_series.min()
-        else:
-            h_ret = 0.0
-            h_max_dd = 0.0
-
-        # ------- Plot -------
-        fig, ax = plt.subplots(figsize=(12, 6))
-        # Member curves (translucent)
-        for lbl, ec in zip(member_labels, member_full_curves):
-            ax.plot(ec.index, ec.values * (initial / ec.iloc[0]), lw=0.9, alpha=0.45, label=lbl)
-        # Portfolio curve (heavy)
-        ax.plot(portfolio_curve.index, portfolio_curve.values, lw=2.2, color="black",
-                label=f"Portfolio (equal-weight, n={len(eqs_aligned)})")
-        ax.axvline(cutoff, color="grey", linestyle="--", alpha=0.6)
-        ax.set_title(f"Portfolio: {pname}  --  {description}")
-        ax.set_ylabel("Equity ($)")
-        ax.grid(True, alpha=0.3)
-        ax.legend(loc="upper left", fontsize=8)
-        fig.tight_layout()
-        fig.savefig(outdir / "curve.png", dpi=120)
-        plt.close(fig)
-
-        # ------- Summary markdown -------
-        lines = [
+        # Master leverage scan summary
+        master = [
             f"# Portfolio: {pname}",
             "",
             f"_{description}_",
             "",
-            "## Portfolio metrics (1x, equal-weighted)",
+            "## Leverage scan",
             "",
-            "| Metric | Train+Holdout | Holdout-only |",
-            "|---|---|---|",
-            f"| Total return [%] | {total_ret:.2f} | {h_ret:.2f} |",
-            f"| CAGR [%] | {cagr:.2f} | -- |",
-            f"| Max drawdown [%] | {max_dd:.2f} | {h_max_dd:.2f} |",
-            "",
-            "## Members",
-            "",
-            "| Symbol | TF | Variant | Train Return [%] | Holdout Return [%] | Member MaxDD [%] | Trades | Status |",
-            "|---|---|---|---|---|---|---|---|",
+            "| Leverage | Total Return [%] | CAGR [%] | MaxDD [%] | Holdout Return [%] | Holdout MaxDD [%] | Calmar |",
+            "|---|---|---|---|---|---|---|",
         ]
-        for r in member_rows:
-            if r.get("missing"):
-                lines.append(f"| {r['symbol']} | {r['tf']} | `{r['label']}` | -- | -- | -- | -- | **MISSING** |")
-            else:
-                lines.append(
-                    f"| {r['symbol']} | {r['tf']} | `{r['label']}` | "
-                    f"{r['train_ret']:.2f} | {r['hold_ret']:.2f} | {r['mdd']:.2f} | "
-                    f"{r['n_trades']} | ok |"
-                )
-        lines.append("")
-        lines.append(f"_Generated: {pd.Timestamp.now(tz='UTC').isoformat()}_")
-        (outdir / "summary.md").write_text("\n".join(lines))
-        print(f"[portfolio:{pname}] wrote summary + curve ({len(eqs_aligned)} members)")
+        for r in leverage_rows:
+            master.append(
+                f"| {r['leverage']} | {r['total_ret']:.2f} | {r['cagr']:.2f} | "
+                f"{r['max_dd']:.2f} | {r['hold_ret']:.2f} | {r['hold_max_dd']:.2f} | {r['calmar']:.2f} |"
+            )
+        master.append("")
+        master.append(f"_Generated: {pd.Timestamp.now(tz='UTC').isoformat()}_")
+        (outdir / "summary.md").write_text("\n".join(master))
 
 
 def write_basket_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
