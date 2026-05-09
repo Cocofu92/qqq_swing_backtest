@@ -75,7 +75,8 @@ breakout:
   bb_period: 20
   bb_num_std: 2.0
   bb_lookback: 120
-  bb_percentile: 0.20
+  bb_percentile: 0.20         # legacy single-value (still respected if bb_percentiles unset)
+  bb_percentiles: [0.20, 0.30, 0.40]   # squeeze tightness sweep
   volume_multiplier: 1.5
   volume_lookback: 20
   require_volume: false   # turned off — Donchian + consolidation only

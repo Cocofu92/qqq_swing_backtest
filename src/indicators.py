@@ -290,19 +290,22 @@ def compute_consolidation_atr(df, contraction_ratio=0.75, short_period=14, long_
     return out
 
 
-def compute_consolidation_bb(df, period=20, num_std=2.0, lookback=120, percentile=0.20):
-    """Boolean column `consolidation_bb` true when BB width is in the bottom
-    `percentile` of values over the trailing `lookback` bars (squeeze).
+def compute_consolidation_bb(df, period=20, num_std=2.0, lookback=120, percentile=0.20, col_name=None):
+    """Boolean column `consolidation_bb` (or supplied col_name) true when BB
+    width is in the bottom `percentile` of values over the trailing `lookback`
+    bars (squeeze).
     """
     out = df.copy()
-    rolling_mean = out["close"].rolling(period, min_periods=period).mean()
-    rolling_std = out["close"].rolling(period, min_periods=period).std()
-    upper = rolling_mean + num_std * rolling_std
-    lower = rolling_mean - num_std * rolling_std
-    bbwidth = (upper - lower) / rolling_mean.replace(0, np.nan)
+    if "bb_width" not in out.columns:
+        rolling_mean = out["close"].rolling(period, min_periods=period).mean()
+        rolling_std = out["close"].rolling(period, min_periods=period).std()
+        upper = rolling_mean + num_std * rolling_std
+        lower = rolling_mean - num_std * rolling_std
+        out["bb_width"] = (upper - lower) / rolling_mean.replace(0, np.nan)
+    bbwidth = out["bb_width"]
     pct_rank = bbwidth.rolling(lookback, min_periods=period).rank(pct=True)
-    out["bb_width"] = bbwidth
-    out["consolidation_bb"] = (pct_rank <= percentile).fillna(False)
+    target = col_name or "consolidation_bb"
+    out[target] = (pct_rank <= percentile).fillna(False)
     return out
 
 

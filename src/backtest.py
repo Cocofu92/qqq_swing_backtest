@@ -81,13 +81,26 @@ def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour", symbol: str
         short_period=cfg.get("breakout", {}).get("atr_short", 14),
         long_period=cfg.get("breakout", {}).get("atr_long", 50),
     )
-    df = compute_consolidation_bb(
-        df,
-        period=cfg.get("breakout", {}).get("bb_period", 20),
-        num_std=cfg.get("breakout", {}).get("bb_num_std", 2.0),
-        lookback=cfg.get("breakout", {}).get("bb_lookback", 120),
-        percentile=cfg.get("breakout", {}).get("bb_percentile", 0.20),
-    )
+    bb_period = cfg.get("breakout", {}).get("bb_period", 20)
+    bb_num_std = cfg.get("breakout", {}).get("bb_num_std", 2.0)
+    bb_lookback = cfg.get("breakout", {}).get("bb_lookback", 120)
+    # Sweep multiple BB squeeze percentiles. Each percentile gets its own
+    # boolean column named consolidation_bb_p{int(pct*100):02d}.
+    bb_pcts = cfg.get("breakout", {}).get("bb_percentiles") or [
+        cfg.get("breakout", {}).get("bb_percentile", 0.20)
+    ]
+    for pct in bb_pcts:
+        col = f"consolidation_bb_p{int(round(pct*100)):02d}"
+        df = compute_consolidation_bb(
+            df,
+            period=bb_period, num_std=bb_num_std, lookback=bb_lookback,
+            percentile=pct, col_name=col,
+        )
+    # Backwards-compat: keep "consolidation_bb" pointing at the first percentile
+    if bb_pcts:
+        first_col = f"consolidation_bb_p{int(round(bb_pcts[0]*100)):02d}"
+        if first_col in df.columns:
+            df["consolidation_bb"] = df[first_col]
     df = compute_volume_runrate(
         df,
         multiplier=cfg.get("breakout", {}).get("volume_multiplier", 1.5),
@@ -110,15 +123,21 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     # signal columns (they use daily_bullish_y as the trend-bias gate).
     breakout_periods = tuple(cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]))
     require_vol = bool(cfg.get("breakout", {}).get("require_volume", False))
+    bb_pcts = cfg.get("breakout", {}).get("bb_percentiles") or [
+        cfg.get("breakout", {}).get("bb_percentile", 0.20)
+    ]
+    cons_cols = ["consolidation_atr"] + [
+        f"consolidation_bb_p{int(round(p*100)):02d}" for p in bb_pcts
+    ]
     for period in breakout_periods:
-        for cons_col in ("consolidation_atr", "consolidation_bb"):
+        for cons_col in cons_cols:
             df = compute_donchian_breakout_signal(
                 df, period=period, consolidation_col=cons_col,
                 require_volume=require_vol,
             )
     # Diagnostic: count signal True rows for visibility in the run log
     for period in breakout_periods:
-        for cons_col in ("consolidation_atr", "consolidation_bb"):
+        for cons_col in cons_cols:
             sig = f"breakout_signal_{period}_{cons_col}"
             if sig in df.columns:
                 n_true = int(df[sig].fillna(False).astype(bool).sum())
@@ -908,10 +927,20 @@ def main(
                                 "label": f"pullback_{trail}_rsi{rsi_t}_tiered",
                             })
                 if "breakout" in cfg.get("strategies", ["pullback"]):
+                    bo_pcts = cfg.get("breakout", {}).get("bb_percentiles") or [
+                        cfg.get("breakout", {}).get("bb_percentile", 0.20)
+                    ]
+                    cons_iter = ["consolidation_atr"] + [
+                        f"consolidation_bb_p{int(round(p*100)):02d}" for p in bo_pcts
+                    ]
                     for period in cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]):
-                        for cons in cfg.get("breakout", {}).get("consolidation_methods", ["consolidation_atr", "consolidation_bb"]):
+                        for cons in cons_iter:
                             for atr_m in cfg.get("breakout", {}).get("trail_atr_mults", [2.5]):
-                                cons_short = "atr" if cons == "consolidation_atr" else "bb"
+                                if cons == "consolidation_atr":
+                                    cons_short = "atr"
+                                else:
+                                    # consolidation_bb_p20 -> "bb20"
+                                    cons_short = "bb" + cons.split("_p")[-1]
                                 strategy_variants.append({
                                     "type": "breakout",
                                     "donchian_period": period,
