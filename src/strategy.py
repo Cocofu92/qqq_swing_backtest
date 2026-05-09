@@ -125,9 +125,12 @@ class TrendPullback(Strategy):
             stop = entry_fill - self.atr_multiplier_stop * atr_at_signal
             risk_per_share = entry_fill - stop
             target = entry_fill + self.take_partial_at_R * risk_per_share
-            risk_dollars = self.equity * self.risk_pct
+            # Scale risk_pct by 1/margin: margin=1.0 -> 1×risk, margin=0.5 -> 2×risk, margin=0.33 -> 3×risk.
+            # This is what "2× leverage" actually means in Adam-speak: double position, double DD potential.
+            effective_risk_pct = self.risk_pct / max(self.margin, 0.001)
+            risk_dollars = self.equity * effective_risk_pct
             risk_based = int(risk_dollars // risk_per_share)
-            # With margin < 1.0 (leverage), buying power = equity / margin
+            # Buying power expands with leverage too (so affordability cap doesn't strangle risk-based sizing)
             buying_power = self.equity / max(self.margin, 0.001)
             max_affordable = int((buying_power * 0.95) // entry_fill)  # 5% buffer for variance
             size_shares = max(1, min(risk_based, max_affordable))
