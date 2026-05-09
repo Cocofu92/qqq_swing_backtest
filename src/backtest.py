@@ -109,9 +109,13 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     # Now that daily_bullish_y is wired for this mode, compute the breakout
     # signal columns (they use daily_bullish_y as the trend-bias gate).
     breakout_periods = tuple(cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]))
+    require_vol = bool(cfg.get("breakout", {}).get("require_volume", False))
     for period in breakout_periods:
         for cons_col in ("consolidation_atr", "consolidation_bb"):
-            df = compute_donchian_breakout_signal(df, period=period, consolidation_col=cons_col)
+            df = compute_donchian_breakout_signal(
+                df, period=period, consolidation_col=cons_col,
+                require_volume=require_vol,
+            )
     # Diagnostic: count signal True rows for visibility in the run log
     for period in breakout_periods:
         for cons_col in ("consolidation_atr", "consolidation_bb"):

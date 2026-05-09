@@ -78,6 +78,7 @@ breakout:
   bb_percentile: 0.20
   volume_multiplier: 1.5
   volume_lookback: 20
+  require_volume: false   # turned off — Donchian + consolidation only
 
 strategy:
   # Day-trade structure: force close before IG financing cutoff (22:00 UK), block late entries
