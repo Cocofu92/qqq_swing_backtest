@@ -1,0 +1,67 @@
+name: FMP futures/index coverage probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deps
+        run: pip install requests
+      - name: Probe FMP
+        env:
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: |
+          python - <<'PY'
+          import os, requests, urllib.parse
+          KEY = os.environ['FMP_KEY']
+          BASE = '<https://financialmodelingprep.com/stable/historical-chart>'
+
+          # Symbol -> list of candidate FMP tickers
+          CANDIDATES = {
+            'QQQ': ['NQUSD', 'NQ', 'NQF', '^NDX', 'NDX', '^IXIC'],
+            'SPY': ['ESUSD', 'ES', 'ESF', '^GSPC', 'SPX'],
+            'GLD': ['GCUSD', 'GOLDUSD', 'XAUUSD', '^XAU'],
+            'BNO': ['BZUSD', 'BRENTUSD', 'CLUSD', 'WTIUSD'],
+            'EWU': ['^FTSE', 'UK100', 'FTSEUSD', 'FTSE100USD'],
+            'EWJ': ['^N225', 'JP225', 'NIKKEI225', 'NIKKEIUSD'],
+          }
+
+          # Probe windows: recent (last week of 2025) and 10y back (Dec 2015)
+          WINDOWS = {
+            'recent_2025-12': ('2025-12-01', '2025-12-31'),
+            '10yr_2015-12':   ('2015-12-01', '2015-12-31'),
+          }
+
+          def probe(sym, tf, frm, to):
+              url = f'{BASE}/{tf}'
+              params = {'symbol': sym, 'apikey': KEY, 'from': frm, 'to': to}
+              try:
+                  r = requests.get(url, params=params, timeout=20)
+                  if r.status_code != 200:
+                      return f'http_{r.status_code}'
+                  data = r.json()
+                  if isinstance(data, list):
+                      n = len(data)
+                      if n == 0:
+                          return 'no-data'
+                      first = data[-1].get('date', '?')
+                      last = data[0].get('date', '?')
+                      return f'{n} bars  ({first} -> {last})'
+                  return f'err:{str(data)[:120]}'
+              except Exception as e:
+                  return f'exc:{type(e).__name__}'
+
+          for symbol, tickers in CANDIDATES.items():
+              print(f'\n===== {symbol} =====')
+              for t in tickers:
+                  for tf in ('15min', '1hour'):
+                      for label, (frm, to) in WINDOWS.items():
+                          result = probe(t, tf, frm, to)
+                          print(f'  {t:<14} {tf:<6} {label:<14} {result}')
+                  print()
+          PY
