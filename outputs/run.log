@@ -1,125 +1,633 @@
 
-========== Symbol: EWJ ==========
+========== Symbol: QQQ ==========
 
-##### EWJ / 4hour #####
-[data:EWJ:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
-[data:EWJ:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
-[data:EWJ:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
-[data:EWJ:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
-[data:EWJ:4hour] chunk 2023-12-22->2024-06-19: 242 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
-[data:EWJ:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
-[data:EWJ:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
-[data:EWJ:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
-[data:EWJ:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:EWJ:4hour] total after dedupe: 2171 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:EWJ:4hour] returning 2171 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_4hour.parquet
-[bt:4hour] mode=strict bias_true=1117 zone_true=1780 bias_and_zone=836
-  -> [1x] EWJ/4hour/atr_2.5_rsi40
-  -> [2x] EWJ/4hour/atr_2.5_rsi40
-  -> [3x] EWJ/4hour/atr_2.5_rsi40
-  -> [4x] EWJ/4hour/atr_2.5_rsi40
-  -> [5x] EWJ/4hour/atr_2.5_rsi40
-[bt:4hour] mode=loose bias_true=1485 zone_true=1810 bias_and_zone=1181
-  -> [1x] EWJ/4hour/atr_2.5_rsi40
-  -> [2x] EWJ/4hour/atr_2.5_rsi40
-  -> [3x] EWJ/4hour/atr_2.5_rsi40
-  -> [4x] EWJ/4hour/atr_2.5_rsi40
-  -> [5x] EWJ/4hour/atr_2.5_rsi40
+##### QQQ / 1hour #####
+[data:QQQ:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:QQQ:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:QQQ:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:QQQ:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:QQQ:1hour] chunk 2022-08-29->2022-10-28: 305 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:QQQ:1hour] chunk 2022-10-28->2022-12-27: 282 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:QQQ:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:QQQ:1hour] chunk 2023-02-25->2023-04-26: 293 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:QQQ:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:QQQ:1hour] chunk 2023-06-25->2023-08-24: 295 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:QQQ:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:QQQ:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:QQQ:1hour] chunk 2023-12-22->2024-02-20: 267 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:QQQ:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:QQQ:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:QQQ:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:QQQ:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:QQQ:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:QQQ:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:QQQ:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:QQQ:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:QQQ:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:QQQ:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:QQQ:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:QQQ:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:QQQ:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:QQQ:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:QQQ:1hour] total after dedupe: 7595 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:QQQ:1hour] returning 7595 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_1hour.parquet
+[bt:1hour] mode=strict bias_true=4128 zone_true=6443 bias_and_zone=3219
+  -> [1x] QQQ/1hour/atr_2.5_rsi40
+  -> [5x] QQQ/1hour/atr_2.5_rsi40
+  -> [10x] QQQ/1hour/atr_2.5_rsi40
+  -> [20x] QQQ/1hour/atr_2.5_rsi40
+[bt:1hour] mode=loose bias_true=5266 zone_true=6498 bias_and_zone=4306
+  -> [1x] QQQ/1hour/atr_2.5_rsi40
+  -> [5x] QQQ/1hour/atr_2.5_rsi40
+  -> [10x] QQQ/1hour/atr_2.5_rsi40
+  -> [20x] QQQ/1hour/atr_2.5_rsi40
+
+##### QQQ / 15min #####
+[data:QQQ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:QQQ:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:QQQ:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:QQQ:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:QQQ:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:QQQ:15min] chunk 2022-10-28->2022-12-27: 760 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:QQQ:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:QQQ:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:QQQ:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:QQQ:15min] chunk 2023-06-25->2023-08-24: 844 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:QQQ:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:QQQ:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:QQQ:15min] chunk 2023-12-22->2024-02-20: 755 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:QQQ:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:QQQ:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:QQQ:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:QQQ:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:QQQ:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:QQQ:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:QQQ:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:QQQ:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:QQQ:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:QQQ:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:QQQ:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:QQQ:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:QQQ:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:QQQ:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:QQQ:15min] total after dedupe: 21395 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:QQQ:15min] returning 21395 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_15min.parquet
+[bt:15min] mode=strict bias_true=12081 zone_true=18139 bias_and_zone=9808
+  -> [1x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+[bt:15min] mode=loose bias_true=15305 zone_true=18415 bias_and_zone=12871
+  -> [1x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] QQQ/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+
+========== Symbol: SPY ==========
+
+##### SPY / 1hour #####
+[data:SPY:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:SPY:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:SPY:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:SPY:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:SPY:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:SPY:1hour] chunk 2022-10-28->2022-12-27: 281 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:SPY:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:SPY:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:SPY:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:SPY:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:SPY:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:SPY:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:SPY:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:SPY:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:SPY:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:SPY:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:SPY:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:SPY:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:SPY:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:SPY:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:SPY:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:SPY:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:SPY:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:SPY:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:SPY:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:SPY:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:SPY:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:SPY:1hour] total after dedupe: 7607 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:SPY:1hour] returning 7607 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_1hour.parquet
+[bt:1hour] mode=strict bias_true=4134 zone_true=6420 bias_and_zone=3205
+  -> [1x] SPY/1hour/atr_2.5_rsi40
+  -> [5x] SPY/1hour/atr_2.5_rsi40
+  -> [10x] SPY/1hour/atr_2.5_rsi40
+  -> [20x] SPY/1hour/atr_2.5_rsi40
+[bt:1hour] mode=loose bias_true=5149 zone_true=6505 bias_and_zone=4189
+  -> [1x] SPY/1hour/atr_2.5_rsi40
+  -> [5x] SPY/1hour/atr_2.5_rsi40
+  -> [10x] SPY/1hour/atr_2.5_rsi40
+  -> [20x] SPY/1hour/atr_2.5_rsi40
+
+##### SPY / 15min #####
+[data:SPY:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:SPY:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:SPY:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:SPY:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:SPY:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:SPY:15min] chunk 2022-10-28->2022-12-27: 753 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:SPY:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:SPY:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:SPY:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:SPY:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:SPY:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:SPY:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:SPY:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:SPY:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:SPY:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:SPY:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:SPY:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:SPY:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:SPY:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:SPY:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:SPY:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:SPY:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:SPY:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:SPY:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:SPY:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:SPY:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:SPY:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:SPY:15min] total after dedupe: 21427 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:SPY:15min] returning 21427 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_15min.parquet
+[bt:15min] mode=strict bias_true=12094 zone_true=17981 bias_and_zone=9713
+  -> [1x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+[bt:15min] mode=loose bias_true=15292 zone_true=18239 bias_and_zone=12747
+  -> [1x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] SPY/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+
+========== Symbol: GLD ==========
+
+##### GLD / 1hour #####
+[data:GLD:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:GLD:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:GLD:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:GLD:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:GLD:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:GLD:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:GLD:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:GLD:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:GLD:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:GLD:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:GLD:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:GLD:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:GLD:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:GLD:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:GLD:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:GLD:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:GLD:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:GLD:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:GLD:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:GLD:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:GLD:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:GLD:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:GLD:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:GLD:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:GLD:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:GLD:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:GLD:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:GLD:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:GLD:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/GLD_1hour.parquet
+[bt:1hour] mode=strict bias_true=4626 zone_true=6126 bias_and_zone=3495
+  -> [1x] GLD/1hour/atr_2.5_rsi40
+  -> [5x] GLD/1hour/atr_2.5_rsi40
+  -> [10x] GLD/1hour/atr_2.5_rsi40
+  -> [20x] GLD/1hour/atr_2.5_rsi40
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
+[bt:1hour] mode=loose bias_true=5877 zone_true=6218 bias_and_zone=4681
+  -> [1x] GLD/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] GLD/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] GLD/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] GLD/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
+
+##### GLD / 15min #####
+[data:GLD:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:GLD:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:GLD:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:GLD:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:GLD:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:GLD:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:GLD:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:GLD:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:GLD:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:GLD:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:GLD:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:GLD:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:GLD:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:GLD:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:GLD:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:GLD:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:GLD:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:GLD:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:GLD:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:GLD:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:GLD:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:GLD:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:GLD:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:GLD:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:GLD:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:GLD:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:GLD:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:GLD:15min] total after dedupe: 21442 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:GLD:15min] returning 21442 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/GLD_15min.parquet
+[bt:15min] mode=strict bias_true=13836 zone_true=17070 bias_and_zone=10749
+  -> [1x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+[bt:15min] mode=loose bias_true=15786 zone_true=17217 bias_and_zone=12662
+  -> [1x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] GLD/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+
+========== Symbol: BNO ==========
+
+##### BNO / 1hour #####
+[data:BNO:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:BNO:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:BNO:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:BNO:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:BNO:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:BNO:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:BNO:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:BNO:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:BNO:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:BNO:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:BNO:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:BNO:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:BNO:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:BNO:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:BNO:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:BNO:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:BNO:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:BNO:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:BNO:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:BNO:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:BNO:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:BNO:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:BNO:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:BNO:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:BNO:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:BNO:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:BNO:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:BNO:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:BNO:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_1hour.parquet
+[bt:1hour] mode=strict bias_true=1999 zone_true=6585 bias_and_zone=1621
+  -> [1x] BNO/1hour/atr_2.5_rsi40
+  -> [5x] BNO/1hour/atr_2.5_rsi40
+  -> [10x] BNO/1hour/atr_2.5_rsi40
+  -> [20x] BNO/1hour/atr_2.5_rsi40
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
+[bt:1hour] mode=loose bias_true=3302 zone_true=6723 bias_and_zone=2747
+  -> [1x] BNO/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] BNO/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] BNO/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] BNO/1hour/atr_2.5_rsi40
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
+
+##### BNO / 15min #####
+[data:BNO:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:BNO:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:BNO:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:BNO:15min] chunk 2022-06-30->2022-08-29: 805 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:BNO:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:BNO:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:BNO:15min] chunk 2022-12-27->2023-02-25: 778 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:BNO:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:BNO:15min] chunk 2023-04-26->2023-06-25: 753 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:BNO:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:BNO:15min] chunk 2023-08-24->2023-10-23: 805 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:BNO:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:BNO:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:BNO:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:BNO:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:BNO:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:BNO:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:BNO:15min] chunk 2024-10-17->2024-12-16: 767 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:BNO:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:BNO:15min] chunk 2025-02-14->2025-04-15: 831 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:BNO:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:BNO:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:BNO:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:BNO:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:BNO:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:BNO:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:BNO:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:BNO:15min] total after dedupe: 21435 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:BNO:15min] returning 21435 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_15min.parquet
+[bt:15min] mode=strict bias_true=5796 zone_true=17742 bias_and_zone=4503
+  -> [1x] BNO/15min/atr_2.5_rsi40
+  -> [5x] BNO/15min/atr_2.5_rsi40
+  -> [10x] BNO/15min/atr_2.5_rsi40
+  -> [20x] BNO/15min/atr_2.5_rsi40
+[bt:15min] mode=loose bias_true=9411 zone_true=18250 bias_and_zone=7557
+  -> [1x] BNO/15min/atr_2.5_rsi40
+  -> [5x] BNO/15min/atr_2.5_rsi40
+  -> [10x] BNO/15min/atr_2.5_rsi40
+  -> [20x] BNO/15min/atr_2.5_rsi40
 
 ========== Symbol: EWU ==========
 
-##### EWU / 4hour #####
-[data:EWU:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
-[data:EWU:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
-[data:EWU:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
-[data:EWU:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
-[data:EWU:4hour] chunk 2023-12-22->2024-06-19: 242 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
-[data:EWU:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
-[data:EWU:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
-[data:EWU:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
-[data:EWU:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:EWU:4hour] total after dedupe: 2171 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:EWU:4hour] returning 2171 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_4hour.parquet
-[bt:4hour] mode=strict bias_true=1115 zone_true=1730 bias_and_zone=771
-  -> [1x] EWU/4hour/atr_2.5_rsi40
-  -> [2x] EWU/4hour/atr_2.5_rsi40
-  -> [3x] EWU/4hour/atr_2.5_rsi40
-  -> [4x] EWU/4hour/atr_2.5_rsi40
-  -> [5x] EWU/4hour/atr_2.5_rsi40
-[bt:4hour] mode=loose bias_true=1494 zone_true=1757 bias_and_zone=1119
-  -> [1x] EWU/4hour/atr_2.5_rsi40
-  -> [2x] EWU/4hour/atr_2.5_rsi40
-  -> [3x] EWU/4hour/atr_2.5_rsi40
-  -> [4x] EWU/4hour/atr_2.5_rsi40
-  -> [5x] EWU/4hour/atr_2.5_rsi40
+##### EWU / 1hour #####
+[data:EWU:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:EWU:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:EWU:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:EWU:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:EWU:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:EWU:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:EWU:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:EWU:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:EWU:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:EWU:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:EWU:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:EWU:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:EWU:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:EWU:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:EWU:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:EWU:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:EWU:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:EWU:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:EWU:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:EWU:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:EWU:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:EWU:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:EWU:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:EWU:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:EWU:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:EWU:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:EWU:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:EWU:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:EWU:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_1hour.parquet
+[bt:1hour] mode=strict bias_true=3897 zone_true=6307 bias_and_zone=3011
+  -> [1x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+[bt:1hour] mode=loose bias_true=5233 zone_true=6446 bias_and_zone=4250
+  -> [1x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] EWU/1hour/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
 
-========== Symbol: IBIT ==========
+##### EWU / 15min #####
+[data:EWU:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:EWU:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:EWU:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:EWU:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:EWU:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:EWU:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:EWU:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:EWU:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:EWU:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:EWU:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:EWU:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:EWU:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:EWU:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:EWU:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:EWU:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:EWU:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:EWU:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:EWU:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:EWU:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:EWU:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:EWU:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:EWU:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:EWU:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:EWU:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:EWU:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:EWU:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:EWU:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWU:15min] total after dedupe: 21442 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWU:15min] returning 21442 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_15min.parquet
+[bt:15min] mode=strict bias_true=11520 zone_true=17236 bias_and_zone=8775
+  -> [1x] EWU/15min/atr_2.5_rsi40
+  -> [5x] EWU/15min/atr_2.5_rsi40
+  -> [10x] EWU/15min/atr_2.5_rsi40
+  -> [20x] EWU/15min/atr_2.5_rsi40
+[bt:15min] mode=loose bias_true=14174 zone_true=17612 bias_and_zone=11291
+  -> [1x] EWU/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] EWU/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [10x] EWU/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [20x] EWU/15min/atr_2.5_rsi40
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
 
-##### IBIT / 4hour #####
-[data:IBIT:4hour] chunk 2022-01-01->2022-06-30: 0 bars (empty)
-[data:IBIT:4hour] chunk 2022-06-30->2022-12-27: 77 bars, 2022-09-09 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
-[data:IBIT:4hour] chunk 2022-12-27->2023-06-25: 43 bars, 2022-12-29 14:30:00+00:00 to 2023-04-13 17:30:00+00:00
-[data:IBIT:4hour] chunk 2023-06-25->2023-12-22: 0 bars (empty)
-[data:IBIT:4hour] chunk 2023-12-22->2024-06-19: 220 bars, 2024-01-11 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
-[data:IBIT:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
-[data:IBIT:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
-[data:IBIT:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
-[data:IBIT:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:IBIT:4hour] total after dedupe: 1278 bars, 2022-09-09 13:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:IBIT:4hour] returning 1278 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/IBIT_4hour.parquet
-[bt:4hour] mode=strict bias_true=437 zone_true=1070 bias_and_zone=335
-  -> [1x] IBIT/4hour/atr_2.5_rsi40
-  -> [2x] IBIT/4hour/atr_2.5_rsi40
-  -> [3x] IBIT/4hour/atr_2.5_rsi40
-  -> [4x] IBIT/4hour/atr_2.5_rsi40
-  -> [5x] IBIT/4hour/atr_2.5_rsi40
-[bt:4hour] mode=loose bias_true=638 zone_true=1071 bias_and_zone=536
-  -> [1x] IBIT/4hour/atr_2.5_rsi40
-  -> [2x] IBIT/4hour/atr_2.5_rsi40
-  -> [3x] IBIT/4hour/atr_2.5_rsi40
-  -> [4x] IBIT/4hour/atr_2.5_rsi40
-  -> [5x] IBIT/4hour/atr_2.5_rsi40
+========== Symbol: EWJ ==========
 
-========== Symbol: QQQ ==========
+##### EWJ / 1hour #####
+[data:EWJ:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
+[data:EWJ:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
+[data:EWJ:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
+[data:EWJ:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
+[data:EWJ:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
+[data:EWJ:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
+[data:EWJ:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
+[data:EWJ:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
+[data:EWJ:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
+[data:EWJ:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
+[data:EWJ:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
+[data:EWJ:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
+[data:EWJ:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
+[data:EWJ:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
+[data:EWJ:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
+[data:EWJ:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
+[data:EWJ:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
+[data:EWJ:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
+[data:EWJ:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
+[data:EWJ:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
+[data:EWJ:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
+[data:EWJ:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
+[data:EWJ:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
+[data:EWJ:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
+[data:EWJ:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
+[data:EWJ:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
+[data:EWJ:1hour] chunk 2026-04-11->2026-05-09: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:EWJ:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
+[data:EWJ:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_1hour.parquet
+[bt:1hour] mode=strict bias_true=3919 zone_true=6209 bias_and_zone=2973
+  -> [1x] EWJ/1hour/atr_2.5_rsi40
+  -> [5x] EWJ/1hour/atr_2.5_rsi40
+  -> [10x] EWJ/1hour/atr_2.5_rsi40
+  -> [20x] EWJ/1hour/atr_2.5_rsi40
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
+[bt:1hour] mode=loose bias_true=5201 zone_true=6361 bias_and_zone=4194
+  -> [1x] EWJ/1hour/atr_2.5_rsi40
+  -> [5x] EWJ/1hour/atr_2.5_rsi40
+  -> [10x] EWJ/1hour/atr_2.5_rsi40
+  -> [20x] EWJ/1hour/atr_2.5_rsi40
+/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
+  equity_log_returns = np.log(equity[1:] / equity[:-1])
 
-##### QQQ / 4hour #####
-[data:QQQ:4hour] chunk 2022-01-01->2022-06-30: 248 bars, 2022-01-03 14:30:00+00:00 to 2022-06-30 17:30:00+00:00
-[data:QQQ:4hour] chunk 2022-06-30->2022-12-27: 247 bars, 2022-07-01 13:30:00+00:00 to 2022-12-27 18:30:00+00:00
-[data:QQQ:4hour] chunk 2022-12-27->2023-06-25: 244 bars, 2022-12-28 14:30:00+00:00 to 2023-06-23 17:30:00+00:00
-[data:QQQ:4hour] chunk 2023-06-25->2023-12-22: 252 bars, 2023-06-26 13:30:00+00:00 to 2023-12-22 18:30:00+00:00
-[data:QQQ:4hour] chunk 2023-12-22->2024-06-19: 241 bars, 2023-12-26 14:30:00+00:00 to 2024-06-18 17:30:00+00:00
-[data:QQQ:4hour] chunk 2024-06-19->2024-12-16: 248 bars, 2024-06-20 13:30:00+00:00 to 2024-12-16 18:30:00+00:00
-[data:QQQ:4hour] chunk 2024-12-17->2025-06-15: 241 bars, 2024-12-18 14:30:00+00:00 to 2025-06-13 17:30:00+00:00
-[data:QQQ:4hour] chunk 2025-06-15->2025-12-12: 250 bars, 2025-06-16 13:30:00+00:00 to 2025-12-12 18:30:00+00:00
-[data:QQQ:4hour] chunk 2025-12-12->2026-05-09: 201 bars, 2025-12-12 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:QQQ:4hour] total after dedupe: 2170 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
-[data:QQQ:4hour] returning 2170 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_4hour.parquet
-[bt:4hour] mode=strict bias_true=1181 zone_true=1751 bias_and_zone=848
-  -> [1x] QQQ/4hour/atr_2.5_rsi40
-  -> [2x] QQQ/4hour/atr_2.5_rsi40
-  -> [3x] QQQ/4hour/atr_2.5_rsi40
-  -> [4x] QQQ/4hour/atr_2.5_rsi40
-  -> [5x] QQQ/4hour/atr_2.5_rsi40
-[bt:4hour] mode=loose bias_true=1503 zone_true=1764 bias_and_zone=1146
-  -> [1x] QQQ/4hour/atr_2.5_rsi40
+##### EWJ / 15min #####
+[data:EWJ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:EWJ:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:EWJ:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:EWJ:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:EWJ:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:EWJ:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:EWJ:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:EWJ:15min] chunk 2025-02-14->2025-04-15: 831 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:EWJ:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:EWJ:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:EWJ:15min] chunk 2026-04-10->2026-05-09: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWJ:15min] total after dedupe: 21441 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWJ:15min] returning 21441 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_15min.parquet
+[bt:15min] mode=strict bias_true=11352 zone_true=16758 bias_and_zone=8440
+  -> [1x] EWJ/15min/atr_2.5_rsi40
+  -> [5x] EWJ/15min/atr_2.5_rsi40
+  -> [10x] EWJ/15min/atr_2.5_rsi40
+  -> [20x] EWJ/15min/atr_2.5_rsi40
+[bt:15min] mode=loose bias_true=14876 zone_true=17064 bias_and_zone=11662
+  -> [1x] EWJ/15min/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [2x] QQQ/4hour/atr_2.5_rsi40
+  -> [5x] EWJ/15min/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [3x] QQQ/4hour/atr_2.5_rsi40
+  -> [10x] EWJ/15min/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [4x] QQQ/4hour/atr_2.5_rsi40
+  -> [20x] EWJ/15min/atr_2.5_rsi40
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] QQQ/4hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:597: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:599: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:429: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:431: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-[basket] wrote basket_summary.md + basket_curves.png (5 margin levels)
+[basket] wrote basket_summary.md + basket_curves.png (4 margin levels)
 
 Done. See outputs/.
