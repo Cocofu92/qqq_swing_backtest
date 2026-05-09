@@ -21,21 +21,21 @@ jobs:
           KEY = os.environ['FMP_KEY']
           BASE = 'https://financialmodelingprep.com/stable/historical-chart'
 
-          # Symbol -> list of candidate FMP tickers
-          CANDIDATES = {
-            'QQQ': ['NQUSD', 'NQ', 'NQF', '^NDX', 'NDX', '^IXIC'],
-            'SPY': ['ESUSD', 'ES', 'ESF', '^GSPC', 'SPX'],
-            'GLD': ['GCUSD', 'GOLDUSD', 'XAUUSD', '^XAU'],
-            'BNO': ['BZUSD', 'BRENTUSD', 'CLUSD', 'WTIUSD'],
-            'EWU': ['^FTSE', 'UK100', 'FTSEUSD', 'FTSE100USD'],
-            'EWJ': ['^N225', 'JP225', 'NIKKEI225', 'NIKKEIUSD'],
-          }
+     CANDIDATES = {
+  'QQQ': ['NQUSD'],
+  'SPY': ['ESUSD'],
+  'GLD': ['GCUSD', 'XAUUSD'],
+  'BNO': ['BZUSD'],
+}
 
-          # Probe windows: recent (last week of 2025) and 10y back (Dec 2015)
-          WINDOWS = {
-            'recent_2025-12': ('2025-12-01', '2025-12-31'),
-            '10yr_2015-12':   ('2015-12-01', '2015-12-31'),
-          }
+WINDOWS = {
+  'recent_2025-12':  ('2025-12-01', '2025-12-31'),
+  'one_yr_2024-12':  ('2024-12-01', '2024-12-31'),
+  'two_yr_2023-12':  ('2023-12-01', '2023-12-31'),
+  'three_yr_2022-12':('2022-12-01', '2022-12-31'),
+  'five_yr_2020-12': ('2020-12-01', '2020-12-31'),
+}
+
 
           def probe(sym, tf, frm, to):
               url = f'{BASE}/{tf}'
