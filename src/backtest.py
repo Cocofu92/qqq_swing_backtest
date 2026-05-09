@@ -788,6 +788,7 @@ def main(
     trail_types = trail_types_override or cfg.get("trail_types", ["ema21", "ema50", "atr"])
     rsi_thresholds = rsi_thresholds_override or cfg.get("rsi_thresholds", [25, 30, 35, 40])
     modes = modes_override or cfg.get("modes", ["loose"])  # default loose-only
+    margins = cfg.get("margins", [1.0])  # default no leverage
     use_4h_regime = bool(cfg.get("strategy", {}).get("regime_filter_4h", False))
 
     symbols = cfg.get("symbols", ["QQQ"])
