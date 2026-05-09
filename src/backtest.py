@@ -269,6 +269,166 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
 
 
 
+
+
+def write_basket_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
+    """Combine the per-symbol equity curves into one basket portfolio curve per leverage level.
+
+    The basket = symbols listed in cfg['basket'] (or all symbols in sweep), equal-weighted.
+    For each margin level we average the normalized equity curves across the basket symbols.
+    Output: outputs/basket_summary.md + outputs/basket_curves.png
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    initial = cfg["execution"]["initial_capital"]
+    basket = cfg.get("basket") or sorted({p["symbol"] for p in sweep.values()})
+
+    # Group by margin_label
+    by_margin: Dict[str, Dict[str, Any]] = {}
+    for label, payload in sweep.items():
+        ml = payload.get("margin_label", "1x")
+        sym = payload.get("symbol")
+        if sym not in basket:
+            continue
+        by_margin.setdefault(ml, {})[sym] = payload
+
+    if not by_margin:
+        print("[basket] no sweep results")
+        return
+
+    # ---- Compute basket curve per margin level ----
+    fig, ax = plt.subplots(figsize=(12, 6))
+    cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
+    colours = ["#2ca02c", "#1f77b4", "#d62728", "#ff7f0e"]
+
+    basket_stats: List[Dict[str, Any]] = []
+
+    for j, (ml, sym_results) in enumerate(sorted(by_margin.items(), key=lambda kv: -float(kv[0].rstrip("x")))):
+        # Collect each symbol's stitched equity curve
+        eqs = []
+        for sym in basket:
+            if sym not in sym_results:
+                continue
+            eq = _stitch_equity(
+                sym_results[sym]["train"]["equity_curve"],
+                sym_results[sym]["holdout"]["equity_curve"],
+                initial,
+            )
+            if eq.empty:
+                continue
+            # Normalize each curve to start at 1.0
+            eqs.append(eq / eq.iloc[0])
+
+        if not eqs:
+            continue
+
+        # Align on common index (intersection of all curves)
+        common = eqs[0].index
+        for eq in eqs[1:]:
+            common = common.intersection(eq.index)
+        eqs_aligned = [eq.reindex(common) for eq in eqs]
+
+        # Mean across symbols at each timestamp
+        basket_normed = sum(eqs_aligned) / len(eqs_aligned)
+        basket_curve = basket_normed * initial
+
+        # Plot
+        ax.plot(basket_curve.index, basket_curve.values,
+                label=f"Basket {ml}", lw=1.6, color=colours[j % len(colours)])
+
+        # Compute basket stats: total return, CAGR, max DD
+        total_ret = (basket_curve.iloc[-1] / basket_curve.iloc[0] - 1) * 100
+        years = max((basket_curve.index[-1] - basket_curve.index[0]).days / 365.25, 1e-6)
+        cagr = ((basket_curve.iloc[-1] / basket_curve.iloc[0]) ** (1 / years) - 1) * 100
+        running_max = basket_curve.cummax()
+        dd = (basket_curve / running_max - 1) * 100
+        max_dd = dd.min()
+
+        # Holdout-only stats
+        holdout_curve = basket_curve.loc[basket_curve.index >= cutoff]
+        if not holdout_curve.empty:
+            h_ret = (holdout_curve.iloc[-1] / holdout_curve.iloc[0] - 1) * 100
+            h_running = holdout_curve.cummax()
+            h_dd_series = (holdout_curve / h_running - 1) * 100
+            h_max_dd = h_dd_series.min()
+        else:
+            h_ret = 0.0
+            h_max_dd = 0.0
+
+        basket_stats.append({
+            "margin": ml, "total_return": total_ret, "cagr": cagr, "max_dd": max_dd,
+            "holdout_return": h_ret, "holdout_max_dd": h_max_dd,
+        })
+
+    # Equal-weight buy-and-hold of basket symbols
+    try:
+        bh_eqs = []
+        s_min = None
+        s_max = None
+        for sym in basket:
+            if not by_margin:
+                continue
+            # Use the first margin's curve to determine span
+            first_m = next(iter(by_margin.values()))
+            if sym not in first_m:
+                continue
+            eq = _stitch_equity(first_m[sym]["train"]["equity_curve"], first_m[sym]["holdout"]["equity_curve"], initial)
+            if eq.empty:
+                continue
+            s_min = eq.index.min() if s_min is None else min(s_min, eq.index.min())
+            s_max = eq.index.max() if s_max is None else max(s_max, eq.index.max())
+        for sym in basket:
+            if s_min is None:
+                continue
+            try:
+                daily = fetch_daily_close(sym, s_min, s_max)
+                if daily.empty:
+                    continue
+                normed = daily / daily.iloc[0]
+                bh_eqs.append(normed)
+            except Exception as e:
+                print(f"[basket] {sym} B&H fetch failed: {e}")
+        if bh_eqs:
+            common_bh = bh_eqs[0].index
+            for eq in bh_eqs[1:]:
+                common_bh = common_bh.intersection(eq.index)
+            bh_aligned = [eq.reindex(common_bh) for eq in bh_eqs]
+            basket_bh = (sum(bh_aligned) / len(bh_aligned)) * initial
+            ax.plot(basket_bh.index, basket_bh.values, label="Basket B&H (equal-weight)",
+                    color="grey", lw=1.0, ls="--")
+    except Exception as e:
+        print(f"[basket] B&H computation failed: {e}")
+
+    if cutoff is not None:
+        ax.axvline(cutoff, ls=":", color="black", lw=0.7, alpha=0.6)
+        ax.annotate("Holdout start", xy=(cutoff, ax.get_ylim()[1]),
+                    xytext=(5, -10), textcoords="offset points", fontsize=8)
+
+    ax.set_title(f"Basket portfolio ({', '.join(basket)}) -- equity curves at each leverage")
+    ax.set_ylabel("Equity ($)")
+    ax.set_yscale("log")
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc="best", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(OUTPUTS / "basket_curves.png", dpi=120)
+    plt.close(fig)
+
+    # ---- Markdown summary ----
+    md = ["# Basket portfolio summary", ""]
+    md.append(f"Basket: **{', '.join(basket)}** -- equal-weighted, 4h, atr_2.5, RSI 40")
+    md.append("")
+    md.append("| Leverage | Total Return [%] | CAGR [%] | Max DD [%] | Holdout Return [%] | Holdout Max DD [%] |")
+    md.append("|---|---|---|---|---|---|")
+    for s_ in basket_stats:
+        md.append(f"| {s_['margin']} | {s_['total_return']:.2f} | {s_['cagr']:.2f} | {s_['max_dd']:.2f} | {s_['holdout_return']:.2f} | {s_['holdout_max_dd']:.2f} |")
+    md.append("")
+    md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+    (OUTPUTS / "basket_summary.md").write_text("\n".join(md) + "\n")
+    print(f"[basket] wrote basket_summary.md + basket_curves.png ({len(basket_stats)} margin levels)")
+
+
 def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
     """Cross-symbol summary: per-symbol equity-curve PNG + a cross-symbol stats table
     showing every (symbol, tf, variant) combination sorted by holdout PF.
@@ -665,44 +825,49 @@ def main(
                 zone = df["zone_touched"].fillna(False).astype(bool)
                 print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
 
-                for trail in trail_types:
-                    # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
-                    if trail.startswith("atr_"):
-                        base_trail = "atr"
-                        try:
-                            atr_mult = float(trail.split("_", 1)[1])
-                        except (ValueError, IndexError):
+                for margin in margins:
+                    margin_label = f"{int(round(1/max(margin,0.001))):d}x" if margin < 1.0 else "1x"
+                    for trail in trail_types:
+                        # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
+                        if trail.startswith("atr_"):
+                            base_trail = "atr"
+                            try:
+                                atr_mult = float(trail.split("_", 1)[1])
+                            except (ValueError, IndexError):
+                                atr_mult = None
+                        else:
+                            base_trail = trail
                             atr_mult = None
-                    else:
-                        base_trail = trail
-                        atr_mult = None
 
-                    for rsi_t in rsi_thresholds:
-                        label = f"{trail}_rsi{rsi_t}"
-                        print(f"  -> {tf}/{label}", flush=True)
-                        df_v = df.copy()
-                        if "rsi" in df_v.columns:
-                            prev_rsi = df_v["rsi"].shift(1)
-                            df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
+                        for rsi_t in rsi_thresholds:
+                            label = f"{trail}_rsi{rsi_t}"
+                            print(f"  -> [{margin_label}] {symbol}/{tf}/{label}", flush=True)
+                            df_v = df.copy()
+                            if "rsi" in df_v.columns:
+                                prev_rsi = df_v["rsi"].shift(1)
+                                df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
 
-                        train_df = df_v.loc[df_v.index < train_end]
-                        holdout_df = df_v.loc[df_v.index >= holdout_start]
-                        train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
-                        holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult)
+                            train_df = df_v.loc[df_v.index < train_end]
+                            holdout_df = df_v.loc[df_v.index >= holdout_start]
+                            train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
+                            holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
 
-                        outdir = OUTPUTS / symbol / tf / f"{label}"
-                        outdir.mkdir(parents=True, exist_ok=True)
-                        write_stats_md(f"{symbol}/{tf}/{label}", train, holdout, outdir)
-                        write_trade_log(train, holdout, outdir)
-                        write_equity_curve(f"{symbol}/{tf}/{label}", train, holdout, outdir)
-                        sweep_results[f"{symbol}/{tf}/{label}"] = {
-                            "symbol": symbol, "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
-                            "atr_mult": atr_mult,
-                            "train": train, "holdout": holdout,
-                        }
+                            outdir = OUTPUTS / margin_label / symbol / tf / f"{label}"
+                            outdir.mkdir(parents=True, exist_ok=True)
+                            run_label = f"{margin_label}/{symbol}/{tf}/{label}"
+                            write_stats_md(run_label, train, holdout, outdir)
+                            write_trade_log(train, holdout, outdir)
+                            write_equity_curve(run_label, train, holdout, outdir)
+                            sweep_results[run_label] = {
+                                "margin": margin, "margin_label": margin_label,
+                                "symbol": symbol, "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
+                                "atr_mult": atr_mult,
+                                "train": train, "holdout": holdout,
+                            }
 
     if sweep_results:
         write_sweep_comparison(sweep_results, cfg)
+        write_basket_summary(sweep_results, cfg)
     print("\nDone. See outputs/.")
 
 

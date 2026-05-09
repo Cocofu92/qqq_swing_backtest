@@ -38,6 +38,9 @@ class TrendPullback(Strategy):
     trail_atr_mult = 2.0        # used when trail_type == "atr"
     rsi_threshold = 35          # propagated from config; not used inside the strategy itself
                                 #  — signals are already pre-computed using this value
+    margin = 1.0                # required-cash fraction; passed to Backtest(). Strategy uses
+                                #  it only to compute affordability-cap (allowed buying power
+                                #  is equity / margin). 1.0 = cash, 0.5 = 2x leverage.
 
     def init(self):
         df = self.data.df
@@ -124,7 +127,9 @@ class TrendPullback(Strategy):
             target = entry_fill + self.take_partial_at_R * risk_per_share
             risk_dollars = self.equity * self.risk_pct
             risk_based = int(risk_dollars // risk_per_share)
-            max_affordable = int((self.equity * 0.95) // entry_fill)  # leave 5% cash buffer
+            # With margin < 1.0 (leverage), buying power = equity / margin
+            buying_power = self.equity / max(self.margin, 0.001)
+            max_affordable = int((buying_power * 0.95) // entry_fill)  # 5% buffer for variance
             size_shares = max(1, min(risk_based, max_affordable))
             if size_shares < 1:
                 # Can't afford even 1 share -- skip
