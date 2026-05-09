@@ -23,3 +23,9 @@ venv/
 # OS
 .DS_Store
 Thumbs.db
+
+# IG bars and search artefacts (overrides any data/ ignore above)
+!data/ig/
+!data/ig/**
+!data/ig/.gitkeep
+
