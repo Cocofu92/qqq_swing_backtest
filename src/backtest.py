@@ -118,7 +118,7 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     return df
 
 
-def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None, margin: float = 1.0, strategy_type: str = "pullback", breakout_signal_col: str = "", stop_type: str = "touch") -> Dict[str, Any]:
+def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None, margin: float = 1.0, strategy_type: str = "pullback", breakout_signal_col: str = "", stop_type: str = "touch", scaleout_type: str = "tiered_thirds") -> Dict[str, Any]:
     if df.empty:
         return {"stats": None, "equity_curve": pd.Series(dtype=float), "trade_log": []}
 
@@ -149,6 +149,7 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", 
         strategy_type=strategy_type,
         stop_type=stop_type,
         breakout_signal_col=breakout_signal_col,
+        scaleout_type=scaleout_type,
     )
     strat = stats._strategy
     return {
@@ -872,11 +873,21 @@ def main(
                 if "pullback" in cfg.get("strategies", ["pullback"]):
                     for trail in trail_types:
                         for rsi_t in rsi_thresholds:
+                            # Legacy scale-out (50% at 2R, trail rest) -- kept as A/B baseline
                             strategy_variants.append({
                                 "type": "pullback",
                                 "trail": trail,
                                 "rsi": rsi_t,
-                                "label": f"pullback_{trail}_rsi{rsi_t}",
+                                "scaleout": "partial_50_at_2R",
+                                "label": f"pullback_{trail}_rsi{rsi_t}_legacy50",
+                            })
+                            # New tiered thirds scale-out
+                            strategy_variants.append({
+                                "type": "pullback",
+                                "trail": trail,
+                                "rsi": rsi_t,
+                                "scaleout": "tiered_thirds",
+                                "label": f"pullback_{trail}_rsi{rsi_t}_tiered",
                             })
                 if "breakout" in cfg.get("strategies", ["pullback"]):
                     for period in cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]):
@@ -888,6 +899,7 @@ def main(
                                 "consolidation_method": cons,
                                 "trail": "atr_2.5",  # use default trail for breakout exit
                                 "rsi": 0,  # ignored
+                                "scaleout": "tiered_thirds",
                                 "label": f"breakout_d{period}_{cons_short}",
                                 "signal_col": f"breakout_signal_{period}_{cons}",
                             })
@@ -924,12 +936,15 @@ def main(
 
                         train_df = df_v.loc[df_v.index < train_end]
                         holdout_df = df_v.loc[df_v.index >= holdout_start]
+                        scaleout_type = variant.get("scaleout", "tiered_thirds")
                         train = run_slice(train_df, cfg,
                                           trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult,
-                                          margin=margin, strategy_type=stype, breakout_signal_col=signal_col)
+                                          margin=margin, strategy_type=stype, breakout_signal_col=signal_col,
+                                          scaleout_type=scaleout_type)
                         holdout = run_slice(holdout_df, cfg,
                                             trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult,
-                                            margin=margin, strategy_type=stype, breakout_signal_col=signal_col)
+                                            margin=margin, strategy_type=stype, breakout_signal_col=signal_col,
+                                            scaleout_type=scaleout_type)
 
                         outdir = OUTPUTS / margin_label / symbol / tf / label
                         outdir.mkdir(parents=True, exist_ok=True)
@@ -945,6 +960,7 @@ def main(
                             "atr_mult": atr_mult,
                             "donchian_period": variant.get("donchian_period"),
                             "consolidation_method": variant.get("consolidation_method"),
+                            "scaleout_type": scaleout_type,
                             "train": train, "holdout": holdout,
                         }
 
