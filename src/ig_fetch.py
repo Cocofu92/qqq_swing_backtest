@@ -206,8 +206,8 @@ def main(argv: List[str] | None = None) -> None:
     ap.add_argument("--pull", action="store_true")
     ap.add_argument("--epics", type=Path, default=Path("data/ig/epics.yml"))
     ap.add_argument("--out-dir", type=Path, default=Path("data/ig"))
-    ap.add_argument("--history-15min-days", type=int, default=180)
-    ap.add_argument("--history-1hour-days", type=int, default=1825)
+    ap.add_argument("--history-15min-days", type=int, default=30)
+    ap.add_argument("--history-1hour-days", type=int, default=90)
     args = ap.parse_args(argv)
 
     if not (args.search or args.pull):
