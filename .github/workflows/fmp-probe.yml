@@ -19,7 +19,7 @@ jobs:
           python - <<'PY'
           import os, requests
           KEY = os.environ['FMP_KEY']
-          BASE = 'https' + '://financialmodelingprep.com/stable/historical-chart'
+          BASE = 'https' + '://financialmodelingprep' + '.com/stable/historical-chart'
 
           CANDIDATES = {
             'QQQ': ['NQUSD'],
@@ -58,7 +58,7 @@ jobs:
           for symbol, tickers in CANDIDATES.items():
               print(f'\n===== {symbol} =====')
               for t in tickers:
-                  for tf in ('15min', '1hour'):
+                  for tf in ('15min', '1hour', '1day'):
                       for label, (frm, to) in WINDOWS.items():
                           result = probe(t, tf, frm, to)
                           print(f'  {t:<14} {tf:<6} {label:<18} {result}')
