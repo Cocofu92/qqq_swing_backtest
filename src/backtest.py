@@ -86,7 +86,7 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     return df
 
 
-def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None) -> Dict[str, Any]:
+def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None, margin: float = 1.0) -> Dict[str, Any]:
     if df.empty:
         return {"stats": None, "equity_curve": pd.Series(dtype=float), "trade_log": []}
 
@@ -97,6 +97,7 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", 
         commission=cfg["costs"]["commission"],
         exclusive_orders=cfg["execution"]["one_position_at_a_time"],
         trade_on_close=False,
+        margin=margin,
     )
     stats = bt.run(
         atr_multiplier_stop=cfg["strategy"]["hourly"]["atr_multiplier_stop"],
