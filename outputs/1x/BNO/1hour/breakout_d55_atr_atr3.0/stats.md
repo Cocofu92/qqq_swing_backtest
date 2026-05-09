@@ -11,4 +11,4 @@
 | Total Trades | 0 | 0 |
 | Avg Trade Duration | nan | nan |
 
-_Generated: 2026-05-09T11:42:17.133357Z_
+_Generated: 2026-05-09T12:10:40.272999Z_
