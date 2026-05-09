@@ -17,25 +17,24 @@ jobs:
           FMP_KEY: ${{ secrets.FMP_KEY }}
         run: |
           python - <<'PY'
-          import os, requests, urllib.parse
+          import os, requests
           KEY = os.environ['FMP_KEY']
-          BASE = 'https://financialmodelingprep.com/stable/historical-chart'
+          BASE = '<https://financialmodelingprep.com/stable/historical-chart>'
 
-     CANDIDATES = {
-  'QQQ': ['NQUSD'],
-  'SPY': ['ESUSD'],
-  'GLD': ['GCUSD', 'XAUUSD'],
-  'BNO': ['BZUSD'],
-}
+          CANDIDATES = {
+            'QQQ': ['NQUSD'],
+            'SPY': ['ESUSD'],
+            'GLD': ['GCUSD', 'XAUUSD'],
+            'BNO': ['BZUSD'],
+          }
 
-WINDOWS = {
-  'recent_2025-12':  ('2025-12-01', '2025-12-31'),
-  'one_yr_2024-12':  ('2024-12-01', '2024-12-31'),
-  'two_yr_2023-12':  ('2023-12-01', '2023-12-31'),
-  'three_yr_2022-12':('2022-12-01', '2022-12-31'),
-  'five_yr_2020-12': ('2020-12-01', '2020-12-31'),
-}
-
+          WINDOWS = {
+            'recent_2025-12':   ('2025-12-01', '2025-12-31'),
+            'one_yr_2024-12':   ('2024-12-01', '2024-12-31'),
+            'two_yr_2023-12':   ('2023-12-01', '2023-12-31'),
+            'three_yr_2022-12': ('2022-12-01', '2022-12-31'),
+            'five_yr_2020-12':  ('2020-12-01', '2020-12-31'),
+          }
 
           def probe(sym, tf, frm, to):
               url = f'{BASE}/{tf}'
@@ -62,6 +61,6 @@ WINDOWS = {
                   for tf in ('15min', '1hour'):
                       for label, (frm, to) in WINDOWS.items():
                           result = probe(t, tf, frm, to)
-                          print(f'  {t:<14} {tf:<6} {label:<14} {result}')
+                          print(f'  {t:<14} {tf:<6} {label:<18} {result}')
                   print()
           PY
