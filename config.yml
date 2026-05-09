@@ -1,3 +1,7 @@
+strategies:
+  - pullback
+  - breakout
+
 basket:
   - QQQ
   - SPY
@@ -41,10 +45,8 @@ rsi_thresholds:
 
 # Leverage sweep (margin = required cash %; 1.0=cash, 0.5=2x, 0.33=3x)
 margins:
-  - 1.0      # 1x baseline (no leverage)
-  - 0.20     # 5x
-  - 0.10     # 10x
-  - 0.05     # 20x (IG retail max for indices)
+  - 1.0      # 1x baseline for v9 strategy comparison
+
 
 
 
@@ -62,6 +64,19 @@ data:
 period:
   train_end: 2024-12-31
   holdout_start: 2025-01-01
+
+breakout:
+  donchian_periods: [10, 21, 55]
+  consolidation_methods: ["consolidation_atr", "consolidation_bb"]
+  atr_contraction_ratio: 0.75
+  atr_short: 14
+  atr_long: 50
+  bb_period: 20
+  bb_num_std: 2.0
+  bb_lookback: 120
+  bb_percentile: 0.20
+  volume_multiplier: 1.5
+  volume_lookback: 20
 
 strategy:
   # Day-trade structure: force close before IG financing cutoff (22:00 UK), block late entries

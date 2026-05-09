@@ -30,6 +30,11 @@ from .indicators import (
     compute_hourly_signals,
     compute_zone_touch,
     forward_fill_daily_to_1h,
+    compute_donchian,
+    compute_consolidation_atr,
+    compute_consolidation_bb,
+    compute_volume_runrate,
+    compute_donchian_breakout_signal,
 )
 from .strategy import TrendPullback
 
@@ -66,6 +71,33 @@ def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour", symbol: str
         atr_period=cfg["strategy"]["hourly"]["atr_period"],
         trail_ema=cfg["strategy"]["hourly"]["trail_ema"],
     )
+
+    # ----- Breakout indicators (computed on the execution timeframe) -----
+    breakout_periods = tuple(cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]))
+    df = compute_donchian(df, periods=breakout_periods)
+    df = compute_consolidation_atr(
+        df,
+        contraction_ratio=cfg.get("breakout", {}).get("atr_contraction_ratio", 0.75),
+        short_period=cfg.get("breakout", {}).get("atr_short", 14),
+        long_period=cfg.get("breakout", {}).get("atr_long", 50),
+    )
+    df = compute_consolidation_bb(
+        df,
+        period=cfg.get("breakout", {}).get("bb_period", 20),
+        num_std=cfg.get("breakout", {}).get("bb_num_std", 2.0),
+        lookback=cfg.get("breakout", {}).get("bb_lookback", 120),
+        percentile=cfg.get("breakout", {}).get("bb_percentile", 0.20),
+    )
+    df = compute_volume_runrate(
+        df,
+        multiplier=cfg.get("breakout", {}).get("volume_multiplier", 1.5),
+        lookback_sessions=cfg.get("breakout", {}).get("volume_lookback", 20),
+    )
+    # Pre-compute breakout signal columns for each Donchian period × consolidation method
+    for period in breakout_periods:
+        for cons_col in ("consolidation_atr", "consolidation_bb"):
+            df = compute_donchian_breakout_signal(df, period=period, consolidation_col=cons_col)
+
     return df
 
 
@@ -86,7 +118,7 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     return df
 
 
-def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None, margin: float = 1.0) -> Dict[str, Any]:
+def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", rsi_threshold: float = 35.0, atr_mult: Optional[float] = None, margin: float = 1.0, strategy_type: str = "pullback", breakout_signal_col: str = "", stop_type: str = "touch") -> Dict[str, Any]:
     if df.empty:
         return {"stats": None, "equity_curve": pd.Series(dtype=float), "trade_log": []}
 
@@ -114,6 +146,9 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", 
         margin=margin,
         eod_force_close_utc=cfg.get("strategy", {}).get("eod_force_close_utc", ""),
         eod_block_entries_after_utc=cfg.get("strategy", {}).get("eod_block_entries_after_utc", ""),
+        strategy_type=strategy_type,
+        stop_type=stop_type,
+        breakout_signal_col=breakout_signal_col,
     )
     strat = stats._strategy
     return {
@@ -830,45 +865,88 @@ def main(
                 zone = df["zone_touched"].fillna(False).astype(bool)
                 print(f"[bt:{tf}] mode={mode} bias_true={int(bias.sum())} zone_true={int(zone.sum())} bias_and_zone={int((bias&zone).sum())}")
 
+                # Build strategy variant list:
+                #   - Pullback: existing trail × rsi sweep (kept simple — uses cfg trail_types/rsi)
+                #   - Breakout: each (donchian_period, consolidation_method) pair
+                strategy_variants = []
+                if "pullback" in cfg.get("strategies", ["pullback"]):
+                    for trail in trail_types:
+                        for rsi_t in rsi_thresholds:
+                            strategy_variants.append({
+                                "type": "pullback",
+                                "trail": trail,
+                                "rsi": rsi_t,
+                                "label": f"pullback_{trail}_rsi{rsi_t}",
+                            })
+                if "breakout" in cfg.get("strategies", ["pullback"]):
+                    for period in cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]):
+                        for cons in cfg.get("breakout", {}).get("consolidation_methods", ["consolidation_atr", "consolidation_bb"]):
+                            cons_short = "atr" if cons == "consolidation_atr" else "bb"
+                            strategy_variants.append({
+                                "type": "breakout",
+                                "donchian_period": period,
+                                "consolidation_method": cons,
+                                "trail": "atr_2.5",  # use default trail for breakout exit
+                                "rsi": 0,  # ignored
+                                "label": f"breakout_d{period}_{cons_short}",
+                                "signal_col": f"breakout_signal_{period}_{cons}",
+                            })
+
                 for margin in margins:
                     margin_label = f"{int(round(1/max(margin,0.001))):d}x" if margin < 1.0 else "1x"
-                    for trail in trail_types:
-                        # Parse trail names: "atr_1.5" -> base="atr", mult=1.5; "ema21" -> base="ema21", mult=None
-                        if trail.startswith("atr_"):
-                            base_trail = "atr"
-                            try:
-                                atr_mult = float(trail.split("_", 1)[1])
-                            except (ValueError, IndexError):
-                                atr_mult = None
-                        else:
-                            base_trail = trail
-                            atr_mult = None
+                    for variant in strategy_variants:
+                        label = variant["label"]
+                        print(f"  -> [{margin_label}] {symbol}/{tf}/{label}", flush=True)
 
-                        for rsi_t in rsi_thresholds:
-                            label = f"{trail}_rsi{rsi_t}"
-                            print(f"  -> [{margin_label}] {symbol}/{tf}/{label}", flush=True)
-                            df_v = df.copy()
+                        # Build per-variant df with appropriate signal columns
+                        df_v = df.copy()
+                        if variant["type"] == "pullback":
+                            rsi_t = variant["rsi"]
                             if "rsi" in df_v.columns:
                                 prev_rsi = df_v["rsi"].shift(1)
                                 df_v["rsi_cross_up"] = (prev_rsi < rsi_t) & (df_v["rsi"] >= rsi_t)
+                            base_trail = variant["trail"]
+                            atr_mult = None
+                            if base_trail.startswith("atr_"):
+                                try:
+                                    atr_mult = float(base_trail.split("_", 1)[1])
+                                    base_trail = "atr"
+                                except (ValueError, IndexError):
+                                    atr_mult = None
+                            signal_col = ""
+                            stype = "pullback"
+                        else:  # breakout
+                            base_trail = "atr"
+                            atr_mult = 2.5
+                            signal_col = variant["signal_col"]
+                            stype = "breakout"
+                            rsi_t = 0
 
-                            train_df = df_v.loc[df_v.index < train_end]
-                            holdout_df = df_v.loc[df_v.index >= holdout_start]
-                            train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
-                            holdout = run_slice(holdout_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
+                        train_df = df_v.loc[df_v.index < train_end]
+                        holdout_df = df_v.loc[df_v.index >= holdout_start]
+                        train = run_slice(train_df, cfg,
+                                          trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult,
+                                          margin=margin, strategy_type=stype, breakout_signal_col=signal_col)
+                        holdout = run_slice(holdout_df, cfg,
+                                            trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult,
+                                            margin=margin, strategy_type=stype, breakout_signal_col=signal_col)
 
-                            outdir = OUTPUTS / margin_label / symbol / tf / f"{label}"
-                            outdir.mkdir(parents=True, exist_ok=True)
-                            run_label = f"{margin_label}/{symbol}/{tf}/{label}"
-                            write_stats_md(run_label, train, holdout, outdir)
-                            write_trade_log(train, holdout, outdir)
-                            write_equity_curve(run_label, train, holdout, outdir)
-                            sweep_results[run_label] = {
-                                "margin": margin, "margin_label": margin_label,
-                                "symbol": symbol, "tf": tf, "mode": mode, "trail": trail, "rsi": rsi_t,
-                                "atr_mult": atr_mult,
-                                "train": train, "holdout": holdout,
-                            }
+                        outdir = OUTPUTS / margin_label / symbol / tf / label
+                        outdir.mkdir(parents=True, exist_ok=True)
+                        run_label = f"{margin_label}/{symbol}/{tf}/{label}"
+                        write_stats_md(run_label, train, holdout, outdir)
+                        write_trade_log(train, holdout, outdir)
+                        write_equity_curve(run_label, train, holdout, outdir)
+                        sweep_results[run_label] = {
+                            "margin": margin, "margin_label": margin_label,
+                            "symbol": symbol, "tf": tf, "mode": mode,
+                            "strategy": variant["type"], "label": label,
+                            "trail": variant.get("trail"), "rsi": variant.get("rsi"),
+                            "atr_mult": atr_mult,
+                            "donchian_period": variant.get("donchian_period"),
+                            "consolidation_method": variant.get("consolidation_method"),
+                            "train": train, "holdout": holdout,
+                        }
 
     if sweep_results:
         write_sweep_comparison(sweep_results, cfg)

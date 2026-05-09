@@ -43,6 +43,13 @@ class TrendPullback(Strategy):
                                 #  is equity / margin). 1.0 = cash, 0.5 = 2x leverage.
     eod_force_close_utc = ""    # "HH:MM" UTC; force close any position at/after this time. Empty = disabled.
     eod_block_entries_after_utc = ""  # "HH:MM" UTC; no new entries after this time. Empty = disabled.
+    strategy_type = "pullback"  # "pullback" | "breakout"
+    stop_type = "touch"          # "touch" (intrabar pierce) | "close" (close-below)
+    scaleout_first_R = 2.0       # take 1/3 off here
+    scaleout_step_R = 1.0        # then 1/3 of remaining at every additional R
+    breakout_signal_col = ""     # set by backtest entrypoint when strategy_type=='breakout'
+                                 #  e.g. "breakout_signal_21_consolidation_atr"
+    breakout_stop_atr_mult = 1.5 # initial stop = entry - this * ATR(14) (slightly wider than pullback)
 
     def init(self):
         df = self.data.df
@@ -56,7 +63,11 @@ class TrendPullback(Strategy):
         ema50_arr = df["hourly_ema50"].values if "hourly_ema50" in df.columns else np.full(len(df), np.nan)
         zone_name = df["zone_name"].values if "zone_name" in df.columns else np.full(len(df), None)
 
-        self._signal = bias & zone & (engulf | rsi_cross)
+        # Signal selection — pullback uses bias & zone & trigger; breakout uses pre-computed signal column
+        if self.strategy_type == "breakout" and self.breakout_signal_col and self.breakout_signal_col in df.columns:
+            self._signal = df[self.breakout_signal_col].fillna(False).astype(bool).values
+        else:
+            self._signal = bias & zone & (engulf | rsi_cross)
         self._atr = atr
         self._ema21 = ema21_arr
         self._ema50 = ema50_arr
@@ -70,6 +81,7 @@ class TrendPullback(Strategy):
         self._target_price = None
         self._risk_per_share = None
         self._partial_taken = False
+        self._tiers_taken = 0
         self._stop_price = None
         self._zone_at_entry = None
         self._entry_date = None
@@ -105,6 +117,7 @@ class TrendPullback(Strategy):
         self._target_price = None
         self._risk_per_share = None
         self._partial_taken = False
+        self._tiers_taken = 0
         self._stop_price = None
         self._zone_at_entry = None
         self._entry_date = None
@@ -145,7 +158,9 @@ class TrendPullback(Strategy):
                 self._pending_entry = False
                 self._pending_zone = None
                 return
-            stop = entry_fill - self.atr_multiplier_stop * atr_at_signal
+            # Breakout uses a slightly wider stop than pullback
+            stop_mult = self.breakout_stop_atr_mult if self.strategy_type == "breakout" else self.atr_multiplier_stop
+            stop = entry_fill - stop_mult * atr_at_signal
             risk_per_share = entry_fill - stop
             target = entry_fill + self.take_partial_at_R * risk_per_share
             # Scale risk_pct by 1/margin: margin=1.0 -> 1×risk, margin=0.5 -> 2×risk, margin=0.33 -> 3×risk.
@@ -175,33 +190,56 @@ class TrendPullback(Strategy):
             return
 
         if self.position:
-            if bar_low <= self._stop_price:
-                exit_px = self._slip_sell(self._stop_price)
+            # Stop-type dispatch: 'touch' = intrabar pierce, 'close' = bar must close below
+            stop_triggered = False
+            stop_exit_px = None
+            if self.stop_type == "close":
+                if price < self._stop_price:
+                    stop_triggered = True
+                    stop_exit_px = self._slip_sell(price)
+            else:  # 'touch' (default)
+                if bar_low <= self._stop_price:
+                    stop_triggered = True
+                    stop_exit_px = self._slip_sell(self._stop_price)
+
+            if stop_triggered:
                 self.position.close()
-                self._record("stop_hit", exit_px)
+                self._record("stop_hit", stop_exit_px)
                 self._reset_trade()
                 return
 
-            if (not self._partial_taken) and bar_high >= self._target_price:
-                frac = self.partial_exit_pct / 100.0
+            # ----- Tiered scale-out: 1/3 at first_R, then 1/3 of remaining at each step_R -----
+            current_R = (price - self._entry_price) / self._risk_per_share if self._risk_per_share else 0.0
+            # Determine which R-tier we should be at given current_R
+            target_tier = 0
+            if current_R >= self.scaleout_first_R:
+                target_tier = 1 + max(0, int((current_R - self.scaleout_first_R) / max(self.scaleout_step_R, 1e-6)))
+            # We track tiers already taken in self._tiers_taken
+            while target_tier > self._tiers_taken:
+                # Take 1/3 of CURRENT remaining position
+                frac_of_remaining = 1.0 / 3.0
                 for tr in list(self.trades):
-                    tr.close(portion=frac)
-                self._partial_taken = True
-                self._stop_price = self._entry_price
-                exit_px = self._slip_sell(self._target_price)
+                    tr.close(portion=frac_of_remaining)
+                tier_R = self.scaleout_first_R + self.scaleout_step_R * (self._tiers_taken)
+                exit_target_px = self._entry_price + tier_R * self._risk_per_share
+                exit_px = self._slip_sell(exit_target_px)
                 self._trade_log.append(
                     dict(
                         entry_date=self._entry_date,
                         entry_price=self._entry_price,
                         stop=self._initial_stop,
-                        target=self._target_price,
+                        target=exit_target_px,
                         exit_date=self.data.index[-1],
                         exit_price=exit_px,
-                        R_multiple=self.take_partial_at_R,
-                        exit_reason="target_hit_partial",
+                        R_multiple=tier_R,
+                        exit_reason=f"scaleout_tier_{self._tiers_taken + 1}",
                         zone_triggered=self._zone_at_entry,
                     )
                 )
+                self._tiers_taken += 1
+                # On first tier hit, move stop to breakeven
+                if self._tiers_taken == 1:
+                    self._stop_price = self._entry_price
 
             # ----- trailing exit dispatch (configurable per run) -----
             if self.trail_type == "ema21":

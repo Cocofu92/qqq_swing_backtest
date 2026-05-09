@@ -255,3 +255,100 @@ def compute_zone_touch(
                 break
     out["zone_name"] = name_arr
     return out
+
+
+# ---------------------------------------------------------------------------
+# Donchian breakout helpers (v9)
+# ---------------------------------------------------------------------------
+
+def compute_donchian(df, periods=(10, 21, 55)):
+    """Add Donchian high/low columns for the given periods on the execution timeframe.
+
+    For each period N we add `donchian_high_N` and `donchian_low_N` columns.
+    The bar's own high/low are excluded from the lookback window so a breakout
+    is "today's close > the highest high of the PRIOR N bars".
+    """
+    out = df.copy()
+    for n in periods:
+        # Use shift(1) so prior bar is the latest one in the window — we don't peek today
+        out[f"donchian_high_{n}"] = out["high"].shift(1).rolling(n, min_periods=n).max()
+        out[f"donchian_low_{n}"] = out["low"].shift(1).rolling(n, min_periods=n).min()
+    return out
+
+
+def compute_consolidation_atr(df, contraction_ratio=0.75, short_period=14, long_period=50):
+    """Boolean column `consolidation_atr` true when current ATR(short) is well below
+    ATR(long) — i.e. recent volatility has compressed.
+    """
+    out = df.copy()
+    short_atr = _atr(out["high"], out["low"], out["close"], short_period)
+    long_atr = _atr(out["high"], out["low"], out["close"], long_period)
+    out["atr_short"] = short_atr
+    out["atr_long"] = long_atr
+    out["consolidation_atr"] = (short_atr / long_atr.replace(0, np.nan)) < contraction_ratio
+    out["consolidation_atr"] = out["consolidation_atr"].fillna(False)
+    return out
+
+
+def compute_consolidation_bb(df, period=20, num_std=2.0, lookback=120, percentile=0.20):
+    """Boolean column `consolidation_bb` true when BB width is in the bottom
+    `percentile` of values over the trailing `lookback` bars (squeeze).
+    """
+    out = df.copy()
+    rolling_mean = out["close"].rolling(period, min_periods=period).mean()
+    rolling_std = out["close"].rolling(period, min_periods=period).std()
+    upper = rolling_mean + num_std * rolling_std
+    lower = rolling_mean - num_std * rolling_std
+    bbwidth = (upper - lower) / rolling_mean.replace(0, np.nan)
+    pct_rank = bbwidth.rolling(lookback, min_periods=period).rank(pct=True)
+    out["bb_width"] = bbwidth
+    out["consolidation_bb"] = (pct_rank <= percentile).fillna(False)
+    return out
+
+
+def compute_volume_runrate(df, multiplier=1.5, lookback_sessions=20):
+    """Boolean column `volume_confirm` true when the current bar's volume exceeds
+    `multiplier` × the average volume for the same time-of-day across the last
+    `lookback_sessions` sessions.
+
+    Time-of-day grouping uses HH:MM. We compute a rolling mean of same-time-of-day
+    volumes and compare the current bar to it.
+    """
+    out = df.copy()
+    if "volume" not in out.columns:
+        out["volume_confirm"] = False
+        return out
+    # Group by time-of-day (UTC); for each group, compute rolling mean over last N values
+    out["_tod"] = out.index.strftime("%H:%M") if hasattr(out.index, "strftime") else "00:00"
+    avg = out.groupby("_tod")["volume"].rolling(lookback_sessions, min_periods=5).mean()
+    # avg is a multiindex (tod, original_idx) — re-align to original index
+    avg = avg.reset_index(level=0, drop=True).sort_index()
+    out["_tod_avg_vol"] = avg
+    out["volume_confirm"] = (out["volume"] > multiplier * out["_tod_avg_vol"]).fillna(False)
+    out = out.drop(columns=["_tod", "_tod_avg_vol"], errors="ignore")
+    return out
+
+
+def compute_donchian_breakout_signal(df, period, consolidation_col="consolidation_atr", require_volume=True):
+    """Combine bias + consolidation + Donchian breakout + (optional) volume confirm into a
+    single boolean entry signal column.
+
+    bias: `daily_bullish_y` (must already exist via forward_fill_daily_to_1h)
+    consolidation: bool column name (consolidation_atr or consolidation_bb)
+    breakout: close > donchian_high_{period} (period from execution timeframe)
+    volume_confirm: bool column (created by compute_volume_runrate)
+    """
+    out = df.copy()
+    bias = out.get("daily_bullish_y", pd.Series(False, index=out.index)).fillna(False).astype(bool)
+    cons = out.get(consolidation_col, pd.Series(False, index=out.index)).fillna(False).astype(bool)
+    don_col = f"donchian_high_{period}"
+    if don_col not in out.columns:
+        out[f"breakout_signal_{period}_{consolidation_col}"] = False
+        return out
+    breakout = (out["close"] > out[don_col]).fillna(False)
+    if require_volume and "volume_confirm" in out.columns:
+        vol = out["volume_confirm"].fillna(False).astype(bool)
+    else:
+        vol = pd.Series(True, index=out.index)
+    out[f"breakout_signal_{period}_{consolidation_col}"] = bias & cons & breakout & vol
+    return out
