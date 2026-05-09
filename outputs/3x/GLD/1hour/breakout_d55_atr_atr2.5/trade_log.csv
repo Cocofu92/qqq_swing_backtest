@@ -1,0 +1,2 @@
+entry_date,entry_price,stop,target,exit_date,exit_price,R_multiple,exit_reason,zone_triggered,period
+2026-02-11 17:30:00+00:00,467.59499999999997,462.2595227889093,478.2659544221813,2026-02-12 15:30:00+00:00,462.2445227889093,-1.0028113698937382,stop_hit,h_ema21,holdout

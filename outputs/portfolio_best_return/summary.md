@@ -2,22 +2,12 @@
 
 _Highest holdout return per symbol_
 
-## Portfolio metrics (1x, equal-weighted)
+## Leverage scan
 
-| Metric | Train+Holdout | Holdout-only |
-|---|---|---|
-| Total return [%] | 30.36 | 18.97 |
-| CAGR [%] | 6.36 | -- |
-| Max drawdown [%] | -3.14 | -3.14 |
+| Leverage | Total Return [%] | CAGR [%] | MaxDD [%] | Holdout Return [%] | Holdout MaxDD [%] | Calmar |
+|---|---|---|---|---|---|---|
+| 5x | 252.95 | 34.07 | -23.37 | 115.51 | -23.37 | 10.82 |
+| 3x | 121.36 | 20.29 | -11.20 | 64.70 | -11.20 | 10.84 |
+| 1x | 30.36 | 6.36 | -3.14 | 18.97 | -3.14 | 9.67 |
 
-## Members
-
-| Symbol | TF | Variant | Train Return [%] | Holdout Return [%] | Member MaxDD [%] | Trades | Status |
-|---|---|---|---|---|---|---|---|
-| GLD | 15min | `pullback_atr_2.5_rsi40_tiered` | 11.61 | 32.40 | -11.55 | 1220 | ok |
-| EWJ | 15min | `pullback_atr_2.5_rsi40_tiered` | 9.05 | 19.67 | -8.76 | 1348 | ok |
-| BNO | 15min | `breakout_d21_bb40_atr3.0` | -3.53 | 19.47 | -11.01 | 229 | ok |
-| QQQ | 1hour | `pullback_atr_2.5_rsi40_legacy50` | 30.37 | 15.21 | -7.14 | 279 | ok |
-| EWU | 15min | `breakout_d55_bb40_atr3.0` | 0.35 | 7.69 | -2.00 | 146 | ok |
-
-_Generated: 2026-05-09T13:37:17.362906+00:00_
+_Generated: 2026-05-09T14:49:10.538502+00:00_

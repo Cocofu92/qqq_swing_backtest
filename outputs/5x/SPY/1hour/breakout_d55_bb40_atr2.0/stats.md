@@ -1,0 +1,14 @@
+# QQQ Trend-Pullback (5x/SPY/1hour/breakout_d55_bb40_atr2.0) -- Stats
+
+| Metric | Train | Holdout |
+|---|---|---|
+| Total Return [%] | 27.597 | 15.404 |
+| CAGR [%] | 8.498 | 11.273 |
+| Win Rate [%] | 73.529 | 64.286 |
+| Profit Factor | 9.132 | 10.874 |
+| Max Drawdown [%] | -6.896 | -6.928 |
+| Sharpe Ratio | 0.806 | 0.964 |
+| Total Trades | 34 | 28 |
+| Avg Trade Duration | 4 days 00:00:00 | 2 days 19:00:00 |
+
+_Generated: 2026-05-09T14:02:15.117730Z_
