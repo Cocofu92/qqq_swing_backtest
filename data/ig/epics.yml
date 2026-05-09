@@ -1,0 +1,32 @@
+# IG epic mapping for the qqq_swing_backtest basket.
+# All cash DFB epics for tight day-trade spreads.
+
+QQQ:
+  epic: IX.D.NASDAQ.CASH.IP
+  instrumentName: "US Tech 100"
+  notes: "Cash DFB, ~23h trading"
+
+SPY:
+  epic: IX.D.SPTRD.DAILY.IP
+  instrumentName: "US 500"
+  notes: "Cash DFB, ~23h trading"
+
+GLD:
+  epic: CS.D.USCGC.TODAY.IP
+  instrumentName: "Spot Gold"
+  notes: "Spot Gold (XAU/USD), ~23h trading"
+
+BNO:
+  epic: CC.D.LCO.USS.IP
+  instrumentName: "Oil - Brent Crude"
+  notes: "Brent Crude undated cash"
+
+EWU:
+  epic: IX.D.FTSE.DAILY.IP
+  instrumentName: "FTSE 100"
+  notes: "Cash DFB, 08:00-16:30 UK only"
+
+EWJ:
+  epic: IX.D.NIKKEI.DAILY.IP
+  instrumentName: "Japan 225"
+  notes: "Cash DFB"
