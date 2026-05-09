@@ -32,15 +32,59 @@
 [data:QQQ:1hour] total after dedupe: 7595 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:QQQ:1hour] returning 7595 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_1hour.parquet
 [bt:1hour] mode=strict bias_true=4128 zone_true=6443 bias_and_zone=3219
-  -> [1x] QQQ/1hour/atr_2.5_rsi40
-  -> [5x] QQQ/1hour/atr_2.5_rsi40
-  -> [10x] QQQ/1hour/atr_2.5_rsi40
-  -> [20x] QQQ/1hour/atr_2.5_rsi40
+  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr3.0
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr3.0
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=5266 zone_true=6498 bias_and_zone=4306
-  -> [1x] QQQ/1hour/atr_2.5_rsi40
-  -> [5x] QQQ/1hour/atr_2.5_rsi40
-  -> [10x] QQQ/1hour/atr_2.5_rsi40
-  -> [20x] QQQ/1hour/atr_2.5_rsi40
+  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d10_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d10_bb_atr3.0
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d21_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d21_bb_atr3.0
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr1.5
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.0
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.5
+  -> [1x] QQQ/1hour/breakout_d55_atr_atr3.0
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr1.5
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr2.0
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr2.5
+  -> [1x] QQQ/1hour/breakout_d55_bb_atr3.0
 
 ##### QQQ / 15min #####
 [data:QQQ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -73,31 +117,67 @@
 [data:QQQ:15min] total after dedupe: 21395 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:QQQ:15min] returning 21395 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/QQQ_15min.parquet
 [bt:15min] mode=strict bias_true=12081 zone_true=18139 bias_and_zone=9808
-  -> [1x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] QQQ/15min/breakout_d10_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d10_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d10_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d10_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d10_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d10_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d10_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d10_bb_atr3.0
+  -> [1x] QQQ/15min/breakout_d21_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d21_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d21_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d21_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d21_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d21_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d21_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d21_bb_atr3.0
+  -> [1x] QQQ/15min/breakout_d55_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d55_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d55_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d55_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d55_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d55_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d55_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=15305 zone_true=18415 bias_and_zone=12871
-  -> [1x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] QQQ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] QQQ/15min/breakout_d10_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d10_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d10_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d10_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d10_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d10_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d10_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d10_bb_atr3.0
+  -> [1x] QQQ/15min/breakout_d21_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d21_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d21_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d21_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d21_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d21_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d21_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d21_bb_atr3.0
+  -> [1x] QQQ/15min/breakout_d55_atr_atr1.5
+  -> [1x] QQQ/15min/breakout_d55_atr_atr2.0
+  -> [1x] QQQ/15min/breakout_d55_atr_atr2.5
+  -> [1x] QQQ/15min/breakout_d55_atr_atr3.0
+  -> [1x] QQQ/15min/breakout_d55_bb_atr1.5
+  -> [1x] QQQ/15min/breakout_d55_bb_atr2.0
+  -> [1x] QQQ/15min/breakout_d55_bb_atr2.5
+  -> [1x] QQQ/15min/breakout_d55_bb_atr3.0
 
 ========== Symbol: SPY ==========
 
@@ -132,15 +212,59 @@
 [data:SPY:1hour] total after dedupe: 7607 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:SPY:1hour] returning 7607 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_1hour.parquet
 [bt:1hour] mode=strict bias_true=4134 zone_true=6420 bias_and_zone=3205
-  -> [1x] SPY/1hour/atr_2.5_rsi40
-  -> [5x] SPY/1hour/atr_2.5_rsi40
-  -> [10x] SPY/1hour/atr_2.5_rsi40
-  -> [20x] SPY/1hour/atr_2.5_rsi40
+  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] SPY/1hour/breakout_d10_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d10_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d10_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d10_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d10_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d10_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d10_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d10_bb_atr3.0
+  -> [1x] SPY/1hour/breakout_d21_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d21_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d21_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d21_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d21_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d21_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d21_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d21_bb_atr3.0
+  -> [1x] SPY/1hour/breakout_d55_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d55_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d55_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d55_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d55_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d55_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d55_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=5149 zone_true=6505 bias_and_zone=4189
-  -> [1x] SPY/1hour/atr_2.5_rsi40
-  -> [5x] SPY/1hour/atr_2.5_rsi40
-  -> [10x] SPY/1hour/atr_2.5_rsi40
-  -> [20x] SPY/1hour/atr_2.5_rsi40
+  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] SPY/1hour/breakout_d10_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d10_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d10_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d10_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d10_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d10_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d10_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d10_bb_atr3.0
+  -> [1x] SPY/1hour/breakout_d21_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d21_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d21_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d21_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d21_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d21_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d21_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d21_bb_atr3.0
+  -> [1x] SPY/1hour/breakout_d55_atr_atr1.5
+  -> [1x] SPY/1hour/breakout_d55_atr_atr2.0
+  -> [1x] SPY/1hour/breakout_d55_atr_atr2.5
+  -> [1x] SPY/1hour/breakout_d55_atr_atr3.0
+  -> [1x] SPY/1hour/breakout_d55_bb_atr1.5
+  -> [1x] SPY/1hour/breakout_d55_bb_atr2.0
+  -> [1x] SPY/1hour/breakout_d55_bb_atr2.5
+  -> [1x] SPY/1hour/breakout_d55_bb_atr3.0
 
 ##### SPY / 15min #####
 [data:SPY:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -173,47 +297,75 @@
 [data:SPY:15min] total after dedupe: 21427 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:SPY:15min] returning 21427 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_15min.parquet
 [bt:15min] mode=strict bias_true=12094 zone_true=17981 bias_and_zone=9713
-  -> [1x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] SPY/15min/breakout_d10_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d10_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d10_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d10_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d10_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d10_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d10_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d10_bb_atr3.0
+  -> [1x] SPY/15min/breakout_d21_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d21_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d21_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d21_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d21_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d21_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d21_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d21_bb_atr3.0
+  -> [1x] SPY/15min/breakout_d55_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d55_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d55_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d55_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d55_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d55_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d55_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=15292 zone_true=18239 bias_and_zone=12747
-  -> [1x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] SPY/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] SPY/15min/breakout_d10_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d10_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d10_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d10_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d10_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d10_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d10_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d10_bb_atr3.0
+  -> [1x] SPY/15min/breakout_d21_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d21_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d21_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d21_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d21_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d21_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d21_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d21_bb_atr3.0
+  -> [1x] SPY/15min/breakout_d55_atr_atr1.5
+  -> [1x] SPY/15min/breakout_d55_atr_atr2.0
+  -> [1x] SPY/15min/breakout_d55_atr_atr2.5
+  -> [1x] SPY/15min/breakout_d55_atr_atr3.0
+  -> [1x] SPY/15min/breakout_d55_bb_atr1.5
+  -> [1x] SPY/15min/breakout_d55_bb_atr2.0
+  -> [1x] SPY/15min/breakout_d55_bb_atr2.5
+  -> [1x] SPY/15min/breakout_d55_bb_atr3.0
 
 ========== Symbol: GLD ==========
 
@@ -248,27 +400,63 @@
 [data:GLD:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:GLD:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/GLD_1hour.parquet
 [bt:1hour] mode=strict bias_true=4626 zone_true=6126 bias_and_zone=3495
-  -> [1x] GLD/1hour/atr_2.5_rsi40
-  -> [5x] GLD/1hour/atr_2.5_rsi40
-  -> [10x] GLD/1hour/atr_2.5_rsi40
-  -> [20x] GLD/1hour/atr_2.5_rsi40
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] GLD/1hour/breakout_d10_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d10_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d10_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d10_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d10_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d10_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d10_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d10_bb_atr3.0
+  -> [1x] GLD/1hour/breakout_d21_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d21_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d21_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d21_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d21_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d21_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d21_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d21_bb_atr3.0
+  -> [1x] GLD/1hour/breakout_d55_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d55_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d55_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d55_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d55_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d55_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d55_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=5877 zone_true=6218 bias_and_zone=4681
-  -> [1x] GLD/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] GLD/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] GLD/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] GLD/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] GLD/1hour/breakout_d10_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d10_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d10_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d10_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d10_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d10_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d10_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d10_bb_atr3.0
+  -> [1x] GLD/1hour/breakout_d21_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d21_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d21_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d21_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d21_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d21_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d21_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d21_bb_atr3.0
+  -> [1x] GLD/1hour/breakout_d55_atr_atr1.5
+  -> [1x] GLD/1hour/breakout_d55_atr_atr2.0
+  -> [1x] GLD/1hour/breakout_d55_atr_atr2.5
+  -> [1x] GLD/1hour/breakout_d55_atr_atr3.0
+  -> [1x] GLD/1hour/breakout_d55_bb_atr1.5
+  -> [1x] GLD/1hour/breakout_d55_bb_atr2.0
+  -> [1x] GLD/1hour/breakout_d55_bb_atr2.5
+  -> [1x] GLD/1hour/breakout_d55_bb_atr3.0
 
 ##### GLD / 15min #####
 [data:GLD:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -301,31 +489,67 @@
 [data:GLD:15min] total after dedupe: 21442 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:GLD:15min] returning 21442 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/GLD_15min.parquet
 [bt:15min] mode=strict bias_true=13836 zone_true=17070 bias_and_zone=10749
-  -> [1x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] GLD/15min/breakout_d10_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d10_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d10_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d10_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d10_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d10_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d10_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d10_bb_atr3.0
+  -> [1x] GLD/15min/breakout_d21_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d21_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d21_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d21_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d21_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d21_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d21_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d21_bb_atr3.0
+  -> [1x] GLD/15min/breakout_d55_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d55_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d55_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d55_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d55_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d55_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d55_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=15786 zone_true=17217 bias_and_zone=12662
-  -> [1x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] GLD/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] GLD/15min/breakout_d10_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d10_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d10_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d10_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d10_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d10_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d10_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d10_bb_atr3.0
+  -> [1x] GLD/15min/breakout_d21_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d21_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d21_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d21_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d21_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d21_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d21_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d21_bb_atr3.0
+  -> [1x] GLD/15min/breakout_d55_atr_atr1.5
+  -> [1x] GLD/15min/breakout_d55_atr_atr2.0
+  -> [1x] GLD/15min/breakout_d55_atr_atr2.5
+  -> [1x] GLD/15min/breakout_d55_atr_atr3.0
+  -> [1x] GLD/15min/breakout_d55_bb_atr1.5
+  -> [1x] GLD/15min/breakout_d55_bb_atr2.0
+  -> [1x] GLD/15min/breakout_d55_bb_atr2.5
+  -> [1x] GLD/15min/breakout_d55_bb_atr3.0
 
 ========== Symbol: BNO ==========
 
@@ -360,25 +584,63 @@
 [data:BNO:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:BNO:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_1hour.parquet
 [bt:1hour] mode=strict bias_true=1999 zone_true=6585 bias_and_zone=1621
-  -> [1x] BNO/1hour/atr_2.5_rsi40
-  -> [5x] BNO/1hour/atr_2.5_rsi40
-  -> [10x] BNO/1hour/atr_2.5_rsi40
-  -> [20x] BNO/1hour/atr_2.5_rsi40
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] BNO/1hour/breakout_d10_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d10_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d10_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d10_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d10_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d10_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d10_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d10_bb_atr3.0
+  -> [1x] BNO/1hour/breakout_d21_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d21_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d21_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d21_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d21_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d21_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d21_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d21_bb_atr3.0
+  -> [1x] BNO/1hour/breakout_d55_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d55_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d55_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d55_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d55_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d55_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d55_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=3302 zone_true=6723 bias_and_zone=2747
-  -> [1x] BNO/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] BNO/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] BNO/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] BNO/1hour/atr_2.5_rsi40
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] BNO/1hour/breakout_d10_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d10_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d10_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d10_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d10_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d10_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d10_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d10_bb_atr3.0
+  -> [1x] BNO/1hour/breakout_d21_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d21_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d21_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d21_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d21_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d21_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d21_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d21_bb_atr3.0
+  -> [1x] BNO/1hour/breakout_d55_atr_atr1.5
+  -> [1x] BNO/1hour/breakout_d55_atr_atr2.0
+  -> [1x] BNO/1hour/breakout_d55_atr_atr2.5
+  -> [1x] BNO/1hour/breakout_d55_atr_atr3.0
+  -> [1x] BNO/1hour/breakout_d55_bb_atr1.5
+  -> [1x] BNO/1hour/breakout_d55_bb_atr2.0
+  -> [1x] BNO/1hour/breakout_d55_bb_atr2.5
+  -> [1x] BNO/1hour/breakout_d55_bb_atr3.0
 
 ##### BNO / 15min #####
 [data:BNO:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -411,15 +673,59 @@
 [data:BNO:15min] total after dedupe: 21435 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:BNO:15min] returning 21435 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_15min.parquet
 [bt:15min] mode=strict bias_true=5796 zone_true=17742 bias_and_zone=4503
-  -> [1x] BNO/15min/atr_2.5_rsi40
-  -> [5x] BNO/15min/atr_2.5_rsi40
-  -> [10x] BNO/15min/atr_2.5_rsi40
-  -> [20x] BNO/15min/atr_2.5_rsi40
+  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_tiered
+  -> [1x] BNO/15min/breakout_d10_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d10_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d10_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d10_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d10_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d10_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d10_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d10_bb_atr3.0
+  -> [1x] BNO/15min/breakout_d21_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d21_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d21_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d21_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d21_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d21_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d21_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d21_bb_atr3.0
+  -> [1x] BNO/15min/breakout_d55_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d55_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d55_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d55_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d55_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d55_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d55_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=9411 zone_true=18250 bias_and_zone=7557
-  -> [1x] BNO/15min/atr_2.5_rsi40
-  -> [5x] BNO/15min/atr_2.5_rsi40
-  -> [10x] BNO/15min/atr_2.5_rsi40
-  -> [20x] BNO/15min/atr_2.5_rsi40
+  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_tiered
+  -> [1x] BNO/15min/breakout_d10_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d10_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d10_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d10_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d10_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d10_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d10_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d10_bb_atr3.0
+  -> [1x] BNO/15min/breakout_d21_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d21_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d21_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d21_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d21_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d21_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d21_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d21_bb_atr3.0
+  -> [1x] BNO/15min/breakout_d55_atr_atr1.5
+  -> [1x] BNO/15min/breakout_d55_atr_atr2.0
+  -> [1x] BNO/15min/breakout_d55_atr_atr2.5
+  -> [1x] BNO/15min/breakout_d55_atr_atr3.0
+  -> [1x] BNO/15min/breakout_d55_bb_atr1.5
+  -> [1x] BNO/15min/breakout_d55_bb_atr2.0
+  -> [1x] BNO/15min/breakout_d55_bb_atr2.5
+  -> [1x] BNO/15min/breakout_d55_bb_atr3.0
 
 ========== Symbol: EWU ==========
 
@@ -454,31 +760,67 @@
 [data:EWU:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:EWU:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_1hour.parquet
 [bt:1hour] mode=strict bias_true=3897 zone_true=6307 bias_and_zone=3011
-  -> [1x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] EWU/1hour/breakout_d10_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d10_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d10_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d10_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d10_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d10_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d10_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d10_bb_atr3.0
+  -> [1x] EWU/1hour/breakout_d21_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d21_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d21_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d21_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d21_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d21_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d21_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d21_bb_atr3.0
+  -> [1x] EWU/1hour/breakout_d55_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d55_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d55_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d55_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d55_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d55_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d55_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=5233 zone_true=6446 bias_and_zone=4250
-  -> [1x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] EWU/1hour/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] EWU/1hour/breakout_d10_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d10_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d10_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d10_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d10_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d10_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d10_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d10_bb_atr3.0
+  -> [1x] EWU/1hour/breakout_d21_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d21_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d21_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d21_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d21_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d21_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d21_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d21_bb_atr3.0
+  -> [1x] EWU/1hour/breakout_d55_atr_atr1.5
+  -> [1x] EWU/1hour/breakout_d55_atr_atr2.0
+  -> [1x] EWU/1hour/breakout_d55_atr_atr2.5
+  -> [1x] EWU/1hour/breakout_d55_atr_atr3.0
+  -> [1x] EWU/1hour/breakout_d55_bb_atr1.5
+  -> [1x] EWU/1hour/breakout_d55_bb_atr2.0
+  -> [1x] EWU/1hour/breakout_d55_bb_atr2.5
+  -> [1x] EWU/1hour/breakout_d55_bb_atr3.0
 
 ##### EWU / 15min #####
 [data:EWU:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -511,23 +853,63 @@
 [data:EWU:15min] total after dedupe: 21442 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:EWU:15min] returning 21442 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_15min.parquet
 [bt:15min] mode=strict bias_true=11520 zone_true=17236 bias_and_zone=8775
-  -> [1x] EWU/15min/atr_2.5_rsi40
-  -> [5x] EWU/15min/atr_2.5_rsi40
-  -> [10x] EWU/15min/atr_2.5_rsi40
-  -> [20x] EWU/15min/atr_2.5_rsi40
+  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_tiered
+  -> [1x] EWU/15min/breakout_d10_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d10_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d10_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d10_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d10_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d10_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d10_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d10_bb_atr3.0
+  -> [1x] EWU/15min/breakout_d21_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d21_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d21_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d21_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d21_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d21_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d21_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d21_bb_atr3.0
+  -> [1x] EWU/15min/breakout_d55_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d55_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d55_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d55_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d55_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d55_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d55_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=14174 zone_true=17612 bias_and_zone=11291
-  -> [1x] EWU/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] EWU/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] EWU/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] EWU/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
+  -> [1x] EWU/15min/breakout_d10_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d10_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d10_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d10_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d10_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d10_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d10_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d10_bb_atr3.0
+  -> [1x] EWU/15min/breakout_d21_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d21_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d21_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d21_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d21_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d21_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d21_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d21_bb_atr3.0
+  -> [1x] EWU/15min/breakout_d55_atr_atr1.5
+  -> [1x] EWU/15min/breakout_d55_atr_atr2.0
+  -> [1x] EWU/15min/breakout_d55_atr_atr2.5
+  -> [1x] EWU/15min/breakout_d55_atr_atr3.0
+  -> [1x] EWU/15min/breakout_d55_bb_atr1.5
+  -> [1x] EWU/15min/breakout_d55_bb_atr2.0
+  -> [1x] EWU/15min/breakout_d55_bb_atr2.5
+  -> [1x] EWU/15min/breakout_d55_bb_atr3.0
 
 ========== Symbol: EWJ ==========
 
@@ -562,19 +944,59 @@
 [data:EWJ:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
 [data:EWJ:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_1hour.parquet
 [bt:1hour] mode=strict bias_true=3919 zone_true=6209 bias_and_zone=2973
-  -> [1x] EWJ/1hour/atr_2.5_rsi40
-  -> [5x] EWJ/1hour/atr_2.5_rsi40
-  -> [10x] EWJ/1hour/atr_2.5_rsi40
-  -> [20x] EWJ/1hour/atr_2.5_rsi40
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr3.0
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr3.0
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr3.0
 [bt:1hour] mode=loose bias_true=5201 zone_true=6361 bias_and_zone=4194
-  -> [1x] EWJ/1hour/atr_2.5_rsi40
-  -> [5x] EWJ/1hour/atr_2.5_rsi40
-  -> [10x] EWJ/1hour/atr_2.5_rsi40
-  -> [20x] EWJ/1hour/atr_2.5_rsi40
-/opt/hostedtoolcache/Python/3.11.15/x64/lib/python3.11/site-packages/backtesting/_stats.py:156: RuntimeWarning: divide by zero encountered in log
-  equity_log_returns = np.log(equity[1:] / equity[:-1])
+  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d10_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d10_bb_atr3.0
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d21_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d21_bb_atr3.0
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr1.5
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.0
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.5
+  -> [1x] EWJ/1hour/breakout_d55_atr_atr3.0
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr1.5
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr2.0
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr2.5
+  -> [1x] EWJ/1hour/breakout_d55_bb_atr3.0
 
 ##### EWJ / 15min #####
 [data:EWJ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -607,27 +1029,67 @@
 [data:EWJ:15min] total after dedupe: 21441 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
 [data:EWJ:15min] returning 21441 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_15min.parquet
 [bt:15min] mode=strict bias_true=11352 zone_true=16758 bias_and_zone=8440
-  -> [1x] EWJ/15min/atr_2.5_rsi40
-  -> [5x] EWJ/15min/atr_2.5_rsi40
-  -> [10x] EWJ/15min/atr_2.5_rsi40
-  -> [20x] EWJ/15min/atr_2.5_rsi40
+  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
+  -> [1x] EWJ/15min/breakout_d10_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d10_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d10_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d10_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d10_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d10_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d10_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d10_bb_atr3.0
+  -> [1x] EWJ/15min/breakout_d21_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d21_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d21_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d21_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d21_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d21_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d21_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d21_bb_atr3.0
+  -> [1x] EWJ/15min/breakout_d55_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d55_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d55_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d55_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d55_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d55_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d55_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d55_bb_atr3.0
 [bt:15min] mode=loose bias_true=14876 zone_true=17064 bias_and_zone=11662
-  -> [1x] EWJ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [5x] EWJ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:134: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [10x] EWJ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [20x] EWJ/15min/atr_2.5_rsi40
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:102: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:599: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  -> [1x] EWJ/15min/breakout_d10_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d10_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d10_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d10_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d10_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d10_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d10_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d10_bb_atr3.0
+  -> [1x] EWJ/15min/breakout_d21_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d21_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d21_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d21_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d21_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d21_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d21_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d21_bb_atr3.0
+  -> [1x] EWJ/15min/breakout_d55_atr_atr1.5
+  -> [1x] EWJ/15min/breakout_d55_atr_atr2.0
+  -> [1x] EWJ/15min/breakout_d55_atr_atr2.5
+  -> [1x] EWJ/15min/breakout_d55_atr_atr3.0
+  -> [1x] EWJ/15min/breakout_d55_bb_atr1.5
+  -> [1x] EWJ/15min/breakout_d55_bb_atr2.0
+  -> [1x] EWJ/15min/breakout_d55_bb_atr2.5
+  -> [1x] EWJ/15min/breakout_d55_bb_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:635: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:431: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:467: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-[basket] wrote basket_summary.md + basket_curves.png (4 margin levels)
+[basket] wrote basket_summary.md + basket_curves.png (1 margin levels)
 
 Done. See outputs/.
