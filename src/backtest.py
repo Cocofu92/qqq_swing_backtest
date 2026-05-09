@@ -93,10 +93,9 @@ def prepare_base_data(cfg: Dict[str, Any], timeframe: str = "1hour", symbol: str
         multiplier=cfg.get("breakout", {}).get("volume_multiplier", 1.5),
         lookback_sessions=cfg.get("breakout", {}).get("volume_lookback", 20),
     )
-    # Pre-compute breakout signal columns for each Donchian period × consolidation method
-    for period in breakout_periods:
-        for cons_col in ("consolidation_atr", "consolidation_bb"):
-            df = compute_donchian_breakout_signal(df, period=period, consolidation_col=cons_col)
+    # NOTE: Donchian/consolidation/volume features computed here, but the
+    # breakout signal column itself depends on daily_bullish_y which is only
+    # set inside select_mode(). Signal columns are computed there.
 
     return df
 
@@ -106,6 +105,21 @@ def select_mode(df_base: pd.DataFrame, mode: str, cfg: Dict[str, Any]) -> pd.Dat
     df = df_base.copy()
     bias_col = "daily_bullish_strict_y" if mode == "strict" else "daily_bullish_loose_y"
     df["daily_bullish_y"] = df[bias_col]
+
+    # Now that daily_bullish_y is wired for this mode, compute the breakout
+    # signal columns (they use daily_bullish_y as the trend-bias gate).
+    breakout_periods = tuple(cfg.get("breakout", {}).get("donchian_periods", [10, 21, 55]))
+    for period in breakout_periods:
+        for cons_col in ("consolidation_atr", "consolidation_bb"):
+            df = compute_donchian_breakout_signal(df, period=period, consolidation_col=cons_col)
+    # Diagnostic: count signal True rows for visibility in the run log
+    for period in breakout_periods:
+        for cons_col in ("consolidation_atr", "consolidation_bb"):
+            sig = f"breakout_signal_{period}_{cons_col}"
+            if sig in df.columns:
+                n_true = int(df[sig].fillna(False).astype(bool).sum())
+                print(f"[bt:breakout] mode={mode} {sig} true_bars={n_true}")
+
     df = compute_zone_touch(
         df,
         mode=mode,
@@ -575,7 +589,7 @@ def write_sweep_comparison(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]
     rows_by_pf.sort(key=lambda x: x[0], reverse=True)
 
     # ---- Markdown table ----
-    rows = ["# Multi-symbol sweep -- v6 (atr_2.0/2.5 × 1h+4h × RSI40 across 6 symbols)", ""]
+    rows = ["# Multi-symbol sweep -- v9 (pullback legacy/tiered + breakout 3 Donchian × 2 consolidation × 4 ATR mults)", ""]
     headers = ["Symbol/TF/Variant", "Trail", "RSI", "Trades (T+H)",
                "Holdout Return [%]", "Holdout PF", "Holdout WR [%]", "Holdout MaxDD [%]",
                "Train Return [%]", "Train PF", "Train Trades"]
