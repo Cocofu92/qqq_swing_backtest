@@ -2034,22 +2034,24 @@
   -> [1x] EWJ/15min/breakout_d55_bb40_atr2.0
   -> [1x] EWJ/15min/breakout_d55_bb40_atr2.5
   -> [1x] EWJ/15min/breakout_d55_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:574: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:732: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:672: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:830: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:504: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:662: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
 [basket] wrote basket_summary.md + basket_curves.png (1 margin levels)
+[portfolio:best_return] wrote summary + curve (5 members)
+[portfolio:best_risk_adjusted] wrote summary + curve (5 members)
 
 Done. See outputs/.
