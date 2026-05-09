@@ -1,14 +1,3 @@
-Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 909, in <module>
-    _cli()
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 901, in _cli
-    main(
-  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 828, in main
-    for margin in margins:
-                  ^^^^^^^
-NameError: name 'margins' is not defined. Did you mean: 'margin'?
 
 ========== Symbol: EWJ ==========
 
@@ -25,3 +14,15 @@ NameError: name 'margins' is not defined. Did you mean: 'margin'?
 [data:EWJ:4hour] total after dedupe: 2171 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 17:30:00+00:00
 [data:EWJ:4hour] returning 2171 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_4hour.parquet
 [bt:4hour] mode=strict bias_true=1117 zone_true=1780 bias_and_zone=836
+  -> [1x] EWJ/4hour/atr_2.5_rsi40
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 910, in <module>
+    _cli()
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 902, in _cli
+    main(
+  File "/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py", line 853, in main
+    train = run_slice(train_df, cfg, trail_type=base_trail, rsi_threshold=rsi_t, atr_mult=atr_mult, margin=margin)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: run_slice() got an unexpected keyword argument 'margin'
