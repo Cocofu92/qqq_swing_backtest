@@ -348,6 +348,164 @@ def _baseline_curve(symbol: str, span_index: pd.DatetimeIndex, initial: float) -
 
 
 
+def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
+    """For each named portfolio in cfg['portfolios'], pick the requested variant
+    per (symbol, timeframe), stitch their equity curves, and equal-weight combine
+    into a single portfolio curve. Writes:
+      outputs/portfolio_<name>/summary.md
+      outputs/portfolio_<name>/curve.png
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    portfolios = cfg.get("portfolios") or {}
+    if not portfolios:
+        print("[portfolio] no portfolios configured")
+        return
+
+    initial = cfg["execution"]["initial_capital"]
+    cutoff = pd.Timestamp(cfg["period"]["holdout_start"], tz="UTC")
+    margin_label = "1x"  # portfolios are intentionally compared at 1x for now
+
+    for pname, pdef in portfolios.items():
+        members = pdef.get("members", [])
+        description = pdef.get("description", "")
+        if not members:
+            print(f"[portfolio:{pname}] no members; skipping")
+            continue
+
+        outdir = OUTPUTS / f"portfolio_{pname}"
+        outdir.mkdir(parents=True, exist_ok=True)
+
+        member_rows: List[Dict[str, Any]] = []
+        eqs_normed: List[pd.Series] = []
+        member_full_curves: List[pd.Series] = []
+        member_labels: List[str] = []
+
+        for m in members:
+            sym = m["symbol"]; tf = m["tf"]; label = m["label"]
+            key = f"{margin_label}/{sym}/{tf}/{label}"
+            if key not in sweep:
+                print(f"[portfolio:{pname}] member missing from sweep: {key}")
+                member_rows.append({
+                    "symbol": sym, "tf": tf, "label": label,
+                    "missing": True,
+                })
+                continue
+            payload = sweep[key]
+            eq = _stitch_equity(
+                payload["train"]["equity_curve"],
+                payload["holdout"]["equity_curve"],
+                initial,
+            )
+            if eq.empty:
+                member_rows.append({
+                    "symbol": sym, "tf": tf, "label": label,
+                    "missing": True,
+                })
+                continue
+
+            # Per-member metrics (already exist in payload.train/holdout stats but
+            # recompute from the stitched curve for consistency)
+            train_eq = payload["train"].get("equity_curve")
+            holdout_eq = payload["holdout"].get("equity_curve")
+            train_ret = ((train_eq.iloc[-1] / train_eq.iloc[0]) - 1) * 100 if train_eq is not None and not train_eq.empty else 0.0
+            hold_ret = ((holdout_eq.iloc[-1] / holdout_eq.iloc[0]) - 1) * 100 if holdout_eq is not None and not holdout_eq.empty else 0.0
+            running = eq.cummax()
+            mdd = ((eq / running) - 1).min() * 100
+
+            member_rows.append({
+                "symbol": sym, "tf": tf, "label": label,
+                "missing": False,
+                "train_ret": train_ret, "hold_ret": hold_ret, "mdd": mdd,
+                "n_trades": len(payload["train"].get("trade_log") or []) + len(payload["holdout"].get("trade_log") or []),
+            })
+            eqs_normed.append(eq / eq.iloc[0])
+            member_full_curves.append(eq)
+            member_labels.append(f"{sym} {tf} {label}")
+
+        if not eqs_normed:
+            print(f"[portfolio:{pname}] no valid members; skipping")
+            continue
+
+        # Align on common index
+        common = eqs_normed[0].index
+        for e in eqs_normed[1:]:
+            common = common.intersection(e.index)
+        eqs_aligned = [e.reindex(common) for e in eqs_normed]
+        portfolio_normed = sum(eqs_aligned) / len(eqs_aligned)
+        portfolio_curve = portfolio_normed * initial
+
+        # Portfolio metrics
+        total_ret = (portfolio_curve.iloc[-1] / portfolio_curve.iloc[0] - 1) * 100
+        years = max((portfolio_curve.index[-1] - portfolio_curve.index[0]).days / 365.25, 1e-6)
+        cagr = ((portfolio_curve.iloc[-1] / portfolio_curve.iloc[0]) ** (1 / years) - 1) * 100
+        running_max = portfolio_curve.cummax()
+        ddseries = (portfolio_curve / running_max - 1) * 100
+        max_dd = ddseries.min()
+
+        holdout_curve = portfolio_curve.loc[portfolio_curve.index >= cutoff]
+        if not holdout_curve.empty:
+            h_ret = (holdout_curve.iloc[-1] / holdout_curve.iloc[0] - 1) * 100
+            h_running = holdout_curve.cummax()
+            h_dd_series = (holdout_curve / h_running - 1) * 100
+            h_max_dd = h_dd_series.min()
+        else:
+            h_ret = 0.0
+            h_max_dd = 0.0
+
+        # ------- Plot -------
+        fig, ax = plt.subplots(figsize=(12, 6))
+        # Member curves (translucent)
+        for lbl, ec in zip(member_labels, member_full_curves):
+            ax.plot(ec.index, ec.values * (initial / ec.iloc[0]), lw=0.9, alpha=0.45, label=lbl)
+        # Portfolio curve (heavy)
+        ax.plot(portfolio_curve.index, portfolio_curve.values, lw=2.2, color="black",
+                label=f"Portfolio (equal-weight, n={len(eqs_aligned)})")
+        ax.axvline(cutoff, color="grey", linestyle="--", alpha=0.6)
+        ax.set_title(f"Portfolio: {pname}  --  {description}")
+        ax.set_ylabel("Equity ($)")
+        ax.grid(True, alpha=0.3)
+        ax.legend(loc="upper left", fontsize=8)
+        fig.tight_layout()
+        fig.savefig(outdir / "curve.png", dpi=120)
+        plt.close(fig)
+
+        # ------- Summary markdown -------
+        lines = [
+            f"# Portfolio: {pname}",
+            "",
+            f"_{description}_",
+            "",
+            "## Portfolio metrics (1x, equal-weighted)",
+            "",
+            "| Metric | Train+Holdout | Holdout-only |",
+            "|---|---|---|",
+            f"| Total return [%] | {total_ret:.2f} | {h_ret:.2f} |",
+            f"| CAGR [%] | {cagr:.2f} | -- |",
+            f"| Max drawdown [%] | {max_dd:.2f} | {h_max_dd:.2f} |",
+            "",
+            "## Members",
+            "",
+            "| Symbol | TF | Variant | Train Return [%] | Holdout Return [%] | Member MaxDD [%] | Trades | Status |",
+            "|---|---|---|---|---|---|---|---|",
+        ]
+        for r in member_rows:
+            if r.get("missing"):
+                lines.append(f"| {r['symbol']} | {r['tf']} | `{r['label']}` | -- | -- | -- | -- | **MISSING** |")
+            else:
+                lines.append(
+                    f"| {r['symbol']} | {r['tf']} | `{r['label']}` | "
+                    f"{r['train_ret']:.2f} | {r['hold_ret']:.2f} | {r['mdd']:.2f} | "
+                    f"{r['n_trades']} | ok |"
+                )
+        lines.append("")
+        lines.append(f"_Generated: {pd.Timestamp.now(tz='UTC').isoformat()}_")
+        (outdir / "summary.md").write_text("\n".join(lines))
+        print(f"[portfolio:{pname}] wrote summary + curve ({len(eqs_aligned)} members)")
+
+
 def write_basket_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any]) -> None:
     """Combine the per-symbol equity curves into one basket portfolio curve per leverage level.
 
@@ -1018,6 +1176,7 @@ def main(
     if sweep_results:
         write_sweep_comparison(sweep_results, cfg)
         write_basket_summary(sweep_results, cfg)
+        write_portfolio_summary(sweep_results, cfg)
     print("\nDone. See outputs/.")
 
 
