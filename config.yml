@@ -1,14 +1,20 @@
 basket:
-  - EWJ
-  - EWU
-  - IBIT
   - QQQ
+  - SPY
+  - GLD
+  - BNO
+  - EWU
+  - EWJ
+
 
 symbols:
-  - EWJ        # Japan/Nikkei -- strategy strongest here
-  - EWU        # UK/FTSE
-  - IBIT       # Bitcoin (limited train history -- launched Jan 2024)
-  - QQQ        # Nasdaq 100 (kept for benchmark continuity)
+  - QQQ
+  - SPY
+  - GLD
+  - BNO
+  - EWU
+  - EWJ
+
 
 
 # Sweep configuration -- v4: trail × rsi grid on 1h QQQ loose
@@ -16,7 +22,9 @@ modes:
   - loose
 
 timeframes:
-  - 4hour
+  - 1hour
+  - 15min
+
 
 
 
@@ -33,11 +41,11 @@ rsi_thresholds:
 
 # Leverage sweep (margin = required cash %; 1.0=cash, 0.5=2x, 0.33=3x)
 margins:
-  - 1.0      # 1x
-  - 0.5      # 2x
-  - 0.33     # 3x
-  - 0.25     # 4x
+  - 1.0      # 1x baseline (no leverage)
   - 0.20     # 5x
+  - 0.10     # 10x
+  - 0.05     # 20x (IG retail max for indices)
+
 
 
 
@@ -56,6 +64,9 @@ period:
   holdout_start: 2025-01-01
 
 strategy:
+  # Day-trade structure: force close before IG financing cutoff (22:00 UK), block late entries
+  eod_force_close_utc: "21:30"     # close any open position at/after this UTC time
+  eod_block_entries_after_utc: "19:30"   # don't take new setups after this UTC
   regime_filter_4h: false   # gate 1h entries on 4h close > 4h 200 EMA
   daily_filter_mode: strict   # default for single-mode runs; the entrypoint loops over both
   daily:
@@ -77,7 +88,7 @@ strategy:
     partial_exit_pct: 50
 
 costs:
-  spread: 0.03
+  spread: 0.01
   commission: 0.0
   slippage_ticks: 1
   tick_size: 0.01

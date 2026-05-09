@@ -112,6 +112,8 @@ def run_slice(df: pd.DataFrame, cfg: Dict[str, Any], trail_type: str = "ema21", 
         trail_atr_mult=atr_mult if atr_mult is not None else cfg["strategy"]["hourly"].get("trail_atr_mult", 2.0),
         rsi_threshold=rsi_threshold,
         margin=margin,
+        eod_force_close_utc=cfg.get("strategy", {}).get("eod_force_close_utc", ""),
+        eod_block_entries_after_utc=cfg.get("strategy", {}).get("eod_block_entries_after_utc", ""),
     )
     strat = stats._strategy
     return {

@@ -41,6 +41,8 @@ class TrendPullback(Strategy):
     margin = 1.0                # required-cash fraction; passed to Backtest(). Strategy uses
                                 #  it only to compute affordability-cap (allowed buying power
                                 #  is equity / margin). 1.0 = cash, 0.5 = 2x leverage.
+    eod_force_close_utc = ""    # "HH:MM" UTC; force close any position at/after this time. Empty = disabled.
+    eod_block_entries_after_utc = ""  # "HH:MM" UTC; no new entries after this time. Empty = disabled.
 
     def init(self):
         df = self.data.df
@@ -114,6 +116,27 @@ class TrendPullback(Strategy):
         bar_open = float(self.data.Open[-1])
         bar_low = float(self.data.Low[-1])
         bar_high = float(self.data.High[-1])
+
+        # ----- EOD logic for day-trading (forces no overnight financing on IG spread bet) -----
+        bar_ts = self.data.index[-1]
+        bar_time_str = bar_ts.strftime("%H:%M") if hasattr(bar_ts, "strftime") else ""
+        is_force_close = bool(self.eod_force_close_utc) and bar_time_str >= self.eod_force_close_utc
+        is_block_entries = bool(self.eod_block_entries_after_utc) and bar_time_str >= self.eod_block_entries_after_utc
+
+        # If force-close window active and we're holding, exit at this bar's open.
+        if is_force_close and self.position:
+            exit_px = self._slip_sell(bar_open)
+            self.position.close()
+            self._record("eod_force_close", exit_px)
+            self._reset_trade()
+            self._pending_entry = False
+            self._pending_zone = None
+            return
+
+        # If past block-entry window, kill any pending entry.
+        if is_block_entries and self._pending_entry and not self.position:
+            self._pending_entry = False
+            self._pending_zone = None
 
         if self._pending_entry and not self.position:
             entry_fill = self._slip_buy(bar_open)
@@ -203,7 +226,7 @@ class TrendPullback(Strategy):
                 self._reset_trade()
                 return
 
-        if not self.position and not self._pending_entry:
+        if not self.position and not self._pending_entry and not is_block_entries:
             if self._signal[i]:
                 self._pending_entry = True
                 self._pending_zone = self._zone_name[i] if self._zone_name is not None else None
