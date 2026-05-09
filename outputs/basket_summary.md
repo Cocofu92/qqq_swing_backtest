@@ -4,6 +4,6 @@ Basket: **QQQ, SPY, GLD, BNO, EWU, EWJ** -- equal-weighted, 4h, atr_2.5, RSI 40
 
 | Leverage | Total Return [%] | CAGR [%] | Max DD [%] | Holdout Return [%] | Holdout Max DD [%] |
 |---|---|---|---|---|---|
-| 1x | 2.11 | 0.49 | -1.65 | 0.77 | -1.39 |
+| 1x | 3.10 | 0.71 | -1.77 | 2.61 | -1.77 |
 
-_Generated: 2026-05-09T12:15:56.173746+00:00_
+_Generated: 2026-05-09T12:47:28.476081+00:00_
