@@ -11,4 +11,4 @@
 | Total Trades | 126 | 76 |
 | Avg Trade Duration | 1 days 10:17:00 | 1 days 15:13:00 |
 
-_Generated: 2026-05-09T14:14:56.942714Z_
+_Generated: 2026-05-09T21:01:27.471570Z_

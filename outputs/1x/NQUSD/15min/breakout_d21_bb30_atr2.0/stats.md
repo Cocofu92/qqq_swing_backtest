@@ -1,0 +1,14 @@
+# QQQ Trend-Pullback (1x/NQUSD/15min/breakout_d21_bb30_atr2.0) -- Stats
+
+| Metric | Train | Holdout |
+|---|---|---|
+| Total Return [%] | 0.000 | 0.000 |
+| CAGR [%] | 0.000 | 0.000 |
+| Win Rate [%] | nan | nan |
+| Profit Factor | nan | nan |
+| Max Drawdown [%] | -0.000 | -0.000 |
+| Sharpe Ratio | nan | nan |
+| Total Trades | 0 | 0 |
+| Avg Trade Duration | nan | nan |
+
+_Generated: 2026-05-09T21:09:53.921912Z_
