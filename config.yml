@@ -115,7 +115,7 @@ costs:
 execution:
   one_position_at_a_time: true
   no_pyramiding: true
-  initial_capital: 10000
+  initial_capital: 1000000       # USD; bumped from 10000 so high-priced futures tickers (NQUSD ~22k) can size positions
   risk_pct: 0.01
 
 # When running via the entrypoint, both modes are executed.
