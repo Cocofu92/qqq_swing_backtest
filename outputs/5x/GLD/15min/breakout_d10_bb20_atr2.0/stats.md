@@ -2,13 +2,13 @@
 
 | Metric | Train | Holdout |
 |---|---|---|
-| Total Return [%] | 9.455 | 44.529 |
-| CAGR [%] | 4.157 | 41.386 |
-| Win Rate [%] | 61.765 | 65.882 |
-| Profit Factor | 4.304 | 5.994 |
-| Max Drawdown [%] | -13.255 | -10.499 |
-| Sharpe Ratio | 0.365 | 1.385 |
-| Total Trades | 102 | 85 |
-| Avg Trade Duration | 1 days 03:29:00 | 0 days 20:00:00 |
+| Total Return [%] | 4.005 | 41.901 |
+| CAGR [%] | 1.786 | 38.967 |
+| Win Rate [%] | 53.409 | 61.039 |
+| Profit Factor | 3.053 | 6.318 |
+| Max Drawdown [%] | -9.020 | -8.248 |
+| Sharpe Ratio | 0.203 | 1.396 |
+| Total Trades | 88 | 77 |
+| Avg Trade Duration | 0 days 09:56:00 | 0 days 18:41:00 |
 
-_Generated: 2026-05-09T14:16:28.607799Z_
+_Generated: 2026-05-10T14:00:10.631984Z_

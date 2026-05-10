@@ -44,56 +44,68 @@
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=70
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=100
 [bt:1hour] mode=strict bias_true=4128 zone_true=6443 bias_and_zone=3219
-  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr3.0
+  -> [5x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
 [bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=15
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=85
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=142
@@ -107,56 +119,68 @@
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=75
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=107
 [bt:1hour] mode=loose bias_true=5266 zone_true=6498 bias_and_zone=4306
-  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_atr_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] QQQ/1hour/breakout_d55_bb40_atr3.0
+  -> [5x] QQQ/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] QQQ/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d10_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d21_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_atr_atr3.0
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb20_atr3.0
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb30_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr1.5
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr2.0
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr2.5
+  -> [5x] QQQ/1hour/breakout_d55_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
 
 ##### QQQ / 15min #####
 [data:QQQ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -201,58 +225,60 @@
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=182
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=231
 [bt:15min] mode=strict bias_true=12081 zone_true=18139 bias_and_zone=9808
-  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] QQQ/15min/breakout_d10_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr3.0
+  -> [5x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] QQQ/15min/breakout_d10_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr3.0
 [bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=75
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=286
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=485
@@ -266,406 +292,60 @@
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=222
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=281
 [bt:15min] mode=loose bias_true=15305 zone_true=18415 bias_and_zone=12871
-  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] QQQ/15min/pullback_atr_2.5_rsi40_legacy50
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] QQQ/15min/breakout_d10_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d10_bb40_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d21_bb40_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_atr_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_atr_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_atr_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_atr_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb20_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb30_atr3.0
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr1.5
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr2.0
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr2.5
-  -> [1x] QQQ/15min/breakout_d55_bb40_atr3.0
-
-========== Symbol: SPY ==========
-
-##### SPY / 1hour #####
-[data:SPY:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
-[data:SPY:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
-[data:SPY:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
-[data:SPY:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
-[data:SPY:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
-[data:SPY:1hour] chunk 2022-10-28->2022-12-27: 281 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
-[data:SPY:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
-[data:SPY:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
-[data:SPY:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
-[data:SPY:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
-[data:SPY:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
-[data:SPY:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
-[data:SPY:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
-[data:SPY:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
-[data:SPY:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
-[data:SPY:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
-[data:SPY:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
-[data:SPY:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
-[data:SPY:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
-[data:SPY:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
-[data:SPY:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
-[data:SPY:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
-[data:SPY:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
-[data:SPY:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
-[data:SPY:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
-[data:SPY:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
-[data:SPY:1hour] chunk 2026-04-11->2026-05-10: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:SPY:1hour] total after dedupe: 7607 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:SPY:1hour] returning 7607 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_1hour.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=33
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=92
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=151
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=199
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=33
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=64
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=112
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=145
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=32
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=44
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=86
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=113
-[bt:1hour] mode=strict bias_true=4134 zone_true=6420 bias_and_zone=3205
-  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] SPY/1hour/breakout_d10_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=45
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=114
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=178
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=236
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=45
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=78
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=131
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=169
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=42
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=51
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=94
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=124
-[bt:1hour] mode=loose bias_true=5149 zone_true=6505 bias_and_zone=4189
-  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] SPY/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] SPY/1hour/breakout_d10_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_atr_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_atr_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_atr_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_atr_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] SPY/1hour/breakout_d55_bb40_atr3.0
-
-##### SPY / 15min #####
-[data:SPY:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
-[data:SPY:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
-[data:SPY:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
-[data:SPY:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
-[data:SPY:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
-[data:SPY:15min] chunk 2022-10-28->2022-12-27: 753 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
-[data:SPY:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
-[data:SPY:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
-[data:SPY:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
-[data:SPY:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
-[data:SPY:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
-[data:SPY:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
-[data:SPY:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
-[data:SPY:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
-[data:SPY:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
-[data:SPY:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
-[data:SPY:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
-[data:SPY:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
-[data:SPY:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
-[data:SPY:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
-[data:SPY:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
-[data:SPY:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
-[data:SPY:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
-[data:SPY:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
-[data:SPY:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
-[data:SPY:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
-[data:SPY:15min] chunk 2026-04-10->2026-05-10: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:SPY:15min] total after dedupe: 21427 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:SPY:15min] returning 21427 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/SPY_15min.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=78
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=234
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=369
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=504
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=65
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=150
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=246
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=342
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=55
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=107
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=172
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=236
-[bt:15min] mode=strict bias_true=12094 zone_true=17981 bias_and_zone=9713
-  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] QQQ/15min/pullback_atr_2.5_rsi40_tiered
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_tiered
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d10_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d10_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d10_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d10_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d10_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d10_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d10_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb40_atr2.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_bb40_atr2.5
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d21_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d21_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d21_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d21_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d21_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d21_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d21_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb40_atr2.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_bb40_atr2.5
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d55_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d55_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d55_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d55_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb40_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb40_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=89
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=300
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=468
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=627
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=72
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=190
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=305
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=413
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=62
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=128
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=199
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=268
-[bt:15min] mode=loose bias_true=15292 zone_true=18239 bias_and_zone=12747
-  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_legacy50
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/pullback_atr_2.5_rsi40_tiered
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d10_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d10_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d10_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d10_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d10_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d10_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d10_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d10_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d10_bb40_atr2.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_bb40_atr2.5
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d10_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d21_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d21_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d21_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d21_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d21_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d21_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d21_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d21_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d21_bb40_atr2.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_bb40_atr2.5
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d21_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
-  stats = bt.run(
-  -> [1x] SPY/15min/breakout_d55_atr_atr1.5
-  -> [1x] SPY/15min/breakout_d55_atr_atr2.0
-  -> [1x] SPY/15min/breakout_d55_atr_atr2.5
-  -> [1x] SPY/15min/breakout_d55_atr_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb20_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb20_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb20_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb20_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb30_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb30_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb30_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb30_atr3.0
-  -> [1x] SPY/15min/breakout_d55_bb40_atr1.5
-  -> [1x] SPY/15min/breakout_d55_bb40_atr2.0
-  -> [1x] SPY/15min/breakout_d55_bb40_atr2.5
-  -> [1x] SPY/15min/breakout_d55_bb40_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d10_bb40_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d21_bb40_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_atr_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_atr_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_atr_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_atr_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb20_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb30_atr3.0
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr1.5
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr2.0
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr2.5
+  -> [5x] QQQ/15min/breakout_d55_bb40_atr3.0
 
 ========== Symbol: GLD ==========
 
@@ -712,56 +392,56 @@
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=46
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=61
 [bt:1hour] mode=strict bias_true=4626 zone_true=6126 bias_and_zone=3495
-  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] GLD/1hour/breakout_d10_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr3.0
+  -> [5x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [5x] GLD/1hour/breakout_d10_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr3.0
 [bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=8
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=89
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=135
@@ -775,68 +455,68 @@
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=52
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=71
 [bt:1hour] mode=loose bias_true=5877 zone_true=6218 bias_and_zone=4681
-  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] GLD/1hour/pullback_atr_2.5_rsi40_legacy50
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
+  -> [5x] GLD/1hour/pullback_atr_2.5_rsi40_tiered
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/breakout_d10_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/1hour/breakout_d10_bb40_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/1hour/breakout_d21_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] GLD/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_atr_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_atr_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_atr_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_atr_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] GLD/1hour/breakout_d55_bb40_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d21_bb40_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_atr_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_atr_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_atr_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_atr_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb20_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb30_atr3.0
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr1.5
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr2.0
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr2.5
+  -> [5x] GLD/1hour/breakout_d55_bb40_atr3.0
 
 ##### GLD / 15min #####
 [data:GLD:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
@@ -881,80 +561,84 @@
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=72
 [bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=117
 [bt:15min] mode=strict bias_true=13836 zone_true=17070 bias_and_zone=10749
-  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] GLD/15min/breakout_d10_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d10_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d10_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d10_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d10_bb20_atr1.5
+  -> [5x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr2.0
+  -> [5x] GLD/15min/pullback_atr_2.5_rsi40_tiered
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d10_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d10_bb20_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d10_bb30_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb30_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d10_bb30_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d10_bb30_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d10_bb40_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb40_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d21_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d21_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d21_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d21_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb20_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb20_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb20_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb20_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb30_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb30_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb30_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb30_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb40_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb40_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb40_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb40_atr3.0
-  -> [1x] GLD/15min/breakout_d55_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d55_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d55_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d55_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb20_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb20_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb20_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb20_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb30_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb30_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb30_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb30_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb40_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb40_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb40_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb40_atr2.5
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] GLD/15min/breakout_d10_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
+  stats = bt.run(
+  -> [5x] GLD/15min/breakout_d21_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d21_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d21_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d21_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb20_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb20_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d55_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d55_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d55_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d55_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb20_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb20_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb40_atr3.0
 [bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=53
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=241
 [bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=375
@@ -968,1040 +652,84 @@
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=76
 [bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=121
 [bt:15min] mode=loose bias_true=15786 zone_true=17217 bias_and_zone=12662
-  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] GLD/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] GLD/15min/breakout_d10_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d10_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d10_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d10_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d10_bb20_atr1.5
+  -> [5x] GLD/15min/pullback_atr_2.5_rsi40_legacy50
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr2.0
+  -> [5x] GLD/15min/pullback_atr_2.5_rsi40_tiered
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d10_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d10_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d10_bb20_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d10_bb20_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d10_bb30_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb30_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d10_bb30_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d10_bb30_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d10_bb40_atr1.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb40_atr2.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] GLD/15min/breakout_d21_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d21_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d21_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d21_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb20_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb20_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb20_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb20_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb30_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb30_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb30_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb30_atr3.0
-  -> [1x] GLD/15min/breakout_d21_bb40_atr1.5
-  -> [1x] GLD/15min/breakout_d21_bb40_atr2.0
-  -> [1x] GLD/15min/breakout_d21_bb40_atr2.5
-  -> [1x] GLD/15min/breakout_d21_bb40_atr3.0
-  -> [1x] GLD/15min/breakout_d55_atr_atr1.5
-  -> [1x] GLD/15min/breakout_d55_atr_atr2.0
-  -> [1x] GLD/15min/breakout_d55_atr_atr2.5
-  -> [1x] GLD/15min/breakout_d55_atr_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb20_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb20_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb20_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb20_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb30_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb30_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb30_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb30_atr3.0
-  -> [1x] GLD/15min/breakout_d55_bb40_atr1.5
-  -> [1x] GLD/15min/breakout_d55_bb40_atr2.0
-  -> [1x] GLD/15min/breakout_d55_bb40_atr2.5
-  -> [1x] GLD/15min/breakout_d55_bb40_atr3.0
-
-========== Symbol: BNO ==========
-
-##### BNO / 1hour #####
-[data:BNO:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
-[data:BNO:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
-[data:BNO:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
-[data:BNO:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
-[data:BNO:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
-[data:BNO:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
-[data:BNO:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
-[data:BNO:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
-[data:BNO:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
-[data:BNO:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
-[data:BNO:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
-[data:BNO:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
-[data:BNO:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
-[data:BNO:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
-[data:BNO:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
-[data:BNO:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
-[data:BNO:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
-[data:BNO:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
-[data:BNO:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
-[data:BNO:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
-[data:BNO:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
-[data:BNO:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
-[data:BNO:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
-[data:BNO:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
-[data:BNO:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
-[data:BNO:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
-[data:BNO:1hour] chunk 2026-04-11->2026-05-10: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:BNO:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:BNO:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_1hour.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=0
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=48
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=66
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=83
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=0
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=27
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=40
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=54
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=0
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=15
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=21
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=30
-[bt:1hour] mode=strict bias_true=1999 zone_true=6585 bias_and_zone=1621
-  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] BNO/1hour/breakout_d10_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=5
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=69
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=107
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=144
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=5
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=36
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=66
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=99
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=0
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=20
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=36
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=56
-[bt:1hour] mode=loose bias_true=3302 zone_true=6723 bias_and_zone=2747
-  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] BNO/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] BNO/1hour/breakout_d10_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_atr_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_atr_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_atr_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_atr_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] BNO/1hour/breakout_d55_bb40_atr3.0
-
-##### BNO / 15min #####
-[data:BNO:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
-[data:BNO:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
-[data:BNO:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
-[data:BNO:15min] chunk 2022-06-30->2022-08-29: 805 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
-[data:BNO:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
-[data:BNO:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
-[data:BNO:15min] chunk 2022-12-27->2023-02-25: 778 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
-[data:BNO:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
-[data:BNO:15min] chunk 2023-04-26->2023-06-25: 753 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
-[data:BNO:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
-[data:BNO:15min] chunk 2023-08-24->2023-10-23: 805 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
-[data:BNO:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
-[data:BNO:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
-[data:BNO:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
-[data:BNO:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
-[data:BNO:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
-[data:BNO:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
-[data:BNO:15min] chunk 2024-10-17->2024-12-16: 767 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
-[data:BNO:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
-[data:BNO:15min] chunk 2025-02-14->2025-04-15: 831 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
-[data:BNO:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
-[data:BNO:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
-[data:BNO:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
-[data:BNO:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
-[data:BNO:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
-[data:BNO:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
-[data:BNO:15min] chunk 2026-04-10->2026-05-10: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:BNO:15min] total after dedupe: 21435 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:BNO:15min] returning 21435 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/BNO_15min.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=6
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=71
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=113
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=169
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=4
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=35
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=59
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=94
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=3
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=14
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=28
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=47
-[bt:15min] mode=strict bias_true=5796 zone_true=17742 bias_and_zone=4503
-  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] BNO/15min/breakout_d10_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d10_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d10_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d10_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb40_atr3.0
-  -> [1x] BNO/15min/breakout_d21_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d21_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d21_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d21_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb40_atr3.0
-  -> [1x] BNO/15min/breakout_d55_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d55_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d55_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d55_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=15
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=135
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=217
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=298
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=8
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=72
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=118
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=170
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=6
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=36
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=64
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=97
-[bt:15min] mode=loose bias_true=9411 zone_true=18250 bias_and_zone=7557
-  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] BNO/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] BNO/15min/breakout_d10_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d10_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d10_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d10_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d10_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d10_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d10_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d10_bb40_atr3.0
-  -> [1x] BNO/15min/breakout_d21_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d21_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d21_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d21_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d21_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d21_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d21_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d21_bb40_atr3.0
-  -> [1x] BNO/15min/breakout_d55_atr_atr1.5
-  -> [1x] BNO/15min/breakout_d55_atr_atr2.0
-  -> [1x] BNO/15min/breakout_d55_atr_atr2.5
-  -> [1x] BNO/15min/breakout_d55_atr_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb20_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb20_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb20_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb20_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb30_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb30_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb30_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb30_atr3.0
-  -> [1x] BNO/15min/breakout_d55_bb40_atr1.5
-  -> [1x] BNO/15min/breakout_d55_bb40_atr2.0
-  -> [1x] BNO/15min/breakout_d55_bb40_atr2.5
-  -> [1x] BNO/15min/breakout_d55_bb40_atr3.0
-
-========== Symbol: EWU ==========
-
-##### EWU / 1hour #####
-[data:EWU:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
-[data:EWU:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
-[data:EWU:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
-[data:EWU:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
-[data:EWU:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
-[data:EWU:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
-[data:EWU:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
-[data:EWU:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
-[data:EWU:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
-[data:EWU:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
-[data:EWU:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
-[data:EWU:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
-[data:EWU:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
-[data:EWU:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
-[data:EWU:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
-[data:EWU:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
-[data:EWU:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
-[data:EWU:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
-[data:EWU:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
-[data:EWU:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
-[data:EWU:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
-[data:EWU:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
-[data:EWU:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
-[data:EWU:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
-[data:EWU:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
-[data:EWU:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
-[data:EWU:1hour] chunk 2026-04-11->2026-05-10: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:EWU:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:EWU:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_1hour.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=10
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=94
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=136
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=180
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=9
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=67
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=94
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=126
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=8
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=45
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=66
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=89
-[bt:1hour] mode=strict bias_true=3897 zone_true=6307 bias_and_zone=3011
-  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWU/1hour/breakout_d10_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=10
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=106
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=162
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=222
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=9
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=71
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=106
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=148
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=8
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=47
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=73
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=100
-[bt:1hour] mode=loose bias_true=5233 zone_true=6446 bias_and_zone=4250
-  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWU/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWU/1hour/breakout_d10_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d10_bb40_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_atr_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_atr_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_atr_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_atr_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] EWU/1hour/breakout_d55_bb40_atr3.0
-
-##### EWU / 15min #####
-[data:EWU:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
-[data:EWU:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
-[data:EWU:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
-[data:EWU:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
-[data:EWU:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
-[data:EWU:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
-[data:EWU:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
-[data:EWU:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
-[data:EWU:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
-[data:EWU:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
-[data:EWU:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
-[data:EWU:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
-[data:EWU:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
-[data:EWU:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
-[data:EWU:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
-[data:EWU:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
-[data:EWU:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
-[data:EWU:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
-[data:EWU:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
-[data:EWU:15min] chunk 2025-02-14->2025-04-15: 832 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
-[data:EWU:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
-[data:EWU:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
-[data:EWU:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
-[data:EWU:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
-[data:EWU:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
-[data:EWU:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
-[data:EWU:15min] chunk 2026-04-10->2026-05-10: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:EWU:15min] total after dedupe: 21442 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:EWU:15min] returning 21442 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWU_15min.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=60
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=207
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=323
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=443
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=42
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=98
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=172
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=250
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=25
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=52
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=93
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=127
-[bt:15min] mode=strict bias_true=11520 zone_true=17236 bias_and_zone=8775
-  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWU/15min/breakout_d10_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d10_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d10_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d10_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb40_atr3.0
-  -> [1x] EWU/15min/breakout_d21_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d21_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d21_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d21_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb40_atr3.0
-  -> [1x] EWU/15min/breakout_d55_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d55_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d55_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d55_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=73
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=271
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=423
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=582
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=53
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=133
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=232
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=337
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=34
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=74
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=126
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=169
-[bt:15min] mode=loose bias_true=14174 zone_true=17612 bias_and_zone=11291
-  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWU/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWU/15min/breakout_d10_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d10_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d10_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d10_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d10_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d10_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d10_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d10_bb40_atr3.0
-  -> [1x] EWU/15min/breakout_d21_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d21_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d21_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d21_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d21_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d21_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d21_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d21_bb40_atr3.0
-  -> [1x] EWU/15min/breakout_d55_atr_atr1.5
-  -> [1x] EWU/15min/breakout_d55_atr_atr2.0
-  -> [1x] EWU/15min/breakout_d55_atr_atr2.5
-  -> [1x] EWU/15min/breakout_d55_atr_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb20_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb20_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb20_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb20_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb30_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb30_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb30_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb30_atr3.0
-  -> [1x] EWU/15min/breakout_d55_bb40_atr1.5
-  -> [1x] EWU/15min/breakout_d55_bb40_atr2.0
-  -> [1x] EWU/15min/breakout_d55_bb40_atr2.5
-  -> [1x] EWU/15min/breakout_d55_bb40_atr3.0
-
-========== Symbol: EWJ ==========
-
-##### EWJ / 1hour #####
-[data:EWJ:1hour] chunk 2022-01-01->2022-03-02: 287 bars, 2022-01-03 14:30:00+00:00 to 2022-03-02 20:30:00+00:00
-[data:EWJ:1hour] chunk 2022-03-02->2022-05-01: 294 bars, 2022-03-02 14:30:00+00:00 to 2022-04-29 19:30:00+00:00
-[data:EWJ:1hour] chunk 2022-05-01->2022-06-30: 294 bars, 2022-05-02 13:30:00+00:00 to 2022-06-30 19:30:00+00:00
-[data:EWJ:1hour] chunk 2022-06-30->2022-08-29: 294 bars, 2022-06-30 13:30:00+00:00 to 2022-08-29 19:30:00+00:00
-[data:EWJ:1hour] chunk 2022-08-29->2022-10-28: 308 bars, 2022-08-29 13:30:00+00:00 to 2022-10-28 19:30:00+00:00
-[data:EWJ:1hour] chunk 2022-10-28->2022-12-27: 284 bars, 2022-10-28 13:30:00+00:00 to 2022-12-27 20:30:00+00:00
-[data:EWJ:1hour] chunk 2022-12-27->2023-02-25: 287 bars, 2022-12-27 14:30:00+00:00 to 2023-02-24 20:30:00+00:00
-[data:EWJ:1hour] chunk 2023-02-25->2023-04-26: 294 bars, 2023-02-27 14:30:00+00:00 to 2023-04-26 19:30:00+00:00
-[data:EWJ:1hour] chunk 2023-04-26->2023-06-25: 287 bars, 2023-04-26 13:30:00+00:00 to 2023-06-23 19:30:00+00:00
-[data:EWJ:1hour] chunk 2023-06-25->2023-08-24: 298 bars, 2023-06-26 13:30:00+00:00 to 2023-08-24 19:30:00+00:00
-[data:EWJ:1hour] chunk 2023-08-24->2023-10-23: 294 bars, 2023-08-24 13:30:00+00:00 to 2023-10-23 19:30:00+00:00
-[data:EWJ:1hour] chunk 2023-10-23->2023-12-22: 305 bars, 2023-10-23 13:30:00+00:00 to 2023-12-22 20:30:00+00:00
-[data:EWJ:1hour] chunk 2023-12-22->2024-02-20: 273 bars, 2023-12-22 14:30:00+00:00 to 2024-02-20 20:30:00+00:00
-[data:EWJ:1hour] chunk 2024-02-20->2024-04-20: 301 bars, 2024-02-20 14:30:00+00:00 to 2024-04-19 19:30:00+00:00
-[data:EWJ:1hour] chunk 2024-04-20->2024-06-19: 287 bars, 2024-04-22 13:30:00+00:00 to 2024-06-18 19:30:00+00:00
-[data:EWJ:1hour] chunk 2024-06-19->2024-08-18: 284 bars, 2024-06-20 13:30:00+00:00 to 2024-08-16 19:30:00+00:00
-[data:EWJ:1hour] chunk 2024-08-18->2024-10-17: 301 bars, 2024-08-19 13:30:00+00:00 to 2024-10-17 19:30:00+00:00
-[data:EWJ:1hour] chunk 2024-10-17->2024-12-16: 291 bars, 2024-10-17 13:30:00+00:00 to 2024-12-16 20:30:00+00:00
-[data:EWJ:1hour] chunk 2024-12-16->2025-02-14: 284 bars, 2024-12-16 14:30:00+00:00 to 2025-02-14 20:30:00+00:00
-[data:EWJ:1hour] chunk 2025-02-14->2025-04-15: 294 bars, 2025-02-14 14:30:00+00:00 to 2025-04-15 19:30:00+00:00
-[data:EWJ:1hour] chunk 2025-04-15->2025-06-14: 294 bars, 2025-04-15 13:30:00+00:00 to 2025-06-13 19:30:00+00:00
-[data:EWJ:1hour] chunk 2025-06-14->2025-08-13: 284 bars, 2025-06-16 13:30:00+00:00 to 2025-08-13 19:30:00+00:00
-[data:EWJ:1hour] chunk 2025-08-13->2025-10-12: 294 bars, 2025-08-13 13:30:00+00:00 to 2025-10-10 19:30:00+00:00
-[data:EWJ:1hour] chunk 2025-10-12->2025-12-11: 298 bars, 2025-10-13 13:30:00+00:00 to 2025-12-11 20:30:00+00:00
-[data:EWJ:1hour] chunk 2025-12-12->2026-02-10: 277 bars, 2025-12-12 14:30:00+00:00 to 2026-02-10 20:30:00+00:00
-[data:EWJ:1hour] chunk 2026-02-10->2026-04-11: 294 bars, 2026-02-10 14:30:00+00:00 to 2026-04-10 19:30:00+00:00
-[data:EWJ:1hour] chunk 2026-04-11->2026-05-10: 140 bars, 2026-04-13 13:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:EWJ:1hour] total after dedupe: 7610 bars, 2022-01-03 14:30:00+00:00 to 2026-05-08 19:30:00+00:00
-[data:EWJ:1hour] returning 7610 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_1hour.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=17
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=101
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=141
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=182
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=16
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=66
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=95
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=120
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=10
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=33
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=52
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=67
-[bt:1hour] mode=strict bias_true=3919 zone_true=6209 bias_and_zone=2973
-  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb40_atr2.5
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=27
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=123
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=175
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=240
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=24
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=77
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=112
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=154
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=17
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=40
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=63
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=88
-[bt:1hour] mode=loose bias_true=5201 zone_true=6361 bias_and_zone=4194
-  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWJ/1hour/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d10_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d10_bb40_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:171: UserWarning: Some trades remain open at the end of backtest. Use `Backtest(..., finalize_trades=True)` to close them and include them in stats.
   stats = bt.run(
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d21_bb40_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_atr_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb20_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb30_atr3.0
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr1.5
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr2.0
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr2.5
-  -> [1x] EWJ/1hour/breakout_d55_bb40_atr3.0
-
-##### EWJ / 15min #####
-[data:EWJ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
-[data:EWJ:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
-[data:EWJ:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
-[data:EWJ:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
-[data:EWJ:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
-[data:EWJ:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
-[data:EWJ:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
-[data:EWJ:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
-[data:EWJ:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
-[data:EWJ:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
-[data:EWJ:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
-[data:EWJ:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
-[data:EWJ:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
-[data:EWJ:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
-[data:EWJ:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
-[data:EWJ:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
-[data:EWJ:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
-[data:EWJ:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
-[data:EWJ:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
-[data:EWJ:15min] chunk 2025-02-14->2025-04-15: 831 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
-[data:EWJ:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
-[data:EWJ:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
-[data:EWJ:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
-[data:EWJ:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
-[data:EWJ:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
-[data:EWJ:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
-[data:EWJ:15min] chunk 2026-04-10->2026-05-10: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:EWJ:15min] total after dedupe: 21441 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
-[data:EWJ:15min] returning 21441 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_15min.parquet
-[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=67
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=228
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=340
-[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=464
-[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=48
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=116
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=185
-[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=262
-[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=22
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=52
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=91
-[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=126
-[bt:15min] mode=strict bias_true=11352 zone_true=16758 bias_and_zone=8440
-  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWJ/15min/breakout_d10_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr3.0
-[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=84
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=285
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=428
-[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=591
-[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=56
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=137
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=227
-[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=332
-[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=22
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=56
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=104
-[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=148
-[bt:15min] mode=loose bias_true=14876 zone_true=17064 bias_and_zone=11662
-  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
-  -> [1x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
-  -> [1x] EWJ/15min/breakout_d10_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d10_bb40_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d21_bb40_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_atr_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_atr_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_atr_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_atr_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb20_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb30_atr3.0
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr1.5
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr2.0
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr2.5
-  -> [1x] EWJ/15min/breakout_d55_bb40_atr3.0
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
-  fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
-  fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
-  fig.tight_layout()
-/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
-  fig.tight_layout()
+  -> [5x] GLD/15min/breakout_d21_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d21_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d21_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d21_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb20_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb20_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d21_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d21_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d21_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d21_bb40_atr3.0
+  -> [5x] GLD/15min/breakout_d55_atr_atr1.5
+  -> [5x] GLD/15min/breakout_d55_atr_atr2.0
+  -> [5x] GLD/15min/breakout_d55_atr_atr2.5
+  -> [5x] GLD/15min/breakout_d55_atr_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb20_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb20_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb20_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb20_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb30_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb30_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb30_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb30_atr3.0
+  -> [5x] GLD/15min/breakout_d55_bb40_atr1.5
+  -> [5x] GLD/15min/breakout_d55_bb40_atr2.0
+  -> [5x] GLD/15min/breakout_d55_bb40_atr2.5
+  -> [5x] GLD/15min/breakout_d55_bb40_atr3.0
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
   fig.tight_layout()
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
@@ -2011,7 +739,7 @@
 /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:692: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
   md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
 [basket] wrote basket_summary.md + basket_curves.png (1 margin levels)
-[portfolio:best_return/1x] wrote summary + curve
-[portfolio:best_risk_adjusted/1x] wrote summary + curve
+[portfolio:qqq_gld_breakout/5x] wrote summary + curve
+[portfolio:qqq_gld_pullback/5x] wrote summary + curve
 
 Done. See outputs/.
