@@ -1,0 +1,100 @@
+name: Risk-pct sweep (6 ETFs × 5 risk levels)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Optional tag for the run"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        risk:
+          - {label: "0.5pct", risk_pct: "0.005"}
+          - {label: "1pct",   risk_pct: "0.01"}
+          - {label: "1.5pct", risk_pct: "0.015"}
+          - {label: "2pct",   risk_pct: "0.02"}
+          - {label: "2.5pct", risk_pct: "0.025"}
+
+    name: ${{ matrix.risk.label }}
+    concurrency:
+      group: risk-sweep-${{ matrix.risk.label }}
+      cancel-in-progress: false
+
+    env:
+      FMP_KEY: ${{ secrets.FMP_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: pip install -e .
+      - name: Override risk_pct in config.yml
+        run: |
+          # Replace the risk_pct line for THIS cell only
+          python3 -c "
+          from pathlib import Path
+          import re
+          p = Path('config.yml')
+          s = p.read_text()
+          s = re.sub(r'  risk_pct: [0-9.]+',
+                     '  risk_pct: ${{ matrix.risk.risk_pct }}',
+                     s, count=1)
+          p.write_text(s)
+          "
+          grep "risk_pct:" config.yml
+      - name: Tests
+        run: pytest tests/ -v
+      - name: Run backtest sweep
+        env:
+          FMP_KEY: ${{ secrets.FMP_KEY }}
+        run: |
+          mkdir -p outputs
+          python -m src.backtest 2>&1 | tee outputs/run.log
+          test ${PIPESTATUS[0]} -eq 0
+      - name: Commit results to risk-labelled directory
+        if: always()
+        run: |
+          ts=$(date -u +%Y-%m-%dT%H-%M-%SZ)
+          dest="risk_sweep/${ts}/${{ matrix.risk.label }}"
+          mkdir -p "$dest"
+          # Copy the artefacts we care about
+          for d in portfolio_best_return portfolio_best_risk_adjusted; do
+            if [ -d "outputs/$d" ]; then
+              cp -r "outputs/$d" "$dest/"
+            fi
+          done
+          if [ -f outputs/comparison.md ]; then
+            cp outputs/comparison.md "$dest/"
+          fi
+          if [ -f outputs/run.log ]; then
+            tail -200 outputs/run.log > "$dest/run_tail.log"
+          fi
+
+          git config user.email "github-actions@github.com"
+          git config user.name "github-actions"
+          # Reset config.yml to avoid committing the per-cell override
+          git checkout -- config.yml || true
+          git add risk_sweep/
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "risk-sweep: ${{ matrix.risk.label }} ${ts} ${{ github.event.inputs.tag }}"
+            for i in 1 2 3 4 5; do
+              git pull --rebase origin main && git push && break
+              sleep $((i * 5))
+            done
+          fi
