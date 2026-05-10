@@ -103,7 +103,7 @@ strategy:
     partial_exit_pct: 50
 
 costs:
-  spread: 0.01
+  spread: 1.0           # absolute price units round-trip -- IG ETF spread bet realism (was 0.01 = unrealistically tight)
   commission: 0.0
   slippage_ticks: 1
   tick_size: 0.01
@@ -111,7 +111,7 @@ costs:
 execution:
   one_position_at_a_time: true
   no_pyramiding: true
-  initial_capital: 1000000       # USD; bumped from 10000 so high-priced futures tickers (NQUSD ~22k) can size positions
+  initial_capital: 10000          # GBP/USD baseline -- 1% risk_pct on this gives £100/trade risk
   risk_pct: 0.01
 
 # When running via the entrypoint, both modes are executed.

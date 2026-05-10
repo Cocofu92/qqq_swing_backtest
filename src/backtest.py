@@ -480,6 +480,8 @@ def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
             plt.close(fig)
 
             # Per-leverage detailed summary
+            ending_equity = portfolio_curve.iloc[-1]
+            holdout_ending = holdout_curve.iloc[-1] if not holdout_curve.empty else initial
             sub = [
                 f"# Portfolio: {pname} @ {margin_label}",
                 "",
@@ -489,9 +491,12 @@ def write_portfolio_summary(sweep: Dict[str, Dict[str, Any]], cfg: Dict[str, Any
                 "",
                 "| Metric | Train+Holdout | Holdout-only |",
                 "|---|---|---|",
+                f"| Starting equity | \u00a3{initial:,.0f} | \u00a3{initial:,.0f} (notional) |",
+                f"| **Ending equity** | **\u00a3{ending_equity:,.0f}** | \u00a3{holdout_ending:,.0f} |",
                 f"| Total return [%] | {total_ret:.2f} | {h_ret:.2f} |",
                 f"| CAGR [%] | {cagr:.2f} | -- |",
                 f"| Max drawdown [%] | {max_dd:.2f} | {h_max_dd:.2f} |",
+                f"| Max drawdown (\u00a3) | \u00a3{initial * abs(max_dd) / 100:,.0f} | \u00a3{initial * abs(h_max_dd) / 100:,.0f} |",
                 "",
                 "## Members",
                 "",
