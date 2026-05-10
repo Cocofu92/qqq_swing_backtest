@@ -4,20 +4,12 @@ strategies:
 
 basket:
   - QQQ
-  - SPY
   - GLD
-  - BNO
-  - EWU
-  - EWJ
 
 
 symbols:
   - QQQ
-  - SPY
   - GLD
-  - BNO
-  - EWU
-  - EWJ
 
 
 
@@ -45,7 +37,9 @@ rsi_thresholds:
 
 # Leverage sweep -- consistency check, 1x only
 margins:
-  - 1.0       # 1x baseline -- no leverage scan this run
+  - 1.0       # 1x baseline
+  - 0.3333    # 3x leverage
+  - 0.2       # 5x leverage  -- our target if drawdown stays under 20%
 
 
 
@@ -103,7 +97,7 @@ strategy:
     partial_exit_pct: 50
 
 costs:
-  spread: 1.0           # absolute price units round-trip -- IG ETF spread bet realism (was 0.01 = unrealistically tight)
+  spread: 0.5           # absolute price units round-trip -- IG ETF spread bet, mid-range estimate (live varies 0.5-1.5)
   commission: 0.0
   slippage_ticks: 1
   tick_size: 0.01
@@ -127,20 +121,14 @@ modes:
 # equal-weighted into a single portfolio equity curve. Each member must
 # correspond to a variant the main sweep produces.
 portfolios:
-  best_return:
-    description: "Highest holdout return per symbol"
-    members:
-      - {symbol: GLD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: EWJ, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: BNO, tf: 15min, label: breakout_d21_bb40_atr3.0}
-      - {symbol: QQQ, tf: 1hour, label: pullback_atr_2.5_rsi40_legacy50}
-      - {symbol: EWU, tf: 15min, label: breakout_d55_bb40_atr3.0}
-
-  best_risk_adjusted:
-    description: "Highest holdout return / |MaxDD| per symbol"
+  qqq_gld_breakout:
+    description: "Concentrated alpha: GLD + QQQ breakouts that survived realistic spread"
     members:
       - {symbol: GLD, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: EWJ, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: BNO, tf: 15min, label: breakout_d21_bb40_atr3.0}
       - {symbol: QQQ, tf: 1hour, label: breakout_d10_bb40_atr2.0}
-      - {symbol: EWU, tf: 15min, label: breakout_d55_bb40_atr3.0}
+
+  qqq_gld_pullback:
+    description: "Pullback variant on the same 2-symbol basket, for comparison"
+    members:
+      - {symbol: GLD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
+      - {symbol: QQQ, tf: 1hour, label: pullback_atr_2.5_rsi40_legacy50}
