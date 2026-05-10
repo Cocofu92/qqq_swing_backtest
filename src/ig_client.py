@@ -462,7 +462,7 @@ class IGClient:
         """
         # Small probe: one daily bar, doesn't burn meaningful allowance.
         try:
-            data = self._request("GET", "/prices/IX.D.NASDAQ.IFD.IP", version="3",
+            data = self._request("GET", "/prices/IX.D.NASDAQ.CASH.IP", version="3",
                                  params={"resolution": "DAY", "max": "1"})
             return data.get("allowance") or {}
         except IGError:
