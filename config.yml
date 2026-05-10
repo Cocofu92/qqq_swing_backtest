@@ -37,9 +37,11 @@ rsi_thresholds:
 
 # Leverage sweep -- consistency check, 1x only
 margins:
-  - 1.0       # 1x baseline
-  - 0.3333    # 3x leverage
-  - 0.2       # 5x leverage  -- our target if drawdown stays under 20%
+  - 0.2       # IG ETF margin requirement (20%) -- this is what proper IG sizing requires.
+              # margin=1.0 was underbuying because backtesting.py treats it as cash equity:
+              # affordability cap (95% of cash) clipped position size, so real risk per trade
+              # ended up much smaller than risk_pct intended. margin=0.2 matches IG behaviour.
+              # Add 0.1 (10x) for an aggressive test if drawdowns stay tame.
 
 
 
