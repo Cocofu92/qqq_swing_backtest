@@ -1,0 +1,200 @@
+  -> [5x] EWJ/1hour/breakout_d21_bb30_atr2.5
+  -> [5x] EWJ/1hour/breakout_d21_bb30_atr3.0
+  -> [5x] EWJ/1hour/breakout_d21_bb40_atr1.5
+  -> [5x] EWJ/1hour/breakout_d21_bb40_atr2.0
+  -> [5x] EWJ/1hour/breakout_d21_bb40_atr2.5
+  -> [5x] EWJ/1hour/breakout_d21_bb40_atr3.0
+  -> [5x] EWJ/1hour/breakout_d55_atr_atr1.5
+  -> [5x] EWJ/1hour/breakout_d55_atr_atr2.0
+  -> [5x] EWJ/1hour/breakout_d55_atr_atr2.5
+  -> [5x] EWJ/1hour/breakout_d55_atr_atr3.0
+  -> [5x] EWJ/1hour/breakout_d55_bb20_atr1.5
+  -> [5x] EWJ/1hour/breakout_d55_bb20_atr2.0
+  -> [5x] EWJ/1hour/breakout_d55_bb20_atr2.5
+  -> [5x] EWJ/1hour/breakout_d55_bb20_atr3.0
+  -> [5x] EWJ/1hour/breakout_d55_bb30_atr1.5
+  -> [5x] EWJ/1hour/breakout_d55_bb30_atr2.0
+  -> [5x] EWJ/1hour/breakout_d55_bb30_atr2.5
+  -> [5x] EWJ/1hour/breakout_d55_bb30_atr3.0
+  -> [5x] EWJ/1hour/breakout_d55_bb40_atr1.5
+  -> [5x] EWJ/1hour/breakout_d55_bb40_atr2.0
+  -> [5x] EWJ/1hour/breakout_d55_bb40_atr2.5
+  -> [5x] EWJ/1hour/breakout_d55_bb40_atr3.0
+
+##### EWJ / 15min #####
+[data:EWJ:15min] chunk 2022-01-01->2022-03-02: 806 bars, 2022-01-18 14:30:00+00:00 to 2022-03-02 20:45:00+00:00
+[data:EWJ:15min] chunk 2022-03-02->2022-05-01: 780 bars, 2022-03-18 13:30:00+00:00 to 2022-04-29 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-05-01->2022-06-30: 806 bars, 2022-05-17 13:30:00+00:00 to 2022-06-30 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-06-30->2022-08-29: 806 bars, 2022-07-18 13:30:00+00:00 to 2022-08-29 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-08-29->2022-10-28: 858 bars, 2022-09-14 13:30:00+00:00 to 2022-10-28 19:45:00+00:00
+[data:EWJ:15min] chunk 2022-10-28->2022-12-27: 768 bars, 2022-11-14 14:30:00+00:00 to 2022-12-27 20:45:00+00:00
+[data:EWJ:15min] chunk 2022-12-27->2023-02-25: 780 bars, 2023-01-12 14:30:00+00:00 to 2023-02-24 20:45:00+00:00
+[data:EWJ:15min] chunk 2023-02-25->2023-04-26: 832 bars, 2023-03-13 13:30:00+00:00 to 2023-04-26 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-04-26->2023-06-25: 754 bars, 2023-05-12 13:30:00+00:00 to 2023-06-23 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-06-25->2023-08-24: 858 bars, 2023-07-11 13:30:00+00:00 to 2023-08-24 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-08-24->2023-10-23: 806 bars, 2023-09-11 13:30:00+00:00 to 2023-10-23 19:45:00+00:00
+[data:EWJ:15min] chunk 2023-10-23->2023-12-22: 820 bars, 2023-11-08 14:30:00+00:00 to 2023-12-22 20:45:00+00:00
+[data:EWJ:15min] chunk 2023-12-22->2024-02-20: 780 bars, 2024-01-08 14:30:00+00:00 to 2024-02-20 20:45:00+00:00
+[data:EWJ:15min] chunk 2024-02-20->2024-04-20: 806 bars, 2024-03-07 14:30:00+00:00 to 2024-04-19 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-04-20->2024-06-19: 806 bars, 2024-05-06 13:30:00+00:00 to 2024-06-18 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-06-19->2024-08-18: 806 bars, 2024-07-05 13:30:00+00:00 to 2024-08-16 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-08-18->2024-10-17: 858 bars, 2024-09-03 13:30:00+00:00 to 2024-10-17 19:45:00+00:00
+[data:EWJ:15min] chunk 2024-10-17->2024-12-16: 768 bars, 2024-11-04 14:30:00+00:00 to 2024-12-16 20:45:00+00:00
+[data:EWJ:15min] chunk 2024-12-16->2025-02-14: 780 bars, 2025-01-02 14:30:00+00:00 to 2025-02-14 20:45:00+00:00
+[data:EWJ:15min] chunk 2025-02-14->2025-04-15: 831 bars, 2025-03-03 14:30:00+00:00 to 2025-04-15 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-04-15->2025-06-14: 806 bars, 2025-05-01 13:30:00+00:00 to 2025-06-13 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-06-14->2025-08-13: 820 bars, 2025-06-30 13:30:00+00:00 to 2025-08-13 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-08-13->2025-10-12: 780 bars, 2025-08-29 13:30:00+00:00 to 2025-10-10 19:45:00+00:00
+[data:EWJ:15min] chunk 2025-10-12->2025-12-11: 820 bars, 2025-10-28 13:30:00+00:00 to 2025-12-11 20:45:00+00:00
+[data:EWJ:15min] chunk 2025-12-11->2026-02-09: 754 bars, 2025-12-29 14:30:00+00:00 to 2026-02-09 20:45:00+00:00
+[data:EWJ:15min] chunk 2026-02-09->2026-04-10: 832 bars, 2026-02-25 14:30:00+00:00 to 2026-04-10 19:45:00+00:00
+[data:EWJ:15min] chunk 2026-04-10->2026-05-10: 546 bars, 2026-04-10 13:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWJ:15min] total after dedupe: 21441 bars, 2022-01-18 14:30:00+00:00 to 2026-05-08 19:45:00+00:00
+[data:EWJ:15min] returning 21441 bars in requested window, cached to /home/runner/work/qqq_swing_backtest/qqq_swing_backtest/data/EWJ_15min.parquet
+[bt:breakout] mode=strict breakout_signal_10_consolidation_atr true_bars=67
+[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p20 true_bars=228
+[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p30 true_bars=340
+[bt:breakout] mode=strict breakout_signal_10_consolidation_bb_p40 true_bars=464
+[bt:breakout] mode=strict breakout_signal_21_consolidation_atr true_bars=48
+[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p20 true_bars=116
+[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p30 true_bars=185
+[bt:breakout] mode=strict breakout_signal_21_consolidation_bb_p40 true_bars=262
+[bt:breakout] mode=strict breakout_signal_55_consolidation_atr true_bars=22
+[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p20 true_bars=52
+[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p30 true_bars=91
+[bt:breakout] mode=strict breakout_signal_55_consolidation_bb_p40 true_bars=126
+[bt:15min] mode=strict bias_true=11352 zone_true=16758 bias_and_zone=8440
+  -> [5x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
+  -> [5x] EWJ/15min/breakout_d10_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr3.0
+[bt:breakout] mode=loose breakout_signal_10_consolidation_atr true_bars=84
+[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p20 true_bars=285
+[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p30 true_bars=428
+[bt:breakout] mode=loose breakout_signal_10_consolidation_bb_p40 true_bars=591
+[bt:breakout] mode=loose breakout_signal_21_consolidation_atr true_bars=56
+[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p20 true_bars=137
+[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p30 true_bars=227
+[bt:breakout] mode=loose breakout_signal_21_consolidation_bb_p40 true_bars=332
+[bt:breakout] mode=loose breakout_signal_55_consolidation_atr true_bars=22
+[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p20 true_bars=56
+[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p30 true_bars=104
+[bt:breakout] mode=loose breakout_signal_55_consolidation_bb_p40 true_bars=148
+[bt:15min] mode=loose bias_true=14876 zone_true=17064 bias_and_zone=11662
+  -> [5x] EWJ/15min/pullback_atr_2.5_rsi40_legacy50
+  -> [5x] EWJ/15min/pullback_atr_2.5_rsi40_tiered
+  -> [5x] EWJ/15min/breakout_d10_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d10_bb40_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d21_bb40_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_atr_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_atr_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_atr_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_atr_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb20_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb30_atr3.0
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr1.5
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr2.0
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr2.5
+  -> [5x] EWJ/15min/breakout_d55_bb40_atr3.0
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:762: UserWarning: Tight layout not applied. The bottom and top margins cannot be made large enough to accommodate all Axes decorations.
+  fig.tight_layout()
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:860: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  rows.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+/home/runner/work/qqq_swing_backtest/qqq_swing_backtest/src/backtest.py:692: Pandas4Warning: Timestamp.utcnow is deprecated and will be removed in a future version. Use Timestamp.now('UTC') instead.
+  md.append(f"_Generated: {pd.Timestamp.utcnow().isoformat()}_")
+[basket] wrote basket_summary.md + basket_curves.png (1 margin levels)
+[portfolio:best_return/5x] wrote summary + curve
+[portfolio:best_risk_adjusted/5x] wrote summary + curve
+
+Done. See outputs/.
