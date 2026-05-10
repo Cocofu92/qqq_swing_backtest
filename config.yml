@@ -7,10 +7,8 @@ basket:
   - SPY
   - GLD
   - BNO
-  - NQUSD
-  - ESUSD
-  - GCUSD
-  - BZUSD
+  - EWU
+  - EWJ
 
 
 symbols:
@@ -18,10 +16,8 @@ symbols:
   - SPY
   - GLD
   - BNO
-  - NQUSD
-  - ESUSD
-  - GCUSD
-  - BZUSD
+  - EWU
+  - EWJ
 
 
 
@@ -125,37 +121,26 @@ modes:
 
 
 # -----------------------------------------------------------------------------
-# Portfolios -- ETF vs Futures consistency check
+# Portfolios
 # -----------------------------------------------------------------------------
+# Named combinations of (symbol, timeframe, variant_label) that get
+# equal-weighted into a single portfolio equity curve. Each member must
+# correspond to a variant the main sweep produces.
 portfolios:
-  etf_pullback_15min:
-    description: "ETFs (QQQ/SPY/GLD/BNO) on 15min pullback tiered"
+  best_return:
+    description: "Highest holdout return per symbol"
     members:
-      - {symbol: QQQ, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: SPY, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
       - {symbol: GLD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: BNO, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
+      - {symbol: EWJ, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
+      - {symbol: BNO, tf: 15min, label: breakout_d21_bb40_atr3.0}
+      - {symbol: QQQ, tf: 1hour, label: pullback_atr_2.5_rsi40_legacy50}
+      - {symbol: EWU, tf: 15min, label: breakout_d55_bb40_atr3.0}
 
-  futures_pullback_15min:
-    description: "Futures (NQUSD/ESUSD/GCUSD/BZUSD) on 15min pullback tiered"
+  best_risk_adjusted:
+    description: "Highest holdout return / |MaxDD| per symbol"
     members:
-      - {symbol: NQUSD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: ESUSD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: GCUSD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-      - {symbol: BZUSD, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
-
-  etf_breakout_15min:
-    description: "ETFs on 15min breakout d10 bb40 atr3.0"
-    members:
-      - {symbol: QQQ, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: SPY, tf: 15min, label: breakout_d10_bb40_atr3.0}
       - {symbol: GLD, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: BNO, tf: 15min, label: breakout_d10_bb40_atr3.0}
-
-  futures_breakout_15min:
-    description: "Futures on 15min breakout d10 bb40 atr3.0"
-    members:
-      - {symbol: NQUSD, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: ESUSD, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: GCUSD, tf: 15min, label: breakout_d10_bb40_atr3.0}
-      - {symbol: BZUSD, tf: 15min, label: breakout_d10_bb40_atr3.0}
+      - {symbol: EWJ, tf: 15min, label: pullback_atr_2.5_rsi40_tiered}
+      - {symbol: BNO, tf: 15min, label: breakout_d21_bb40_atr3.0}
+      - {symbol: QQQ, tf: 1hour, label: breakout_d10_bb40_atr2.0}
+      - {symbol: EWU, tf: 15min, label: breakout_d55_bb40_atr3.0}
