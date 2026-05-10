@@ -32,12 +32,15 @@ from .ig_client import IGClient, IGError
 
 # Symbols we run in the backtest -> IG search terms. Multiple terms tried.
 SEARCH_TERMS: Dict[str, List[str]] = {
-    "QQQ": ["US Tech 100", "Nasdaq 100"],
-    "SPY": ["US 500", "S&P 500"],
-    "GLD": ["Spot Gold", "Gold"],
-    "BNO": ["Brent Crude", "Brent"],
-    "EWU": ["FTSE 100"],
-    "EWJ": ["Japan 225", "Nikkei"],
+    # Targeting the actual US-listed ETFs we backtest -- IG spread betting
+    # on these gives same trade hours and pricing dynamics as the FMP ETF data
+    # the strategy was validated on.
+    "QQQ":  ["Invesco QQQ", "QQQ"],
+    "SPY":  ["SPDR S&P 500", "SPY"],
+    "GLD":  ["SPDR Gold", "GLD"],
+    "BNO":  ["United States Brent", "BNO"],
+    "EWU":  ["iShares MSCI United Kingdom", "EWU"],
+    "EWJ":  ["iShares MSCI Japan", "EWJ"],
 }
 
 # Backtest timeframe -> IG resolution code.
